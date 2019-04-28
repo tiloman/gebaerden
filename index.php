@@ -46,9 +46,7 @@ $userid = $_SESSION['userid'];
 
 <?php
 
-	// der zu scannende Ordner
 	$dircontents = scandir('files');
-  //natürliche Sortierung (ignorieren von groß und kleinschreibung)
   natcasesort($dircontents);
 
 	// Elemente auflisten und in ul auflisten

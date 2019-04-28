@@ -78,6 +78,11 @@ a {
   max-height: 300px;
 }
 
+.far {
+  padding-right: 1em;
+  font-size: 1.2em;
+}
+
 
 #register_form {
   width: 100%;

@@ -12,7 +12,7 @@ for (i = 0; i < coll.length; i++) {
 
 
 //Gebärden Fotos
-    array_nmbr.nextElementSibling.innerHTML = "<div class='collapsible_body_content'><img class='img_gebaerden' src='/gebaerden/files/"+this.innerHTML+".png'></div>";
+    array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><img class='img_gebaerden' src='/gebaerden/files/"+this.innerHTML+".png'></div>";
 
 if (viewVideos == true) {
 //Gebärden Video, prüfen ob es das gibt und wenn ja posten
@@ -37,11 +37,19 @@ if (viewmetacom == true) {
       }
 }
 
+//show pdf export symbol
+if (this.classList.value == "collapsible-header active"){
+    array_nmbr.innerHTML = array_nmbr.innerHTML + "<a href='http://google.com'><i class='far fa-file-pdf' style='float:right'></i></a>";
+
+  }else {
+    array_nmbr.innerHTML = array_nmbr.innerText;
+  }
+
+
 //Ein- und ausklappen von collabsible body
     var collapsible_body = this.nextElementSibling;
     var collapsible_body_content = this.nextElementSibling.children;
 
-console.log(collapsible_body);
 
     if (collapsible_body.style.maxHeight){
       collapsible_body.style.maxHeight = null;

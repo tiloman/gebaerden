@@ -1,2 +1,2 @@
-# gebaerden_local
+# gebaerden
 Gebärden Wörterbuch
