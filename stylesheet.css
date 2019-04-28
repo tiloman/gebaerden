@@ -1,0 +1,138 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  font-weight: 200;
+  background-image: linear-gradient(#6d918e, #10464c);
+
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.collapsible-header {
+  background-color: #fff;
+  color: black;
+  cursor: pointer;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  text-indent: 1em;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 1em;
+  font-weight: 200;
+}
+
+.active, .collapsible-header:hover {
+  background-color: #10464c;
+  color: white;
+}
+
+
+.collapsible_body {
+  margin: 0;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  background-color: #10464c;
+  /* background-image: linear-gradient(#10464c, #6d918e); */
+  display: flex;
+  width: 100%;
+  flex-direction:column;
+  justify-content: center;
+
+}
+
+.collapsible_body_content {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px #000;
+  border: none;
+  margin: 0.5em;
+  padding: 0.5em;
+  width: 85%;
+  align-self: center;
+  opacity: 0;
+  transition: opacity 0.7s ease-out;
+  -webkit-transition: opacity 0.7s ease-out;
+}
+
+#wordsList {
+  margin-top: 55px;
+  list-style: none;
+  padding: 0;
+  transition: margin-top 0.5s;
+  -webkit-transition: margin-top 0.5s;
+
+}
+
+
+.img_gebaerden, .img_metacom, .video_gebaerden {
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  max-height: 300px;
+}
+
+
+#register_form {
+  width: 100%;
+  /* padding-top: 20%; */
+  margin: auto;
+  display: inline-block;
+}
+
+
+#register_mail, #register_pw, #register_nachname, #register_vorname, #register_serial {
+  width: 10em;
+  height: 1.5em;
+  margin: 0.3em;
+  text-align: center;
+  font-size: 1em;
+  border-radius: 5px;
+  border: none;
+}
+
+#register_btn {
+  color: white;
+  background-color: #10464c;
+  width: 10em;
+  height: 1.7em;
+  margin: 0.8em;
+  text-align: center;
+  font-size: 1em;
+  border-radius: 5px;
+  border: none;
+  letter-spacing: 0.1em;
+}
+
+/* @media screen and (max-width: 600px) {
+  #wordsList {
+    margin-top: 100px;
+  }
+} */
+
+@media screen and (min-width: 800px) {
+
+  .collapsible_body {
+    flex-direction:row;
+    flex-wrap: wrap;
+
+
+  }
+  .collapsible_body_content {
+    max-width: 500px;
+    display: flex;
+  }
+
+}
+
+/* @media screen and (max-width: 600px) {
+  #wordsList {
+    margin-top: 55px;
+  }
+} */
