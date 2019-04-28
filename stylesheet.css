@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+.a_white {
+  color: white;
+}
+
 .collapsible-header {
   background-color: #fff;
   color: black;

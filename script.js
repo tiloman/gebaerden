@@ -39,7 +39,12 @@ if (viewmetacom == true) {
 
 //show pdf export symbol
 if (this.classList.value == "collapsible-header active"){
-    array_nmbr.innerHTML = array_nmbr.innerHTML + "<a href='http://google.com'><i class='far fa-file-pdf' style='float:right'></i></a>";
+    // array_nmbr.innerHTML = array_nmbr.innerHTML + "<a href='html2pdf.php'><i class='far fa-file-pdf' style='float:right'></i></a>";
+// array_nmbr.innerHTML = array_nmbr.innerHTML + "<form action='html2pdf.php?word=abnehmen' method='post'><input type='Submit' value='PDF'/> Namename: <input type='text' name='nachname' /><br /></form>"
+array_nmbr.innerHTML = array_nmbr.innerHTML + "<a class='a_white' target='_blank' href='html2pdf.php?" +this.innerHTML + "' method='post'><i class='far fa-file-pdf' style='float:right'></i></a>";
+
+// array_nmbr.innerHTML = array_nmbr.innerHTML + "<form action='html2pdf.php?word=" +this.innerHTML + "' method='post'><input type='text' name='mess'/> <input type='submit'/> </form>";
+
 
   }else {
     array_nmbr.innerHTML = array_nmbr.innerText;
