@@ -29,6 +29,8 @@ $content = "<html>
 </body>
 </html>";
 
+// Clean any content of the output buffer
+ob_end_clean();
 
 //HTML to PDF conversion
 $html2pdf = new HTML2PDF('L','A4','de',true,'UTF-8',array(10, 10, 10, 10));
