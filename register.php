@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'root', 'pmc2000');
+$pdo = new PDO('mysql:host=192.168.178.36;dbname=gebaerden', 'root', 'pmc2000');
 
 ?>
 
