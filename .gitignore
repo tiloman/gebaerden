@@ -1,2 +1,2 @@
-#Ignore all pictures, videos and metacom symbols in folder
+#Ignore all pictures, videos and metacom symbols in folder.
 files/**/*
