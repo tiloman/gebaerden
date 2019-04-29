@@ -5,8 +5,8 @@ use Spipu\Html2Pdf\Html2Pdf;
 
 $html2pdf = new HTML2PDF();
 
-$selectedWord = $_SERVER['QUERY_STRING'];
-$metacom = undefined ;
+// $selectedWord = $_SERVER['QUERY_STRING'];
+// $metacom = undefined ;
 
 // if(file_exists("files/metacom/".$selectedWord.".png")) {
 //   $metacom = "<img src='files/metacom/".$selectedWord.".png 'style='height:30%; align: center'>";
@@ -30,6 +30,6 @@ $html2pdf->WriteHTML("<html>
 
 
 
-$html2pdf->Output($selectedWord.'.pdf');
+$html2pdf->Output('test.pdf');
 
 ?>
