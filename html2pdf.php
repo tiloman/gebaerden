@@ -21,6 +21,7 @@ $html2pdf->WriteHTML("<html>
 <img src='https://tiloman.mooo.com/gebaerden/files/".$selectedWord.".png 'style='height:30%; align: center'>
 
 <br><br>
+".$metacom."
 
 
 </body>
