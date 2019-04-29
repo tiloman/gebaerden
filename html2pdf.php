@@ -13,6 +13,7 @@ if(file_exists("files/metacom/".$selectedWord.".png")) {
 } else {
   $metacom = "Kein Metacom Symbol vorhanden.";
 }
+ob_end_clean();
 
 
 $html2pdf->WriteHTML("<html>
