@@ -6,6 +6,7 @@ use Spipu\Html2Pdf\Html2Pdf;
 
 
 $html2pdf = new Html2Pdf();
+$selectedWord = $_SERVER['QUERY_STRING'];
 $html2pdf->writeHTML("<html>
 
 <body>
