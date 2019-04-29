@@ -42,8 +42,6 @@ $userid = $_SESSION['userid'];
   </div>
 
 
-
-
 <?php
 
 	$dircontents = scandir('files');
