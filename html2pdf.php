@@ -19,15 +19,13 @@ $html2pdf->WriteHTML("<html>
 
 <body>
 <h1>".$selectedWord."</h1>
-<img src='https://tiloman.mooo.com/gebaerden/files/aber.png 'style='height:30%; align: center'>
+<img src='https://tiloman.mooo.com/gebaerden/files/".$selectedWord.".png 'style='height:30%; align: center'>
 
 <br><br>
 
 
 </body>
 </html>");
-
-
 
 
 $html2pdf->Output('test.pdf');
