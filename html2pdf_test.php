@@ -10,7 +10,7 @@ $selectedWord = $_SERVER['QUERY_STRING'];
 $html2pdf->writeHTML("<html>
 
 <body>
-<h1>Aber</h1>
+<h1>".$selectedWord."</h1>
 <p>Die Konvertierung in PDF funktioniert noch nicht einwandfrei</p>
 <img src='https://tiloman.mooo.com/gebaerden/files/aber.png 'style='height:30%; align: center'>
 <br><br>
