@@ -8,7 +8,7 @@ if(!isset($_SESSION['userid'])) {
 //Abfrage der Nutzer ID vom Login
 $userid = $_SESSION['userid'];
 
-$pdo = new PDO('mysql:host=192.168.178.36;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+$pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
 
 ?>

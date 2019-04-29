@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$pdo = new PDO('mysql:host=192.168.178.36;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+$pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
 ?>
 
