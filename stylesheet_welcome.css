@@ -97,9 +97,23 @@ footer a{
   width: 100%;
   margin: auto;
 }
+
+
+.flexbox_big {
+  background-color: white;
+  width: 100%;
+  margin: auto;
+  flex-grow: 2;
+}
+
 .flexbox img {
   width:90%;
   max-width: 700px;
+}
+
+.img_shadow {
+  box-shadow: 0px 5px 10px #000;
+
 }
 
 .flexbox_trans {
@@ -202,6 +216,18 @@ footer a{
   padding-top: 1em;
 }
 
+.head_text_black_left {
+  font-size: 3em;
+  color: black;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 1em;
+}
+
 .sub_text_left {
   font-size: 1em;
   color: white;
@@ -221,7 +247,16 @@ footer a{
   padding-left: 5%;
   padding-right: 5%;
   line-height: 1.5;
+}
 
+.sub_text_left_black {
+  font-size: 1em;
+  color: black;
+  font-weight: 200;
+  text-align: left;
+  padding-left: 5%;
+  padding-right: 5%;
+  line-height: 1.5;
 }
 
 .img_left {
