@@ -5,14 +5,19 @@ use Spipu\Html2Pdf\Html2Pdf;
 
 $html2pdf = new HTML2PDF('L', 'A4', 'de');
 // $html2pdf->addFont('candara','','fonts/candara.php');
-$html2pdf->setDefaultFont('dejavusansmono','', 'true');
+$html2pdf->setDefaultFont('helvetica','', 'true');
 
 
 $selectedWord = $_SERVER['QUERY_STRING'];
+$selectedWordUC = ucfirst($selectedWord);
+$selectedWordLC = lcfirst($selectedWord);
 
-if(file_exists("files/metacom/".$selectedWord.".png")) {
-  $metacom = "<img class='metacom' src='files/metacom/".$selectedWord.".png'>";
-} else {
+if(file_exists("files/metacom/".$selectedWordUC.".png")) {
+  $metacom = "<img class='metacom' src='files/metacom/".$selectedWordUC.".png'>";
+} else if (file_exists("files/metacom/".$selectedWordLC.".png")){
+  $metacom = "<img class='metacom' src='files/metacom/".$selectedWordLC.".png'>";
+}
+  else {
   $metacom = "";
 }
 
@@ -56,7 +61,7 @@ h1 {
 </style>
 
 <h1>".$selectedWord."</h1>
-<img class='gebaerde' src='https://tiloman.mooo.com/gebaerden/files/".$selectedWord.".png'>
+<img class='gebaerde' src='files/".$selectedWord.".png'>
 
 
 ".$metacom."

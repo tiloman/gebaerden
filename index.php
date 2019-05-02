@@ -34,7 +34,7 @@ $userid = $_SESSION['userid'];
     <a href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
     <a href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
     <a href="about.php"><i class="fas fa-info"></i> About</a>
-    <a href="javascript:void(0)" onclick="hideMetacom()" id="viewMetacom" class="filter_icon"><i class="far fa-image" title='Metacom Bilder eingeblendet'></i></a>
+    <a href="javascript:void(0)" onclick="hideMetacom()" id="viewMetacom" class="filter_icon"><img src="img/metacom.png" height="20px" title="Metacom eingeblendet"></a>
     <a href="javascript:void(0)" onclick="hideVideos()" id="viewVideos" class="filter_icon"><i class="fas fa-video-slash" title='Videos eingeblendet'></i></a>
     <a href="javascript:void(0);" class="icon" onclick="responsiveNav()"><i class="fa fa-bars"></i></a>
   </div>
@@ -44,16 +44,41 @@ $userid = $_SESSION['userid'];
 
 	$dircontents = scandir('files');
   natcasesort($dircontents);
+  $metacomexists = null;
+  $videoexists = null;
 
 	// Elemente auflisten und in ul auflisten
 	echo '<ul id="wordsList">';
 	foreach ($dircontents as $file) {
 		$extension = pathinfo($file, PATHINFO_EXTENSION);
     $cleanFileName = pathinfo($file, PATHINFO_FILENAME);
+    $cleanFileNameUC = ucfirst($cleanFileName);
+    $cleanFileNameLC = lcfirst($cleanFileName);
+
+
+    if(file_exists("files/metacom/".$cleanFileNameUC.".png")) {
+      $metacomexists = "<img src='img/metacom.png' height='20px' title='Metacom'>";
+    } else if(file_exists("files/metacom/".$cleanFileNameLC.".png")) {
+      $metacomexists = "<img src='img/metacom.png' height='20px' title='Metacom'>";
+    } else {
+      $metacomexists = null;
+    }
+
+    if(file_exists("files/video/".$cleanFileNameUC.".m4v")) {
+      $videoexists = "<i class='fas fa-video' title='Video'></i>";
+    } else if(file_exists("files/video/".$cleanFileNameLC."_video.m4v")) {
+      $videoexists = "<i class='fas fa-video' title='Video'></i>";
+    } else {
+      $videoexists = null;
+    }
+
 		if ($extension == 'png') {
 			echo "<li>
-              <div class='collapsible-header'>$cleanFileName</div>
+              <div class='collapsible-header'>$cleanFileName
+              <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
               <div class='collapsible_body'></div>
+
+
             </li>";
 		}
 	}
