@@ -57,9 +57,9 @@ $userid = $_SESSION['userid'];
 
 
     if(file_exists("files/metacom/".$cleanFileNameUC.".png")) {
-      $metacomexists = "<img src='img/metacom.png' height='20px' title='Metacom'>";
+      $metacomexists = "<i class='far fa-smile'></i>";
     } else if(file_exists("files/metacom/".$cleanFileNameLC.".png")) {
-      $metacomexists = "<img src='img/metacom.png' height='20px' title='Metacom'>";
+      $metacomexists = "<i class='far fa-smile'></i>";
     } else {
       $metacomexists = null;
     }
