@@ -86,9 +86,9 @@
 
 @media screen and (max-width: 1000px) {
   .topnav a:not(:first-child) {display: none;}
-  /* #searchBar {
+  #searchBar {
     width: 80%;
-  } */
+  }
   .topnav a.icon {
     float: right;
     display: block;
