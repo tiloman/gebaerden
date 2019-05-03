@@ -58,8 +58,10 @@ a {
 
 .collapsible-icons {
   float: right;
-  padding-right: 20px;
+  padding-right: 2.2em;
+  letter-spacing: -1.1em;
 }
+
 
 .collapsible_body_content {
   background-color: white;

@@ -30,7 +30,7 @@ $userid = $_SESSION['userid'];
 <body>
 
   <div id="myTopnav" class="topnav">
-    <div><input id="searchBar" type="text" placeholder="Suche ..."></div>
+    <div><input id="searchBar" type="search" placeholder="Suche ..."></div>
     <a href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
     <a href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
     <a href="about.php"><i class="fas fa-info"></i> About</a>
@@ -57,9 +57,9 @@ $userid = $_SESSION['userid'];
 
 
     if(file_exists("files/metacom/".$cleanFileNameUC.".png")) {
-      $metacomexists = "<i class='far fa-smile'></i>";
+      $metacomexists = "<i class='far fa-smile' title='Metacom'></i>";
     } else if(file_exists("files/metacom/".$cleanFileNameLC.".png")) {
-      $metacomexists = "<i class='far fa-smile'></i>";
+      $metacomexists = "<i class='far fa-smile' title='Metacom'></i>";
     } else {
       $metacomexists = null;
     }

@@ -8,7 +8,8 @@ $html2pdf = new HTML2PDF('L', 'A4', 'de');
 $html2pdf->setDefaultFont('helvetica','', 'true');
 
 
-$selectedWord = $_SERVER['QUERY_STRING'];
+$selectedWordEncoded = $_SERVER['QUERY_STRING'];
+$selectedWord = urldecode($selectedWordEncoded);
 $selectedWordUC = ucfirst($selectedWord);
 $selectedWordLC = lcfirst($selectedWord);
 

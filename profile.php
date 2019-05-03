@@ -74,9 +74,88 @@ if (isset($licensedSerial)) {
 }
 
 }
-
  ?>
+<br><br>
+ <button id="changeProfileBtn">Daten aktualisieren</button>
 </div>
+<br>
+
+<!-- Update der User Daten; Wird in "user" Tabelle gespeichert -->
+
+<script>
+var changeProfileBtn = document.getElementById("changeProfileBtn");
+    changeProfileBtn.addEventListener("click", showChangeProfileForm);
+function showChangeProfileForm(){
+  document.getElementById("changeProfile").style.display = "block";
+}
+</script>
+
+
+<div class="flexbox_user_info" id="changeProfile">
+<b>Daten ändern</b><br><br>
+<?php
+$sql = "SELECT * FROM user WHERE id = $userid";
+foreach ($pdo->query($sql) as $row) {
+   echo "<form action='changeUserData.php' method='post'>
+   Vorname: <br>
+   <input type='text' name='vorname' id='vorname' value=". $row['vorname']."><br><br>
+   Nachname: <br>
+   <input type='text' name='nachname' id='nachname' value=". $row['nachname']."><br><br>
+   E-Mail: <br>
+   <input type='mail' name='email' id='email' value=". $row['email']."><br><br>
+   <input type='submit' value='Update'>
+   </form>";
+}
+ ?>
+
+
+
+
+</div>
+
+
+</div>
+<br>
+<div class="flexbox_user_info">
+<b>PDF Layout</b><br><br>
+
+
+
+
+<!-- Update des Layouts; Wird in "user" Tabelle gespeichert -->
+<?php
+$sql = "SELECT * FROM user WHERE id = $userid";
+foreach ($pdo->query($sql) as $row) {
+   echo "<form id='changeLayout' action='changeLayout.php' method='post'>
+   PDF Größe:<br>
+     <select name='pdf_size'>
+       <option style='font-weight: bold'>" . $row['pdf_size']."</option>
+       <option value='A4'>A4 (Standard)</option>
+       <option value='A3'>A3</option>
+     <select>
+
+   <br><br>
+
+   Schriftart:<br>
+     <select name='pdf_font'>
+       <option style='font-weight: bold'>".$row['pdf_font']."</option>
+       <option value='Helvetica'>Helvetica (Standard)</option>
+       <option value='Norddruck'>Norddruck</option>
+       <option value='ABC'>ABC</option>
+     <select>
+
+     <br /><br />";
+   echo "<input type='submit' value='Layout aktualisieren'>";
+
+}
+ ?>
+
+ <br><br>
+ <img src="/gebaerden/img/pdf_preview.jpg" class="pdf_preview" style="width: 50%; border: 1px solid">
+
+</div>
+
+
 </div>
   <!-- <div id="login_header">Gebärden.</div> -->
 

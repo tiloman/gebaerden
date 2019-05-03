@@ -151,6 +151,10 @@ footer a{
   margin: auto;
 }
 
+#changeProfile {
+  display:none;
+}
+
 .flexbox_login {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;

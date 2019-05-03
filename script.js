@@ -37,8 +37,10 @@ if (viewmetacom == true) {
       // }
 }
 
+let encodedWord = encodeURI(this.innerText);
+
 //show pdf export symbol
-array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_pdf'><a class='a_white' target='_blank' href='html2pdf.php?" +this.innerText + "' method='post'> als PDF exportieren <i class='far fa-file-pdf'></i></a></div>";
+array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_pdf'><a class='a_white' target='_blank' href='html2pdf.php?" +encodedWord + "' method='post'> PDF generieren <i class='far fa-file-pdf'></i></a></div>";
 
 
 
