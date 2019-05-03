@@ -30,11 +30,11 @@ $userid = $_SESSION['userid'];
 <body>
 
   <div id="myTopnav" class="topnav">
-    <div><input id="searchBar" type="search" placeholder="Suche ..."></div>
+    <div><input id="searchBar" type="text" placeholder="Suche ..."></div>
     <a href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
     <a href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
     <a href="about.php"><i class="fas fa-info"></i> About</a>
-    <a href="javascript:void(0)" onclick="hideMetacom()" id="viewMetacom" class="filter_icon"><img src="img/metacom.png" height="20px" title="Metacom eingeblendet"></a>
+    <a href="javascript:void(0)" onclick="hideMetacom()" id="viewMetacom" class="filter_icon"><img src="img/metacom.png" height="22px" title="Metacom eingeblendet"></a>
     <a href="javascript:void(0)" onclick="hideVideos()" id="viewVideos" class="filter_icon"><i class="fas fa-video-slash" title='Videos eingeblendet'></i></a>
     <a href="javascript:void(0);" class="icon" onclick="responsiveNav()"><i class="fa fa-bars"></i></a>
   </div>
@@ -64,7 +64,7 @@ $userid = $_SESSION['userid'];
       $metacomexists = null;
     }
 
-    if(file_exists("files/video/".$cleanFileNameUC.".m4v")) {
+    if(file_exists("files/video/".$cleanFileNameUC."_video.m4v")) {
       $videoexists = "<i class='fas fa-video' title='Video'></i>";
     } else if(file_exists("files/video/".$cleanFileNameLC."_video.m4v")) {
       $videoexists = "<i class='fas fa-video' title='Video'></i>";
