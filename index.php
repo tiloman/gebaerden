@@ -44,7 +44,7 @@ $userid = $_SESSION['userid'];
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
 
       <div>
-        <input id="searchBar" class="form-control mr-sm-2 searchform " type="text" placeholder="Suche ...">
+        <input id="searchBar" class="form-control mr-sm-2 searchform " type="search" placeholder="Suche ...">
       </div>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
