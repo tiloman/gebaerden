@@ -63,7 +63,7 @@ $userid = $_SESSION['userid'];
             <a class="dropdown-item" onclick="hideMetacom()" href="javascript:void(0)" id="viewMetacom"><img src="img/metacom.png" height="20px" title="Metacom eingeblendet">Metacom</a>
             <a class="dropdown-item" onclick="hideVideos()" href="javascript:void(0)" id="viewVideos"><i class="fas fa-video-slash" title='Videos eingeblendet'></i>Video</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Eigenes Material einblenden</a>
+            <a class="dropdown-item" href="/gebaerden/custom_library.php">Eigenes Material einblenden</a>
           </div>
         </li>
 

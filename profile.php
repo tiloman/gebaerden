@@ -52,7 +52,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
     <a class="navbar-brand" href="#">
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
-      
+
       <a href="/gebaerden/index.php" class="nav-link"><i class="fas fa-search"></i> Suche</a>
 
 
