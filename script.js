@@ -118,12 +118,12 @@ function closeAllActiveHeaders(array_nmbr) {
 function hideMetacom(){
   if (viewmetacom === true) {
   viewmetacom = false;
-  document.getElementById("viewMetacom").innerHTML = "<img src='img/metacom.png' height='20px' title='Metacom ausgeblendet' style='filter: grayscale(1)'>";
+  document.getElementById("viewMetacom").innerHTML = "<img src='img/metacom.png' height='20px' title='Metacom ausgeblendet' style='filter: grayscale(1)'> Metacom";
     document.getElementById("viewMetacom").style.opacity = "0.5";
 
 } else {
   viewmetacom = true;
-  document.getElementById("viewMetacom").innerHTML = "<img src='img/metacom.png' height='20px' title='Metacom eingeblendet'>";
+  document.getElementById("viewMetacom").innerHTML = "<img src='img/metacom.png' height='20px' title='Metacom eingeblendet'> Metacom";
     document.getElementById("viewMetacom").style.opacity = "1";
   }
 }
@@ -134,11 +134,11 @@ function hideMetacom(){
 function hideVideos(){
   if (viewVideos === true) {
   viewVideos = false;
-  document.getElementById("viewVideos").innerHTML = "<i class='fas fa-video' title='Videos ausgeblendet'></i> ";
+  document.getElementById("viewVideos").innerHTML = "<i class='fas fa-video' title='Videos ausgeblendet'></i> Videos";
   document.getElementById("viewVideos").style.opacity = "0.5";
   } else {
   viewVideos = true;
-  document.getElementById("viewVideos").innerHTML = "<i class='fas fa-video-slash' title='Videos eingeblendet'></i> ";
+  document.getElementById("viewVideos").innerHTML = "<i class='fas fa-video-slash' title='Videos eingeblendet'></i> Videos";
   document.getElementById("viewVideos").style.opacity = "1";
   }
   }

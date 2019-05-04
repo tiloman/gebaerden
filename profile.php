@@ -21,6 +21,10 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
     <link rel="stylesheet" type="text/css" href="stylesheet_welcome.css">
     <link rel="stylesheet" type="text/css" href="stylesheet_navbar.css">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="bootstrap_navbar_custom.css">
+
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <meta charset="UTF-8">
@@ -45,13 +49,38 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 <body style="background-image: linear-gradient(#6d918e, #10464c); text-align: center;">
 
 
-  <div id="myTopnav" class="topnav">
-    <a href="/gebaerden/index.php" class="search_icon"><i class="fas fa-search"></i> Suche</a>
-    <a href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
-    <a href="/gebaerden/profile.php" class="nav_active"><i class="fas fa-user"></i> Home</a>
-    <a href="about.php"><i class="fas fa-info"></i> About</a>
-    <a href="javascript:void(0);" class="icon" onclick="responsiveNav()"><i class="fa fa-bars"></i></a>
-  </div>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
+
+      <a href="/gebaerden/index.php" class="nav-link"><i class="fas fa-search"></i> Suche</a>
+
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars navbar_sandwich"></i>
+      </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav ml-auto" >
+
+        <li class="nav-item">
+          <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/gebaerden/about.php"><i class="fas fa-info"></i> About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
+        </li>
+
+
+      </ul>
+
+      <div>
+
+    </div>
+  </nav>
 
 <div class="welcome_flex_container">
 
@@ -172,6 +201,10 @@ foreach ($pdo->query($sql) as $row) {
   <p>2019 | Timo Lohmann | <a href="about.php">Impressum</a></p>
   </footer>
 <script src="script.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 </html>

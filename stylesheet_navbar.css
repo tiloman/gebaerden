@@ -1,7 +1,7 @@
 
-#searchBar {
+/* #searchBar {
   width: 500px;
-  /* height: 35px; */
+  height: 35px;
   font-size: 1.2em;
   padding: 0.4em;
   text-align: left;
@@ -11,17 +11,17 @@
   border: none;
   margin-left: 10px;
   margin-top: 10px;
-  /* -webkit-transition: width 0.2s ease-in-out;
-  transition: width 0.2s ease-in-out; */
+  -webkit-transition: width 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out;
   float: left;
   font-weight: 200;
 
-}
+} */
 
 .topnav {
   overflow: hidden;
   background-color: #10464c;
-  position: fixed;
+  /* position: fixed;  wenn aktiviert, funktioniert das dropdown nicht mehr*/
   width: 100%;
   top: 0;
 }
@@ -64,22 +64,14 @@
   font-size: 1.1em;
 }
 
-/* @media screen and (max-width: 1100px) {
-  #searchBar {
-    width: 95%;
-  }
-  .topnav a {
-    float: left;
-  }
-} */
 
 @media screen and (min-width: 1300px) {
-  /* #searchBar:focus{
+  #searchBar:focus{
     width: 700px;
   }
   #searchBar:hover{
     width: 700px;
-  } */
+  }
 
 }
 

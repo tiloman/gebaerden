@@ -15,6 +15,9 @@ $userid = $_SESSION['userid'];
 
     <title>Gebärden</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="bootstrap_navbar_custom.css">
+
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
       <link rel="stylesheet" type="text/css" href="stylesheet_navbar.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -38,16 +41,50 @@ $userid = $_SESSION['userid'];
 
 <body>
 
-  <div id="myTopnav" class="topnav">
-    <div><input id="searchBar" type="search" placeholder="Suche ..."></div>
-    <a href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
-    <a href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
-    <a href="about.php"><i class="fas fa-info"></i> About</a>
-    <a href="javascript:void(0)" onclick="hideMetacom()" id="viewMetacom" class="filter_icon"><img src="img/metacom.png" height="22px" title="Metacom eingeblendet"></a>
-    <a href="javascript:void(0)" onclick="hideVideos()" id="viewVideos" class="filter_icon"><i class="fas fa-video-slash" title='Videos eingeblendet'></i></a>
-    <a href="javascript:void(0);" class="icon" onclick="responsiveNav()"><i class="fa fa-bars"></i></a>
-  </div>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
 
+      <div>
+        <input id="searchBar" class="form-control mr-sm-2 searchform " type="text" placeholder="Suche ...">
+      </div>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars navbar_sandwich"></i>
+      </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav ml-auto" >
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-filter"></i> Filtern
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" onclick="hideMetacom()" href="javascript:void(0)" id="viewMetacom"><img src="img/metacom.png" height="20px" title="Metacom eingeblendet">Metacom</a>
+            <a class="dropdown-item" onclick="hideVideos()" href="javascript:void(0)" id="viewVideos"><i class="fas fa-video-slash" title='Videos eingeblendet'></i>Video</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Eigenes Material einblenden</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/gebaerden/about.php"><i class="fas fa-info"></i> About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
+        </li>
+
+
+      </ul>
+
+      <div>
+
+    </div>
+  </nav>
 
 <?php
 
@@ -96,6 +133,11 @@ $userid = $_SESSION['userid'];
 
 
 <script src="script.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 
 </body>
 </html>
