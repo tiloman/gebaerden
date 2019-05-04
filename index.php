@@ -19,7 +19,6 @@ $userid = $_SESSION['userid'];
     <link rel="stylesheet" type="text/css" href="bootstrap_navbar_custom.css">
 
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-      <link rel="stylesheet" type="text/css" href="stylesheet_navbar.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <meta charset="UTF-8">
@@ -42,9 +41,11 @@ $userid = $_SESSION['userid'];
 <body>
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
-
+    <a class="navbar-brand" href="#">
+        <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
+      </a>
       <div>
-        <input id="searchBar" class="form-control mr-sm-2 searchform " type="search" placeholder="Suche ...">
+        <input id="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ...">
       </div>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

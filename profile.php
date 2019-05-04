@@ -19,7 +19,6 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
     <title>Gebärden</title>
 
     <link rel="stylesheet" type="text/css" href="stylesheet_welcome.css">
-    <link rel="stylesheet" type="text/css" href="stylesheet_navbar.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="bootstrap_navbar_custom.css">
@@ -50,7 +49,10 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
-
+    <a class="navbar-brand" href="#">
+        <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
+      </a>
+      
       <a href="/gebaerden/index.php" class="nav-link"><i class="fas fa-search"></i> Suche</a>
 
 

@@ -134,11 +134,11 @@ function hideMetacom(){
 function hideVideos(){
   if (viewVideos === true) {
   viewVideos = false;
-  document.getElementById("viewVideos").innerHTML = "<i class='fas fa-video' title='Videos ausgeblendet'></i> Videos";
+  document.getElementById("viewVideos").innerHTML = "<i class='fas fa-video-slash' title='Videos ausgeblendet'></i> Videos";
   document.getElementById("viewVideos").style.opacity = "0.5";
   } else {
   viewVideos = true;
-  document.getElementById("viewVideos").innerHTML = "<i class='fas fa-video-slash' title='Videos eingeblendet'></i> Videos";
+  document.getElementById("viewVideos").innerHTML = "<i class='fas fa-video' title='Videos eingeblendet'></i> Videos";
   document.getElementById("viewVideos").style.opacity = "1";
   }
   }

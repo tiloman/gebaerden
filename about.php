@@ -4,7 +4,6 @@
     <title>Gebärden - About</title>
 
     <link rel="stylesheet" type="text/css" href="stylesheet_welcome.css">
-    <link rel="stylesheet" type="text/css" href="stylesheet_navbar.css">
     <link rel="shortcut icon" href="https://img.icons8.com/ios-glyphs/100/000000/sign-language-interpretation.png">
     <link rel="icon" type="image/png" href="https://img.icons8.com/ios-glyphs/100/000000/sign-language-interpretation.png" sizes="32x32">
 	  <link rel="icon" type="image/png" href="https://img.icons8.com/ios-glyphs/100/000000/sign-language-interpretation.png" sizes="96x96">
@@ -33,6 +32,10 @@
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
 
+    <a class="navbar-brand" href="#">
+        <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
+      </a>
+      
       <a href="/gebaerden/index.php" class="nav-link"><i class="fas fa-search"></i> Suche</a>
 
 
@@ -43,6 +46,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
       <ul class="navbar-nav ml-auto" >
+
 
         <li class="nav-item">
           <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
