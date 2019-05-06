@@ -9,7 +9,7 @@ if(!isset($_SESSION['userid'])) {
 }
 if(isset($_GET['img'])) {
     $img = $_GET['img'];
-    readfile("custom/$img.jpg");
+    readfile("files/metacom/$img.png");
 } else {
     readfile("files/aber.png");
 }

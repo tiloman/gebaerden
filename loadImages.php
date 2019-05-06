@@ -153,13 +153,13 @@ foreach ($dircontents as $file) {
       if ($videoexists !== null) {
       echo "
           <div class='collapsible_body_content'>
-            <video class='video_gebaerden' controls preload='metadata'><source src='custom/videos/".$selectedWord."_video.mp4#t=0.1' type='video/mp4'>Your browser does not support the video tag.</video>
+            <video class='video_gebaerden' controls preload='metadata'><source src='video.php?video=".$selectedWord."_video.mp4#t=0.1' type='video/mp4'>Your browser does not support the video tag.</video>
             </div>";
       }
       if ($metacomexists !== null) {
       echo "
               <div class='collapsible_body_content'>
-                <img class='img_metacom' src='/gebaerden/files/metacom/".$selectedWord.".png'>
+                <img class='img_metacom' src='metacom.php?img=".$selectedWord."'>
             </div>";
       }
       echo "</div>";
