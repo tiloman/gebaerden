@@ -91,6 +91,8 @@ $userid = $_SESSION['userid'];
 <?php
 
 
+
+
 $selectedWordEncoded = $_SERVER['QUERY_STRING'];
 $selectedWord = urldecode($selectedWordEncoded);
 $selectedWordUC = ucfirst($selectedWord);
@@ -145,7 +147,7 @@ foreach ($dircontents as $file) {
 
       echo "<div class='collapsible_body active'>
           <div class='collapsible_body_content'>
-            <img class='img_gebaerden' src='custom/".$selectedWord.".jpg'>
+            <img class='img_gebaerden' src='img.php?img=".$selectedWord."'>
           </div>
         ";
       if ($videoexists !== null) {
