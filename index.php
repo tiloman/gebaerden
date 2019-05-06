@@ -7,6 +7,9 @@ if(!isset($_SESSION['userid'])) {
 
 //Abfrage der Nutzer ID vom Login
 $userid = $_SESSION['userid'];
+$userSchoolID = $_SESSION['schoolId'];
+
+$pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
 ?>
 
@@ -64,8 +67,26 @@ $userid = $_SESSION['userid'];
             <a class="dropdown-item" onclick="hideVideos()" href="javascript:void(0)" id="viewVideos"><i class="fas fa-video-slash" title='Videos eingeblendet'></i>Video</a>
             <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="#">Mediathek:</a>
-            <a class="dropdown-item" href="/gebaerden/loadImages.php">Christophorus Schule Düren</a>
+            <?php
+            $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
+            foreach ($pdo->query($sql) as $row) {
+              $schoolID = $row['school_id'];
+              $schoolName = $row['school_name'];
+            }
+            if (isset($schoolName)) {
+              if ($userSchoolID == $schoolID) {
+                echo "
+                <a class='dropdown-item' href=''>Mediathek:</a>
+                <a class='dropdown-item' href='/gebaerden/loadImages.php'>".$schoolName."</a>";
+              }
+            }
+            else {
+              echo "
+              <a class='dropdown-item' href=''>Mediathek:</a>
+              <a class='dropdown-item' href='/gebaerden/profile.php'>Schule anmelden</a>";
+            }; ?>
+
+
           </div>
         </li>
 

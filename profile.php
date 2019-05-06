@@ -88,6 +88,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 <div class="flexbox_user_info">
 <?php
+
 $sql = "SELECT * FROM user WHERE id = $userid";
 foreach ($pdo->query($sql) as $row) {
    echo "<p><b>Ihre Daten:</b></p>";
@@ -96,6 +97,7 @@ foreach ($pdo->query($sql) as $row) {
    echo "Seriennummer: ".$row['serial']."<br /><br />";
 
    $userSerial = $row['serial'];
+   $userSchoolID = $row['schoolid'];
    $serial = null;
 
    $sql = "SELECT * FROM license WHERE serial = $userSerial";
@@ -103,6 +105,12 @@ foreach ($pdo->query($sql) as $row) {
      $licensedSerial = $row['serial'];
      $licensedTo = $row['licensedto'];
 }
+   $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
+   foreach ($pdo->query($sql) as $row) {
+     $schoolID = $row['school_id'];
+     $schoolName = $row['school_name'];
+}
+
 
 if (isset($licensedSerial)) {
   if ($userSerial == $licensedSerial) {
@@ -155,6 +163,37 @@ foreach ($pdo->query($sql) as $row) {
 
 
 </div>
+
+
+<!-- Update der School ID; Wird in "school" Tabelle gespeichert -->
+<div class="flexbox_user_info">
+<b>Ihre Schule</b><br>
+
+<?php
+
+if (isset($schoolName)) {
+  if ($userSchoolID == $schoolID) {
+    echo ($schoolName);
+  }
+}else {
+  echo ("Wenn Ihre Schule bereits einen Zugang hat, können Sie hier den Zugangscode eingeben.<br><br>
+    <form id='addSchool' action='addSchool.php' method='post'>
+    <input name='schoolId' type='text' placeholder='Zugangsnummer'></input><br><br>
+    <input type='submit' value='Check In'></input>
+    </form>
+
+
+  ");
+};
+
+ ?>
+
+ <br>
+
+</div>
+
+
+
 <br>
 <div class="flexbox_user_info">
 <b>PDF Layout</b><br><br>

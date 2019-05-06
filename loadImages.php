@@ -44,7 +44,7 @@ $userid = $_SESSION['userid'];
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
       <div>
-        <input id="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ...">
+        <input id="searchBar" name="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ..." value="<?php echo htmlspecialchars($searchInput); ?>">
       </div>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,7 +93,7 @@ $userid = $_SESSION['userid'];
 
 
 
-$selectedWordEncoded = $_SERVER['QUERY_STRING'];
+$selectedWordEncoded = $_GET['word'];
 $selectedWord = urldecode($selectedWordEncoded);
 $selectedWordUC = ucfirst($selectedWord);
 $selectedWordLC = lcfirst($selectedWord);
@@ -132,7 +132,7 @@ foreach ($dircontents as $file) {
   if ($extension == 'jpg') {
     if ($selectedWord !== $cleanFileName) {
       echo "<li>
-            <a href='loadImages.php?".urlencode($cleanFileName)."' method='post'>
+            <a href='loadImages.php?word=".urlencode($cleanFileName)."'>
               <div class='collapsible-header'>".$cleanFileName."
                 <div class='collapsible-icons'>$metacomexists$videoexists</div>
               </div>
@@ -152,12 +152,18 @@ foreach ($dircontents as $file) {
           </div>
         ";
       if ($videoexists !== null) {
-      echo "
-          <div class='collapsible_body_content'>
-            <video class='video_gebaerden' controls preload='metadata'><source src='video.php?video=".$selectedWord."_video.mp4' type='video/mp4'>Your browser does not support the video tag.</video>
+        if(file_exists("custom/videos/".ucfirst($selectedWord)."_video.mp4")) {
+            echo "<div class='collapsible_body_content'>
+              <video class='video_gebaerden' controls preload='metadata'><source src='video.php?video=".ucfirst($selectedWord)."_video.mp4' type='video/mp4'>Your browser does not support the video tag.</video>
+              </div>";
+        } else if(file_exists("custom/videos/".lcfirst($selectedWord)."_video.mp4")) {
+          echo "<div class='collapsible_body_content'>
+            <video class='video_gebaerden' controls preload='metadata'><source src='video.php?video=".lcfirst($selectedWord)."_video.mp4' type='video/mp4'>Your browser does not support the video tag.</video>
             </div>";
+        }
+
       }
-      
+
       if ($metacomexists !== null) {
         if(file_exists("files/metacom/".ucfirst($selectedWord).".png")) {
             echo "<div class='collapsible_body_content'>
