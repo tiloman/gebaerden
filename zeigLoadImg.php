@@ -1,6 +1,6 @@
 <?php
 session_start();
-header("Content-Type: image/jpg");
+header("Content-Type: image/png");
 
 if(!isset($_SESSION['userid'])) {
   readfile("files/abholen.png");

@@ -17,7 +17,7 @@ for (i = 0; i < coll.length; i++) {
 if (viewVideos == true) {
 //Gebärden Video, prüfen ob es das gibt und wenn ja posten
     if (doesFileExist('files/video/'+this.innerText+'_video.m4v') == true) {
-    array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><video class='video_gebaerden' controls preload='metadata'><source src='zeigLoadVideo.php?video="+this.innerText+"_video.m4v' type='video/mp4'>Your browser does not support the video tag.</video></div>";
+    array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><video class='video_gebaerden' controls preload='metadata'><source src='zeigLoadVideo.php?video="+this.innerText+"_video.m4v#t=0.5' type='video/mp4'>Your browser does not support the video tag.</video></div>";
     }
   }
 if (viewmetacom == true) {
