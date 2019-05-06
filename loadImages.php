@@ -44,7 +44,7 @@ $userid = $_SESSION['userid'];
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
       <div>
-        <input id="searchBar" name="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ..." value="<?php echo htmlspecialchars($searchInput); ?>">
+        <input id="searchBar" name="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ...">
       </div>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
