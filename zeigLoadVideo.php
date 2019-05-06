@@ -9,7 +9,7 @@ if(!isset($_SESSION['userid'])) {
 }
 if(isset($_GET['video'])) {
     $video = $_GET['video'];
-    readfile("custom/videos/$video");
+    readfile("files/video/$video");
 } else {
     readfile("custom/videos/Aufzug_video.mp4");
 }

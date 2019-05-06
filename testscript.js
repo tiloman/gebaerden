@@ -17,7 +17,7 @@ for (i = 0; i < coll.length; i++) {
 if (viewVideos == true) {
 //Gebärden Video, prüfen ob es das gibt und wenn ja posten
     if (doesFileExist('files/video/'+this.innerText+'_video.m4v') == true) {
-    array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><video class='video_gebaerden' controls preload='metadata'><source src='zeigLoadVideo.php?video="+this.innerText+"_video.m4v' type='video/mp4'>Your browser does not support the video tag.</video></div>";
+    array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><video class='video_gebaerden' controls preload='metadata'><source src='files/video/"+this.innerText+"_video.m4v#t=0.1' type='video/mp4'>Your browser does not support the video tag.</video></div>";
     }
   }
 if (viewmetacom == true) {
@@ -25,7 +25,7 @@ if (viewmetacom == true) {
   //und prüfen ob die Datei exisitert
       var array_nmbr_lc = array_nmbr.innerText.substring(0,1).toLowerCase() + array_nmbr.innerText.substring(1).toLowerCase();
       if (doesFileExist('/gebaerden/files/metacom/'+array_nmbr_lc+'.png') == true) {
-        array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><img class='img_metacom' src='zeigLoadMetacom.php?img="+array_nmbr_lc+"'></div>";
+        array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><img class='img_metacom' src='/gebaerden/files/metacom/"+array_nmbr_lc+".png'></div>";
       }
 
   //Großschreibung des ersten Buchstabens des Strings für Metacom Symbole und
