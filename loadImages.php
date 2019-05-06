@@ -103,6 +103,7 @@ $dircontents = scandir('custom');
 natcasesort($dircontents);
 $metacomexists = null;
 $videoexists = null;
+$metacomlink = null;
 
 echo '<ul id="wordsList">';
 foreach ($dircontents as $file) {
@@ -153,14 +154,21 @@ foreach ($dircontents as $file) {
       if ($videoexists !== null) {
       echo "
           <div class='collapsible_body_content'>
-            <video class='video_gebaerden' controls preload='metadata'><source src='video.php?video=".$selectedWord."_video.mp4#t=0.1' type='video/mp4'>Your browser does not support the video tag.</video>
+            <video class='video_gebaerden' controls preload='metadata'><source src='video.php?video=".$selectedWord."_video.mp4' type='video/mp4'>Your browser does not support the video tag.</video>
             </div>";
       }
+      
       if ($metacomexists !== null) {
-      echo "
-              <div class='collapsible_body_content'>
-                <img class='img_metacom' src='metacom.php?img=".$selectedWord."'>
-            </div>";
+        if(file_exists("files/metacom/".ucfirst($selectedWord).".png")) {
+            echo "<div class='collapsible_body_content'>
+                    <img class='img_metacom' src='metacom.php?img=".ucfirst($selectedWord)."'>
+                 </div>";
+        } else if(file_exists("files/metacom/".lcfirst($selectedWord).".png")) {
+              echo "<div class='collapsible_body_content'>
+                    <img class='img_metacom' src='metacom.php?img=".lcfirst($selectedWord)."'>
+                    </div>";
+        }
+
       }
       echo "</div>";
     }
