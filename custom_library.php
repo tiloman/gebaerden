@@ -47,12 +47,13 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
     <a class="navbar-brand" href="#">
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
-      <div>
-        <form class="form-inline my-2 my-lg-0" action="custom_library.php" method="get">
-          <input id="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ..." name="searchInput">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search" title='Suche'></i></button>
-        </form>
-      </div>
+      <form class="input-group" action="custom_library.php" method="get">
+            <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
+              <div class="input-group-append">
+                <button class="btn btn-success" type="submit"><i class="fas fa-search" title='Suche'></i></button>
+              </div>
+            </div>
+      </form>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars navbar_sandwich"></i>

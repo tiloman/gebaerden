@@ -44,15 +44,33 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 <body>
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
-    <a class="navbar-brand" href="#">
+     <a class="navbar-brand" href="#">
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
-      <div>
-        <form class="form-inline my-2 my-lg-0" action="index.php" method="get">
-          <input id="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
+
+<form class="input-group" action="index.php" method="get">
+      <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
+        <div class="input-group-append">
+          <button class="btn btn-success" type="submit"><i class="fas fa-search" title='Suche'></i></button>
+        </div>
+      </div>
+</form>
+
+
+      <!-- <div class="input-group form-sm form-2 pl-0">
+        <input class="form-control my-0 py-1 lime-border" type="text" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <span class="input-group-text lime lighten-2" id="basic-text1"><i class="fas fa-search text-grey"
+              aria-hidden="true"></i></span>
+        </div>
+      </div> -->
+
+      <!-- <div>
+        <form class="d-flex my-2 my-lg-0" action="index.php" method="get">
+          <input id="searchBar" class="form-control" type="search" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search" title='Suche'></i></button>
         </form>
-      </div>
+      </div> -->
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars navbar_sandwich"></i>

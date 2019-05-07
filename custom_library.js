@@ -10,7 +10,7 @@ var metacompath = "files/metacom/";
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     var array_nmbr = this;
-    closeAllActiveHeaders(array_nmbr); //schließt alle anderen Aktiven Header.
+    if(this.classList.contains("active") == false) {closeAllActiveHeaders(array_nmbr);} //schließt alle anderen Aktiven Header.
     this.classList.toggle("active");
 
 

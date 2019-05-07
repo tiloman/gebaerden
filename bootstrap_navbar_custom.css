@@ -65,19 +65,26 @@
   color: black !important;
 }
 
-.btn-outline-success {
+.input-group{
+  max-width: 800px;
+}
+
+.btn, .btn-success {
   color: white !important;
   border-color: #6d918e;
   padding: 0.6em;
-  background-color: #10464c;
+  background-color: #6d918e;
 }
 
-.btn-outline-success:hover {
+.btn:hover, .btn-success:hover {
   background-color: #6d918e !important;
-  border-color: #ecf0f1;
-  color: white !important;
+  border-color: #10464c;
+  color: #10464c !important;
 
+}
 
+.input-group {
+  margin: auto !important;
 }
 
 .navbar_sandwich {
@@ -103,13 +110,17 @@
   color: red;
 }
 
+
 @media (max-width: 575px) {
+
   .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
     color: #ecf0f1;
     background-color: #e74c3c;
   }
-  .searchform{
-    width: 170px;
+
+
+  .input-group{
+    width: 130px !important;
   }
   .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
   .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
@@ -124,8 +135,13 @@
 @media (max-width: 767px) {
   .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
     color: #ecf0f1;
-  }
 
+  }
+  .input-group{
+    width: 60% !important;
+    min-width: 300px !important;
+
+  }
 
   .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
   .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
@@ -140,6 +156,12 @@
 @media (max-width: 991px) {
   .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
     color: #ecf0f1;
+  }
+
+  .input-group{
+    width: 50% !important;
+    min-width: 400px !important;
+    max-width: 600px;
   }
   .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
   .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
@@ -156,6 +178,12 @@
 @media (max-width: 1199px) {
   .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
     color: #ecf0f1;
+  }
+
+  .input-group{
+    width: 50% !important;
+    min-width: 400px !important;
+    max-width: 600px;
   }
   .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
   .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
