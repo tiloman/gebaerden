@@ -3,11 +3,15 @@ var view_img = document.getElementsByClassName("collapsible_body");
 var viewmetacom = true;
 var viewVideos = true;
 
+var videopath = "files/video";
+var imgpath = "files/";
+var metacompath = "files/metacom/";
+
 
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     var array_nmbr = this;
-    // closeAllActiveHeaders(array_nmbr); //schließt alle anderen Aktiven Header.
+    closeAllActiveHeaders(array_nmbr); //schließt alle anderen Aktiven Header.
     this.classList.toggle("active");
 
 
@@ -16,7 +20,7 @@ for (i = 0; i < coll.length; i++) {
 
 if (viewVideos == true) {
 //Gebärden Video, prüfen ob es das gibt und wenn ja posten
-    if (doesFileExist('files/video/'+this.innerText+'_video.m4v') == true) {
+    if (doesFileExist(videopath+this.innerText+'_video.m4v') == true) {
     array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><video class='video_gebaerden' controls preload='metadata'><source src='zeigLoadVideo.php?video="+this.innerText+"_video.m4v#t=0.5' type='video/mp4'>Your browser does not support the video tag.</video></div>";
     }
   }
@@ -24,7 +28,7 @@ if (viewmetacom == true) {
   //Kleinschreibung des ersten Buchstabens des Strings für Metacom Symbole
   //und prüfen ob die Datei exisitert
       var array_nmbr_lc = array_nmbr.innerText.substring(0,1).toLowerCase() + array_nmbr.innerText.substring(1).toLowerCase();
-      if (doesFileExist('/gebaerden/files/metacom/'+array_nmbr_lc+'.png') == true) {
+      if (doesFileExist(metacompath+array_nmbr_lc+'.png') == true) {
         array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><img class='img_metacom' src='zeigLoadMetacom.php?img="+array_nmbr_lc+"'></div>";
       }
 
@@ -40,7 +44,7 @@ if (viewmetacom == true) {
 let encodedWord = encodeURI(this.innerText);
 
 //show pdf export symbol
-array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_pdf'><a class='a_white' target='_blank' href='html2pdf.php?" +encodedWord + "' method='post'> PDF generieren <i class='far fa-file-pdf'></i></a></div>";
+array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_pdf'><a class='a_white' target='_blank' href='html2pdf.php?word=" +encodedWord + "&path="+imgpath+"' method='post'> PDF generieren <i class='far fa-file-pdf'></i></a></div>";
 
 
 
@@ -110,6 +114,15 @@ function closeAllActiveHeaders(array_nmbr) {
       });
     });
   });
+
+//Suche mit JQuery nach laden der Seite (einmalig falls man von anderer seite kommt)
+  $(document).ready(function(){
+        var value = $("#searchBar").val().toLowerCase();
+        $("#wordsList li").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
 
 
 

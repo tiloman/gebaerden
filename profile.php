@@ -53,7 +53,12 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
 
-      <a href="/gebaerden/index.php" class="nav-link"><i class="fas fa-search"></i> Suche</a>
+      <div>
+        <form class="form-inline my-2 my-lg-0" action="index.php" method="get">
+          <input id="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ..." name="searchInput">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search" title='Suche'></i></button>
+        </form>
+      </div>
 
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +99,6 @@ foreach ($pdo->query($sql) as $row) {
    echo "<p><b>Ihre Daten:</b></p>";
    echo "Name: " . $row['vorname']." ".$row['nachname']."<br />";
    echo "E-Mail: ".$row['email']."<br /><br />";
-   echo "Seriennummer: ".$row['serial']."<br /><br />";
 
    $userSerial = $row['serial'];
    $userSchoolID = $row['schoolid'];

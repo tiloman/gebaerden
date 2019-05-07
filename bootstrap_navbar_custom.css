@@ -65,6 +65,21 @@
   color: black !important;
 }
 
+.btn-outline-success {
+  color: white !important;
+  border-color: #6d918e;
+  padding: 0.6em;
+  background-color: #10464c;
+}
+
+.btn-outline-success:hover {
+  background-color: #6d918e !important;
+  border-color: #ecf0f1;
+  color: white !important;
+
+
+}
+
 .navbar_sandwich {
   color: white !important;
   font-size: 1.3em;

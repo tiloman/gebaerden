@@ -7,6 +7,9 @@ if(!isset($_SESSION['userid'])) {
 
 //Abfrage der Nutzer ID vom Login
 $userid = $_SESSION['userid'];
+$userSchoolID = $_SESSION['schoolId'];
+
+$pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
 ?>
 
@@ -45,7 +48,10 @@ $userid = $_SESSION['userid'];
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
       <div>
-        <input id="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ...">
+        <form class="form-inline my-2 my-lg-0" action="custom_library.php" method="get">
+          <input id="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ..." name="searchInput">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search" title='Suche'></i></button>
+        </form>
       </div>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +69,11 @@ $userid = $_SESSION['userid'];
             <a class="dropdown-item" onclick="hideMetacom()" href="javascript:void(0)" id="viewMetacom"><img src="img/metacom.png" height="20px" title="Metacom eingeblendet">Metacom</a>
             <a class="dropdown-item" onclick="hideVideos()" href="javascript:void(0)" id="viewVideos"><i class="fas fa-video-slash" title='Videos eingeblendet'></i>Video</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="index.php">Zeigs mir mit Gebärden einblenden</a>
+
+            <a class="dropdown-item" href="#">Mediathek:</a>
+            <a class="dropdown-item" href="index.php">Zeigs mir mit Gebärden</a>
+
+
           </div>
         </li>
 
@@ -121,12 +131,10 @@ $userid = $_SESSION['userid'];
 
 		if ($extension == 'jpg') {
 			echo "<li>
-              <a href='loadImages.php?".$cleanFileName."' method='post'>
-                <div class='collapsible-header'>".$cleanFileName."
-                  <div class='collapsible-icons'>$metacomexists$videoexists</div>
-                </div>
-              </a>
+              <div class='collapsible-header'>$cleanFileName
+              <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
               <div class='collapsible_body'></div>
+
 
             </li>";
 		}

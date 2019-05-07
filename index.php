@@ -48,7 +48,10 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
       <div>
-        <input id="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ...">
+        <form class="form-inline my-2 my-lg-0" action="index.php" method="get">
+          <input id="searchBar" class="form-control mr-sm-2 searchform" type="search" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search" title='Suche'></i></button>
+        </form>
       </div>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +80,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
               if ($userSchoolID == $schoolID) {
                 echo "
                 <a class='dropdown-item' href=''>Mediathek:</a>
-                <a class='dropdown-item' href='/gebaerden/loadImages.php'>".$schoolName."</a>";
+                <a class='dropdown-item' href='/gebaerden/custom_library.php'>".$schoolName."</a>";
               }
             }
             else {

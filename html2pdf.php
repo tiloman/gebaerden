@@ -8,10 +8,11 @@ $html2pdf = new HTML2PDF('L', 'A4', 'de');
 $html2pdf->setDefaultFont('helvetica','', 'true');
 
 
-$selectedWordEncoded = $_SERVER['QUERY_STRING'];
+$selectedWordEncoded = $_POST['word'];
 $selectedWord = urldecode($selectedWordEncoded);
 $selectedWordUC = ucfirst($selectedWord);
 $selectedWordLC = lcfirst($selectedWord);
+$imgPath = $_POST['path'];
 
 if(file_exists("files/metacom/".$selectedWordUC.".png")) {
   $metacom = "<img class='metacom' src='files/metacom/".$selectedWordUC.".png'>";
@@ -62,7 +63,7 @@ h1 {
 </style>
 
 <h1>".$selectedWord."</h1>
-<img class='gebaerde' src='files/".$selectedWord.".png'>
+<img class='gebaerde' src='".$imgPath.$selectedWord.".png'>
 
 
 ".$metacom."
