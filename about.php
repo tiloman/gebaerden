@@ -36,7 +36,7 @@
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
 
-      <form class="input-group" action="index.php" method="get">
+      <form class="input-group-custom" action="index.php" method="get">
             <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
               <div class="input-group-append">
                 <button class="btn btn-success" type="submit"><i class="fas fa-search" title='Suche'></i></button>
