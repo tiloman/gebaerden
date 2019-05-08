@@ -57,21 +57,6 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 </form>
 
 
-      <!-- <div class="input-group form-sm form-2 pl-0">
-        <input class="form-control my-0 py-1 lime-border" type="text" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <span class="input-group-text lime lighten-2" id="basic-text1"><i class="fas fa-search text-grey"
-              aria-hidden="true"></i></span>
-        </div>
-      </div> -->
-
-      <!-- <div>
-        <form class="d-flex my-2 my-lg-0" action="index.php" method="get">
-          <input id="searchBar" class="form-control" type="search" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search" title='Suche'></i></button>
-        </form>
-      </div> -->
-
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars navbar_sandwich"></i>
       </button>
@@ -136,7 +121,10 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 	$dircontents = scandir('files');
   natcasesort($dircontents);
   $metacomexists = null;
+  $metacomCase = null;
   $videoexists = null;
+  $imgPath = 'files/';
+  $imgEnding = '.png';
 
 	// Elemente auflisten und in ul auflisten
 	echo '<ul id="wordsList">';
@@ -149,8 +137,10 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
     if(file_exists("files/metacom/".$cleanFileNameUC.".png")) {
       $metacomexists = "<i class='far fa-smile' title='Metacom'></i>";
+      $metacomCase = "metacomUC";
     } else if(file_exists("files/metacom/".$cleanFileNameLC.".png")) {
       $metacomexists = "<i class='far fa-smile' title='Metacom'></i>";
+      $metacomCase = "metacomLC";
     } else {
       $metacomexists = null;
     }
@@ -167,10 +157,25 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 			echo "<li>
               <div class='collapsible-header'>$cleanFileName
               <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
-              <div class='collapsible_body'></div>
+              <div class='collapsible_body'>";
+
+              echo "<div class='collapsible_body_content img'></div>";
+
+              if ($videoexists !== null) {
+                echo "<div class='collapsible_body_content video'></div>";
+              }
+
+              if ($metacomexists !== null) {
+                echo "<div class='collapsible_body_content ".$metacomCase."'></div>";
+              }
+
+              echo "
+              <div class='collapsible_body_pdf'>
+              <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=".$imgEnding."' method='get'> PDF generieren <i class='far fa-file-pdf'></i></a></div>
+              </div></li>";
 
 
-            </li>";
+            ;
 		}
 	}
 	echo '</ul>';

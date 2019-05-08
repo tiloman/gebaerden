@@ -15,39 +15,28 @@ for (i = 0; i < coll.length; i++) {
     this.classList.toggle("active");
     this.scrollIntoViewIfNeeded(); //scrollt den Bildschirm hoch
 
+//Wort in klein- und großschreibung
+var array_nmbr_uc = array_nmbr.innerText.substring(0,1).toUpperCase() + array_nmbr.innerText.substring(1).toLowerCase();
+var array_nmbr_lc = array_nmbr.innerText.substring(0,1).toLowerCase() + array_nmbr.innerText.substring(1).toLowerCase();
 
-//Gebärden Fotos
-    array_nmbr.nextElementSibling.innerHTML = "<div class='collapsible_body_content'><img class='img_gebaerden' src='zeigLoadImg.php?img="+this.innerText+"'></div>";
-
-if (viewVideos == true) {
-//Gebärden Video, prüfen ob es das gibt und wenn ja posten
-    if (doesFileExist(videopath+this.innerText+'_video.m4v') == true) {
-    array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><video class='video_gebaerden' controls preload='metadata'><source src='zeigLoadVideo.php?video="+this.innerText+"_video.m4v#t=0.5' type='video/mp4'>Your browser does not support the video tag.</video></div>";
-    }
-  }
-if (viewmetacom == true) {
-  //Kleinschreibung des ersten Buchstabens des Strings für Metacom Symbole
-  //und prüfen ob die Datei exisitert
-      var array_nmbr_lc = array_nmbr.innerText.substring(0,1).toLowerCase() + array_nmbr.innerText.substring(1).toLowerCase();
-      if (doesFileExist(metacompath+array_nmbr_lc+'.png') == true) {
-        array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><img class='img_metacom' src='zeigLoadMetacom.php?img="+array_nmbr_lc+"'></div>";
-      }
-
-  //Großschreibung des ersten Buchstabens des Strings für Metacom Symbole und
-  //Prüfen, ob die Datei in Großschreibung existiert und wenn ja, dann schreiben
-      //
-      // var array_nmbr_uc = array_nmbr.innerText.substring(0,1).toUpperCase() + array_nmbr.innerText.substring(1).toLowerCase();
-      // if (doesFileExist('/gebaerden/files/metacom/'+array_nmbr_uc+'.png') == true) {
-      //   array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><img class='img_metacom' src='/gebaerden/files/metacom/"+array_nmbr_uc+".png'></div>";
-      // }
-}
 
 let encodedWord = encodeURI(this.innerText);
 
-//show pdf export symbol
-array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_pdf'><a class='a_white' target='_blank' href='html2pdf.php?word=" +encodedWord + "&path="+imgpath+"' method='post'> PDF generieren <i class='far fa-file-pdf'></i></a></div>";
 
-
+var c = this.nextElementSibling.children;
+for (i=0; i< c.length; i++) {
+  if (c[i].classList.contains("img")){
+    c[i].innerHTML = "<img class='img_gebaerden' src='zeigLoadImg.php?img="+this.innerText+"'>";
+  }
+  if (c[i].classList.contains("metacomLC")){
+      c[i].innerHTML = "<img class='img_metacom' src='zeigLoadMetacom.php?img="+array_nmbr_lc+"'>";
+  } else if (c[i].classList.contains("metacomUC")){
+        c[i].innerHTML = "<img class='img_metacom' src='zeigLoadMetacom.php?img="+array_nmbr_uc+"'>";
+      }
+  if (c[i].classList.contains("video")){
+      c[i].innerHTML = "<video class='video_gebaerden' controls preload='metadata'><source src='zeigLoadVideo.php?video="+this.innerText+"_video.m4v#t=0.5' type='video/mp4'>Your browser does not support the video tag.</video>";
+    }
+}
 
 
 //Ein- und ausklappen von collabsible body
@@ -75,20 +64,6 @@ array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_pdf'><a
 }
 
 
-
-//Pfürung ob es die Datei gibt
-function doesFileExist(urlToFile) {
-    var img = new XMLHttpRequest();
-    img.open('HEAD', urlToFile, false);
-    img.send();
-
-    if (img.status == "404") {
-        return false;
-    } else {
-        return true;
-    }
-}
-
 //Beim Focus der Suche soll nach oben gescrollt werden und alle aktive Header geschlossen werden
 var searchBar = document.getElementById('searchBar');
 searchBar.addEventListener("focus", closeAllActiveHeaders);
@@ -105,6 +80,7 @@ function closeAllActiveHeaders(array_nmbr) {
     coll[y].classList.remove("active");
     }
 }
+
 
 //Suche mit JQuery
   $(document).ready(function(){
@@ -155,35 +131,4 @@ function hideVideos(){
   document.getElementById("viewVideos").innerHTML = "<i class='fas fa-video' title='Videos eingeblendet'></i> Videos";
   document.getElementById("viewVideos").style.opacity = "1";
   }
-  }
-
-
-//Responsvie Navigation
-function responsiveNav() {
-  var x = document.getElementById("myTopnav");
-  // document.body.scrollTop = document.documentElement.scrollTop = 0;
-
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
-
-
-document.getElementById("searchBar").value = findGetParameter("searchInput")
-
-
-  function findGetParameter(parameterName) {
-      var result = null,
-          tmp = [];
-      location.search
-          .substr(1)
-          .split("&")
-          .forEach(function (item) {
-            tmp = item.split("=");
-            if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-          });
-      return result;
   }
