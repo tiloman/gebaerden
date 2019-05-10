@@ -123,8 +123,12 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
   $metacomexists = null;
   $metacomCase = null;
   $videoexists = null;
+
   $imgPath = 'files/';
-  $imgEnding = '.png';
+  $imgMime = 'png';
+
+  $videoPath = 'files/video/';
+  $videoMime = '_video.m4v';
 
 	// Elemente auflisten und in ul auflisten
 	echo '<ul id="wordsList">';
@@ -145,15 +149,15 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
       $metacomexists = null;
     }
 
-    if(file_exists("files/video/".$cleanFileNameUC."_video.m4v")) {
+    if(file_exists($videoPath.$cleanFileNameUC.$videoMime)) {
       $videoexists = "<i class='fas fa-video' title='Video'></i>";
-    } else if(file_exists("files/video/".$cleanFileNameLC."_video.m4v")) {
+    } else if(file_exists($videoPath.$cleanFileNameLC.$videoMime)) {
       $videoexists = "<i class='fas fa-video' title='Video'></i>";
     } else {
       $videoexists = null;
     }
 
-		if ($extension == 'png') {
+		if ($extension == $imgMime) {
 			echo "<li>
               <div class='collapsible-header'>$cleanFileName
               <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
@@ -171,7 +175,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
               echo "
               <div class='collapsible_body_pdf'>
-              <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=".$imgEnding."' method='get'> PDF generieren <i class='far fa-file-pdf'></i></a></div>
+              <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$imgMime."' method='get'> PDF generieren <i class='far fa-file-pdf'></i></a></div>
               </div></li>";
 
 

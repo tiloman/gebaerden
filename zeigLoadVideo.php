@@ -1,7 +1,7 @@
 <?php
 
 $video = $_GET['video'];
-
+$path = $_GET['path'];
 $file = "files/video/".$video;
 
 //Script von http://www.tuxxin.com/php-mp4-streaming/

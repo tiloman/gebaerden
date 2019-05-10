@@ -9,6 +9,7 @@ if(!isset($_SESSION['userid'])) {
 $userid = $_SESSION['userid'];
 $userSchoolID = $_SESSION['schoolId'];
 
+include('dbInfo.php');
 $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
 ?>
@@ -100,47 +101,72 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 <?php
 
-	$dircontents = scandir('custom');
-  natcasesort($dircontents);
-  $metacomexists = null;
-  $videoexists = null;
+$dircontents = scandir('custom');
+natcasesort($dircontents);
+$metacomexists = null;
+$metacomCase = null;
+$videoexists = null;
 
-	// Elemente auflisten und in ul auflisten
-	echo '<ul id="wordsList">';
-	foreach ($dircontents as $file) {
-		$extension = pathinfo($file, PATHINFO_EXTENSION);
-    $cleanFileName = pathinfo($file, PATHINFO_FILENAME);
-    $cleanFileNameUC = ucfirst($cleanFileName);
-    $cleanFileNameLC = lcfirst($cleanFileName);
+$imgPath = 'custom/';
+$imgMime = 'jpg';
 
-
-    if(file_exists("files/metacom/".$cleanFileNameUC.".png")) {
-      $metacomexists = "<i class='far fa-smile' title='Metacom'></i>";
-    } else if(file_exists("files/metacom/".$cleanFileNameLC.".png")) {
-      $metacomexists = "<i class='far fa-smile' title='Metacom'></i>";
-    } else {
-      $metacomexists = null;
-    }
-
-    if(file_exists("custom/videos/".$cleanFileNameUC."_video.mp4")) {
-      $videoexists = "<i class='fas fa-video' title='Video'></i>";
-    } else if(file_exists("custom/videos/".$cleanFileNameLC."_video.mp4")) {
-      $videoexists = "<i class='fas fa-video' title='Video'></i>";
-    } else {
-      $videoexists = null;
-    }
-
-		if ($extension == 'jpg') {
-			echo "<li>
-              <div class='collapsible-header'>$cleanFileName
-              <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
-              <div class='collapsible_body'></div>
+$videoPath = 'custom/videos/';
+$videoMime = '_video.mp4';
 
 
-            </li>";
-		}
-	}
-	echo '</ul>';
+// Elemente auflisten und in ul auflisten
+echo '<ul id="wordsList">';
+foreach ($dircontents as $file) {
+  $extension = pathinfo($file, PATHINFO_EXTENSION);
+  $cleanFileName = pathinfo($file, PATHINFO_FILENAME);
+  $cleanFileNameUC = ucfirst($cleanFileName);
+  $cleanFileNameLC = lcfirst($cleanFileName);
+
+
+  if(file_exists("files/metacom/".$cleanFileNameUC.".png")) {
+    $metacomexists = "<i class='far fa-smile' title='Metacom'></i>";
+    $metacomCase = "metacomUC";
+  } else if(file_exists("files/metacom/".$cleanFileNameLC.".png")) {
+    $metacomexists = "<i class='far fa-smile' title='Metacom'></i>";
+    $metacomCase = "metacomLC";
+  } else {
+    $metacomexists = null;
+  }
+
+  if(file_exists($videoPath.$cleanFileNameUC.$videoMime)) {
+    $videoexists = "<i class='fas fa-video' title='Video'></i>";
+  } else if(file_exists($videoPath.$cleanFileNameLC.$videoMime)) {
+    $videoexists = "<i class='fas fa-video' title='Video'></i>";
+  } else {
+    $videoexists = null;
+  }
+
+  if ($extension == $imgMime) {
+    echo "<li>
+            <div class='collapsible-header'>$cleanFileName
+            <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
+            <div class='collapsible_body'>";
+
+            echo "<div class='collapsible_body_content img'></div>";
+
+            if ($videoexists !== null) {
+              echo "<div class='collapsible_body_content video'></div>";
+            }
+
+            if ($metacomexists !== null) {
+              echo "<div class='collapsible_body_content ".$metacomCase."'></div>";
+            }
+
+            echo "
+            <div class='collapsible_body_pdf'>
+            <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$imgMime."' method='get'> PDF generieren <i class='far fa-file-pdf'></i></a></div>
+            </div></li>";
+
+
+          ;
+  }
+}
+echo '</ul>';
 ?>
 
 

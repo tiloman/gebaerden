@@ -180,6 +180,16 @@ foreach ($pdo->query($sql) as $row) {
 if (isset($schoolName)) {
   if ($userSchoolID == $schoolID) {
     echo ($schoolName);
+    echo "<br><br>
+    <b>Gebärden für Ihre Schule hochladen<b><br>
+
+    <form action='upload.php' method='post' enctype='multipart/form-data'>
+    <input type='file' name='file'><br><br>
+    <input type='text' placeholder='Wort' name='word' required><br><br>
+    <input type='submit' value='hochladen'>
+    </form>
+
+    ";
   }
 }else {
   echo ("Wenn Ihre Schule bereits einen Zugang hat, können Sie hier den Zugangscode eingeben.<br><br>

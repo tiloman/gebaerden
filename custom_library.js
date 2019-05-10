@@ -1,54 +1,47 @@
 var coll = document.getElementsByClassName("collapsible-header");
-var view_img = document.getElementsByClassName("collapsible_body");
-var viewmetacom = true;
+var coll_body = document.getElementsByClassName("collapsible_body");
+var viewMetacom = true;
 var viewVideos = true;
 
-var videopath = "custom/videos/";
-var imgpath = "custom/";
-var metacompath = "files/metacom/";
+var videoPath = "custom/videos";
+var imgPath = "custom/";
+var metacomPath = "files/metacom/";
+var imgMime = "jpg";
+var videoMime = "mp4";
+var phpVideoLoader = 'video.php';
+
 
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
-    var array_nmbr = this;
-    if(this.classList.contains("active") == false) {closeAllActiveHeaders(array_nmbr);} //schließt alle anderen Aktiven Header.
+    if(this.classList.contains("active") == false) {closeAllActiveHeaders(this);} //schließt alle anderen Aktiven Header.
     this.classList.toggle("active");
+    this.scrollIntoViewIfNeeded(); //scrollt den Bildschirm hoch
+
+    //Wort in klein- und großschreibung
+    var selectedWord_uc = this.innerText.substring(0,1).toUpperCase() + this.innerText.substring(1).toLowerCase();
+    var selectedWord_lc = this.innerText.substring(0,1).toLowerCase() + this.innerText.substring(1).toLowerCase();
 
 
-//Gebärden Fotos
-    array_nmbr.nextElementSibling.innerHTML = "<div class='collapsible_body_content'><img class='img_gebaerden' src='img.php?img="+this.innerText+"'></div>";
+    let encodedWord = encodeURI(this.innerText);
 
-if (viewVideos == true) {
-//Gebärden Video, prüfen ob es das gibt und wenn ja posten
-    if (doesFileExist(videopath+this.innerText+'_video.mp4') == true) {
-    array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><video class='video_gebaerden' controls preload='metadata'><source src='video.php?video="+this.innerText+"_video.mp4#t=0.5' type='video/mp4'>Your browser does not support the video tag.</video></div>";
-    }
-  }
-if (viewmetacom == true) {
-  //Kleinschreibung des ersten Buchstabens des Strings für Metacom Symbole
-  //und prüfen ob die Datei exisitert
-      var array_nmbr_lc = array_nmbr.innerText.substring(0,1).toLowerCase() + array_nmbr.innerText.substring(1).toLowerCase();
-      if (doesFileExist(metacompath+array_nmbr_lc+'.png') == true) {
-        array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><img class='img_metacom' src='metacom.php?img="+array_nmbr_lc+"'></div>";
+
+    var c = this.nextElementSibling.children;
+      for (i=0; i< c.length; i++) {
+        if (c[i].classList.contains("img")){
+          c[i].innerHTML = "<img class='img_gebaerden' src='img.php?img="+this.innerText+"&path="+imgPath+"&mime="+imgMime+"'>";
+        }
+        if (c[i].classList.contains("metacomLC") && viewMetacom === true){
+            c[i].innerHTML = "<img class='img_metacom' src='metacom.php?img="+selectedWord_lc+"&path="+metacomPath+"'>";
+        } else if (c[i].classList.contains("metacomUC") && viewMetacom === true){
+              c[i].innerHTML = "<img class='img_metacom' src='metacom.php?img="+selectedWord_uc+"&path="+metacomPath+"'>";
+            }
+        if (c[i].classList.contains("video") && viewVideos === true){
+            c[i].innerHTML = "<video class='video_gebaerden' controls preload='metadata'><source src='"+phpVideoLoader+"?video="+this.innerText+"_video."+videoMime+"#t=0.5&path="+videoPath+"' type='video/mp4'>Your browser does not support the video tag.</video>";
+          }
       }
 
-  //Großschreibung des ersten Buchstabens des Strings für Metacom Symbole und
-  //Prüfen, ob die Datei in Großschreibung existiert und wenn ja, dann schreiben
-      //
-      // var array_nmbr_uc = array_nmbr.innerText.substring(0,1).toUpperCase() + array_nmbr.innerText.substring(1).toLowerCase();
-      // if (doesFileExist('/gebaerden/files/metacom/'+array_nmbr_uc+'.png') == true) {
-      //   array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_content'><img class='img_metacom' src='/gebaerden/files/metacom/"+array_nmbr_uc+".png'></div>";
-      // }
-}
 
-let encodedWord = encodeURI(this.innerText);
-
-//show pdf export symbol
-array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_pdf'><a class='a_white' target='_blank' href='html2pdf.php?word=" +encodedWord + "&path="+imgpath+"' method='post'> PDF generieren <i class='far fa-file-pdf'></i></a></div>";
-
-
-
-
-//Ein- und ausklappen von collabsible body
+    //Ein- und ausklappen von collabsible body
     var collapsible_body = this.nextElementSibling;
     var collapsible_body_content = this.nextElementSibling.children;
 
@@ -73,20 +66,6 @@ array_nmbr.nextElementSibling.innerHTML += "<div class='collapsible_body_pdf'><a
 }
 
 
-
-//Pfürung ob es die Datei gibt
-function doesFileExist(urlToFile) {
-    var img = new XMLHttpRequest();
-    img.open('HEAD', urlToFile, false);
-    img.send();
-
-    if (img.status == "404") {
-        return false;
-    } else {
-        return true;
-    }
-}
-
 //Beim Focus der Suche soll nach oben gescrollt werden und alle aktive Header geschlossen werden
 var searchBar = document.getElementById('searchBar');
 searchBar.addEventListener("focus", closeAllActiveHeaders);
@@ -97,12 +76,13 @@ function scrollToTopOnFocus() {
   document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
 
-function closeAllActiveHeaders(array_nmbr) {
+function closeAllActiveHeaders() {
   for (y= 0; y < coll.length; y++){
-    view_img[y].style.maxHeight = null;
+    coll_body[y].style.maxHeight = null;
     coll[y].classList.remove("active");
     }
 }
+
 
 //Suche mit JQuery
   $(document).ready(function(){
@@ -114,18 +94,27 @@ function closeAllActiveHeaders(array_nmbr) {
     });
   });
 
+//Suche mit JQuery nach laden der Seite (einmalig falls man von anderer seite kommt)
+  $(document).ready(function(){
+        var value = $("#searchBar").val().toLowerCase();
+        $("#wordsList li").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+
 
 
 
 //Metacom Symbole ausblenden und einblenden
 function hideMetacom(){
-  if (viewmetacom === true) {
-  viewmetacom = false;
+  if (viewMetacom === true) {
+  viewMetacom = false;
   document.getElementById("viewMetacom").innerHTML = "<img src='img/metacom.png' height='20px' title='Metacom ausgeblendet' style='filter: grayscale(1)'> Metacom";
     document.getElementById("viewMetacom").style.opacity = "0.5";
 
 } else {
-  viewmetacom = true;
+  viewMetacom = true;
   document.getElementById("viewMetacom").innerHTML = "<img src='img/metacom.png' height='20px' title='Metacom eingeblendet'> Metacom";
     document.getElementById("viewMetacom").style.opacity = "1";
   }
@@ -145,16 +134,3 @@ function hideVideos(){
   document.getElementById("viewVideos").style.opacity = "1";
   }
   }
-
-
-//Responsvie Navigation
-function responsiveNav() {
-  var x = document.getElementById("myTopnav");
-  // document.body.scrollTop = document.documentElement.scrollTop = 0;
-
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
