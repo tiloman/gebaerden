@@ -6,7 +6,7 @@ $extension = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
 
 
 //Überprüfung der Dateiendung
-$allowed_extensions = array('png', 'jpg', 'jpeg', 'gif');
+$allowed_extensions = array('png', 'jpg', 'jpeg', 'gif', 'heif');
 if(!in_array($extension, $allowed_extensions)) {
  die("Ungültige Dateiendung. Nur png, jpg, jpeg und gif-Dateien sind erlaubt");
 }
