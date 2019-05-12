@@ -113,6 +113,9 @@ $imgMime = 'jpg';
 $videoPath = 'custom/videos/';
 $videoMime = '_video.mp4';
 
+// $i = 0;
+// $extensionArray = array();
+
 
 // Elemente auflisten und in ul auflisten
 echo '<ul id="wordsList">';
@@ -121,6 +124,13 @@ foreach ($dircontents as $file) {
   $cleanFileName = pathinfo($file, PATHINFO_FILENAME);
   $cleanFileNameUC = ucfirst($cleanFileName);
   $cleanFileNameLC = lcfirst($cleanFileName);
+
+  // $i++;
+  // $extensionArray[$i];
+  // echo "<script type='text/javascript'>
+  // var img_extension = new Array();
+  // img_extension[".$i."] = ('".$extension."');
+  // </script>";
 
 
   if(file_exists("files/metacom/".$cleanFileNameUC.".png")) {
@@ -141,7 +151,7 @@ foreach ($dircontents as $file) {
     $videoexists = null;
   }
 
-  if ($extension == $imgMime) {
+  if ($extension == 'jpg' || $extension == 'png') {
     echo "<li>
             <div class='collapsible-header'>$cleanFileName
             <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
@@ -159,14 +169,17 @@ foreach ($dircontents as $file) {
 
             echo "
             <div class='collapsible_body_pdf'>
-            <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$imgMime."' method='get'> PDF generieren <i class='far fa-file-pdf'></i></a></div>
+            <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$extension."' method='get'> PDF generieren <i class='far fa-file-pdf'></i></a></div>
             </div></li>";
+
 
 
           ;
   }
+
 }
 echo '</ul>';
+
 ?>
 
 

@@ -9,10 +9,17 @@ if(!isset($_SESSION['userid'])) {
 }
 
 $path = $_GET['path'];
-$mime = $_GET['mime'];
+
 
 if(isset($_GET['img'])) {
     $img = $_GET['img'];
+
+    if(file_exists($path.$img.'.jpg')){
+      $mime = 'jpg';
+    } elseif(file_exists($path.$img.'.png')) {
+      $mime = 'png';
+    };
+
     readfile($path.$img.".".$mime);
 } else {
     readfile("files/aber.png");

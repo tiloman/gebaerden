@@ -6,7 +6,6 @@ var viewVideos = true;
 var videoPath = "custom/videos";
 var imgPath = "custom/";
 var metacomPath = "files/metacom/";
-var imgMime = "jpg";
 var videoMime = "mp4";
 var phpVideoLoader = 'video.php';
 
@@ -22,13 +21,14 @@ for (i = 0; i < coll.length; i++) {
     var selectedWord_lc = this.innerText.substring(0,1).toLowerCase() + this.innerText.substring(1).toLowerCase();
 
 
+
     let encodedWord = encodeURI(this.innerText);
 
 
     var c = this.nextElementSibling.children;
       for (i=0; i< c.length; i++) {
         if (c[i].classList.contains("img")){
-          c[i].innerHTML = "<img class='img_gebaerden' src='img.php?img="+this.innerText+"&path="+imgPath+"&mime="+imgMime+"'>";
+          c[i].innerHTML = "<img class='img_gebaerden' src='img.php?img="+this.innerText+"&path="+imgPath+"'>";
         }
         if (c[i].classList.contains("metacomLC") && viewMetacom === true){
             c[i].innerHTML = "<img class='img_metacom' src='metacom.php?img="+selectedWord_lc+"&path="+metacomPath+"'>";
