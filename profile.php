@@ -18,10 +18,10 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
     <title>Gebärden</title>
 
-    <link rel="stylesheet" type="text/css" href="stylesheet_welcome.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="bootstrap_navbar_custom.css">
+    <link rel="stylesheet" type="text/css" href="stylesheet_welcome.css">
 
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -130,7 +130,7 @@ if (isset($licensedSerial)) {
 }
  ?>
 <br><br>
- <button id="changeProfileBtn">Daten aktualisieren</button>
+ <button id="changeProfileBtn" class="custom_button">Daten aktualisieren</button>
 </div>
 <br>
 
@@ -157,7 +157,7 @@ foreach ($pdo->query($sql) as $row) {
    <input type='text' name='nachname' id='nachname' value=". $row['nachname']."><br><br>
    E-Mail: <br>
    <input type='mail' name='email' id='email' value=". $row['email']."><br><br>
-   <input type='submit' value='Update'>
+   <input  type='submit' class='custom_button' value='Update'>
    </form>";
 }
  ?>
@@ -180,22 +180,27 @@ foreach ($pdo->query($sql) as $row) {
 if (isset($schoolName)) {
   if ($userSchoolID == $schoolID) {
     echo ($schoolName);
-    echo "<br><br>
-    <b>Gebärden für Ihre Schule hochladen<b><br>
+    echo "<br><br><hr>
+    <b>Gebärden für Ihre Schule hochladen</b><br><br>
 
     <form action='upload.php' method='post' enctype='multipart/form-data'>
-    <input type='file' name='file'><br><br>
-    <input type='text' placeholder='Wort' name='word' required><br><br>
-    <input type='submit' value='hochladen'>
-    </form>
+    <input type='file' class='custom_input' name='file'><br>
+    <input type='text' class='custom_input' placeholder='Name der Gebärde' name='word' required><br><br>
+    <input type='submit' class='custom_button' value='Upload'>
+    </form>";
+    // include('upload.php');
+    if(isset($errorMessage)) {
+        echo "<div>".$errorMessage."</div>";
+    }
 
-    ";
+
+
   }
 }else {
   echo ("Wenn Ihre Schule bereits einen Zugang hat, können Sie hier den Zugangscode eingeben.<br><br>
     <form id='addSchool' action='addSchool.php' method='post'>
     <input name='schoolId' type='text' placeholder='Zugangsnummer'></input><br><br>
-    <input type='submit' value='Check In'></input>
+    <input type='submit' class='custom_button' value='Check In'></input>
     </form>
 
 
@@ -212,7 +217,7 @@ if (isset($schoolName)) {
 
 <br>
 <div class="flexbox_user_info">
-<b>PDF Layout</b><br><br>
+<b>Speichern Sie Ihr individuelles PDF Layout</b><br><br>
 
 
 
@@ -223,7 +228,7 @@ $sql = "SELECT * FROM user WHERE id = $userid";
 foreach ($pdo->query($sql) as $row) {
    echo "<form id='changeLayout' action='changeLayout.php' method='post'>
    PDF Größe:<br>
-     <select name='pdf_size'>
+     <select name='pdf_size' class='custom_input'>
        <option style='font-weight: bold'>" . $row['pdf_size']."</option>
        <option value='A4'>A4 (Standard)</option>
        <option value='A3'>A3</option>
@@ -232,7 +237,7 @@ foreach ($pdo->query($sql) as $row) {
    <br><br>
 
    Schriftart:<br>
-     <select name='pdf_font'>
+     <select name='pdf_font' class='custom_input'>
        <option style='font-weight: bold'>".$row['pdf_font']."</option>
        <option value='Helvetica'>Helvetica (Standard)</option>
        <option value='Norddruck'>Norddruck</option>
@@ -240,7 +245,7 @@ foreach ($pdo->query($sql) as $row) {
      <select>
 
      <br /><br />";
-   echo "<input type='submit' value='Layout aktualisieren'>";
+   echo "<input type='submit' class='custom_button' value='Layout aktualisieren'><hr>";
 
 }
  ?>

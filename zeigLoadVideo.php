@@ -1,8 +1,26 @@
 <?php
 
+
+
+session_start();
+
 $video = $_GET['video'];
 $path = $_GET['path'];
 $file = "files/video/".$video;
+
+if(!isset($_SESSION['userid'])) {
+  readfile("files/abholen.png");
+  die();
+;
+}
+if(isset($_GET['video'])) {
+    $video = $_GET['video'];
+    readfile($file);
+} else {
+    readfile("custom/videos/Aufzug_video.mp4");
+}
+
+
 
 //Script von http://www.tuxxin.com/php-mp4-streaming/
 
@@ -58,7 +76,6 @@ fclose($fp);
 exit();
 
 
-// session_start();
 // $file = "custom/videos/Aufzug_video.mp4";
 //
 //
@@ -67,15 +84,5 @@ exit();
 // header('Content-Length:'.filesize($file));
 //
 //
-// if(!isset($_SESSION['userid'])) {
-//   readfile("files/abholen.png");
-//   die();
-// ;
-// }
-// if(isset($_GET['video'])) {
-//     $video = $_GET['video'];
-//     readfile("custom/videos/Aufzug_video.mp4");
-// } else {
-//     readfile("custom/videos/Aufzug_video.mp4");
-// }
+
 ?>

@@ -113,8 +113,6 @@ $imgMime = 'jpg';
 $videoPath = 'custom/videos/';
 $videoMime = '_video.mp4';
 
-// $i = 0;
-// $extensionArray = array();
 
 
 // Elemente auflisten und in ul auflisten
@@ -125,12 +123,7 @@ foreach ($dircontents as $file) {
   $cleanFileNameUC = ucfirst($cleanFileName);
   $cleanFileNameLC = lcfirst($cleanFileName);
 
-  // $i++;
-  // $extensionArray[$i];
-  // echo "<script type='text/javascript'>
-  // var img_extension = new Array();
-  // img_extension[".$i."] = ('".$extension."');
-  // </script>";
+
 
 
   if(file_exists("files/metacom/".$cleanFileNameUC.".png")) {
