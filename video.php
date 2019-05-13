@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+
 $video = $_GET['video'];
 
 $file = "custom/videos/".$video;
@@ -58,21 +61,19 @@ while(!feof($fp) && ($p = ftell($fp)) <= $end) {
 fclose($fp);
 exit();
 
+if(!isset($_SESSION['userid'])) {
+  readfile("files/abholen.png");
+  die();
+;
+}
+if(isset($_GET['video'])) {
+    $video = $_GET['video'];
+    readfile($file);
+} else {
+    readfile("custom/videos/Aufzug_video.mp4");
+}
 
 
 
-// session_start();
-// header("Content-Type: video/mp4");
-//
-// if(!isset($_SESSION['userid'])) {
-//   readfile("files/abholen.png");
-//   die();
-// ;
-// }
-// if(isset($_GET['video'])) {
-//     $video = $_GET['video'];
-//     readfile("custom/videos/$video");
-// } else {
-//     readfile("custom/videos/Aufzug_video.mp4");
-// }
+
 ?>

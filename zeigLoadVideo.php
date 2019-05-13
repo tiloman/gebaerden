@@ -65,6 +65,7 @@ fclose($fp);
 exit();
 
 
+
 if(!isset($_SESSION['userid'])) {
   readfile("files/abholen.png");
   die();
@@ -79,14 +80,5 @@ if(isset($_GET['video'])) {
 
 
 
-
-// $file = "custom/videos/Aufzug_video.mp4";
-//
-//
-// header("Content-Type: video/mp4");
-// header('Accept-Ranges: bytes');
-// header('Content-Length:'.filesize($file));
-//
-//
 
 ?>

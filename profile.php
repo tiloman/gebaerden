@@ -181,7 +181,7 @@ if (isset($schoolName)) {
   if ($userSchoolID == $schoolID) {
     echo ($schoolName);
     echo "<br><br><hr>
-    <b>Gebärden für Ihre Schule hochladen</b><br><br>
+    <b>Gebärden für Ihre Schule hochladen (BETA)</b><br><br>
 
     <form action='upload.php' method='post' enctype='multipart/form-data'>
     <input type='file' class='custom_input' name='file'><br>
