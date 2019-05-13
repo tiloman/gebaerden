@@ -5,20 +5,9 @@
 session_start();
 
 $video = $_GET['video'];
-$path = $_GET['path'];
+// $path = $_GET['path'];
 $file = "files/video/".$video;
 
-if(!isset($_SESSION['userid'])) {
-  readfile("files/abholen.png");
-  die();
-;
-}
-if(isset($_GET['video'])) {
-    $video = $_GET['video'];
-    readfile($file);
-} else {
-    readfile("custom/videos/Aufzug_video.mp4");
-}
 
 
 
@@ -74,6 +63,21 @@ while(!feof($fp) && ($p = ftell($fp)) <= $end) {
 }
 fclose($fp);
 exit();
+
+
+if(!isset($_SESSION['userid'])) {
+  readfile("files/abholen.png");
+  die();
+;
+}
+if(isset($_GET['video'])) {
+    $video = $_GET['video'];
+    readfile($file);
+} else {
+    readfile("custom/videos/Aufzug_video.mp4");
+}
+
+
 
 
 // $file = "custom/videos/Aufzug_video.mp4";
