@@ -1,9 +1,18 @@
 <?php
+session_start();
+if(!isset($_SESSION['userid'])) {
+  die(header("location: login.php"));
+;
+}
+
 
 $upload_folder = 'custom/'; //Das Upload-Verzeichnis
 $filename = pathinfo($_FILES['file']['name'], PATHINFO_FILENAME);
 $word = $_POST['word'];
 $extension = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+
+
+
 
 
 //Überprüfung der Dateiendung
@@ -48,9 +57,24 @@ if(file_exists($new_path)) { //Falls Datei existiert, hänge eine Zahl an den Da
 
 //Alles okay, verschiebe Datei an neuen Pfad
 move_uploaded_file($_FILES['file']['tmp_name'], $new_path);
-echo "Bild hochgeladen nach: $new_name";
-// $errorMessage = "Erfolgreich";
 
-// die(header("location: custom_library.php"));;
+// Eintragen in die Datenbank
+$pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+$userid = $_SESSION['userid'];
+
+
+$statement = $pdo->prepare("INSERT INTO custom_img_12345 (ImgName, UploadedBy) VALUES (:ImgName, :UploadedBy)");
+$result = $statement->execute(array('ImgName' => $word, 'UploadedBy' => $userid));
+
+
+
+// echo "Bild hochgeladen nach: $new_name";
+// $errorMessage = "Erfolgreich";
+die(header("location: custom_library.php"));;
+
+
+
+
+
 
 ?>

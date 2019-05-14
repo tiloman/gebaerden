@@ -151,7 +151,11 @@ footer a{
   margin: auto;
 }
 
-#changeProfile {
+.margin {
+  margin-top: 1em;
+}
+
+.hidden {
   display:none;
 }
 

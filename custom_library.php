@@ -9,7 +9,6 @@ if(!isset($_SESSION['userid'])) {
 $userid = $_SESSION['userid'];
 $userSchoolID = $_SESSION['schoolId'];
 
-include('dbInfo.php');
 $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
 ?>
@@ -163,11 +162,25 @@ foreach ($dircontents as $file) {
             echo "
             <div class='collapsible_body_pdf'>
             <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$extension."' method='get'> PDF generieren <i class='far fa-file-pdf'></i></a></div>
-            </div></li>";
+            ";
 
 
+            $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$cleanFileName'";
+            foreach ($pdo->query($sql) as $row) {
+              $uploaderID = $row['UploadedBy'];
+            };
+            if (isset($uploaderID)){
+              $sql = "SELECT * FROM user WHERE id = $uploaderID";
+              foreach ($pdo->query($sql) as $row) {
+                echo "<div class='collapsible_body_pdf'>
+                Hochgeladen von ".$row['vorname']."
+                </div>";
+            }};
 
-          ;
+
+          echo "</div></li>";
+
+
   }
 
 }

@@ -93,7 +93,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 <div class="welcome_flex_container">
 
-<div class="flexbox_user_info">
+<div class="flexbox_user_info margin">
 <?php
 
 $sql = "SELECT * FROM user WHERE id = $userid";
@@ -132,7 +132,6 @@ if (isset($licensedSerial)) {
 <br><br>
  <button id="changeProfileBtn" class="custom_button">Daten aktualisieren</button>
 </div>
-<br>
 
 <!-- Update der User Daten; Wird in "user" Tabelle gespeichert -->
 
@@ -140,12 +139,16 @@ if (isset($licensedSerial)) {
 var changeProfileBtn = document.getElementById("changeProfileBtn");
     changeProfileBtn.addEventListener("click", showChangeProfileForm);
 function showChangeProfileForm(){
-  document.getElementById("changeProfile").style.display = "block";
+
+  var changeProfileBox = document.getElementById("changeProfile");
+  changeProfileBox.classList.toggle("hidden");
+
 }
+
 </script>
 
 
-<div class="flexbox_user_info" id="changeProfile">
+<div class="flexbox_user_info hidden margin" id="changeProfile">
 <b>Daten ändern</b><br><br>
 <?php
 $sql = "SELECT * FROM user WHERE id = $userid";
@@ -167,12 +170,11 @@ foreach ($pdo->query($sql) as $row) {
 
 </div>
 
-
 </div>
 
 
 <!-- Update der School ID; Wird in "school" Tabelle gespeichert -->
-<div class="flexbox_user_info">
+<div class="flexbox_user_info margin">
 <b>Ihre Schule</b><br>
 
 <?php
@@ -215,8 +217,8 @@ if (isset($schoolName)) {
 
 
 
-<br>
-<div class="flexbox_user_info">
+
+<div class="flexbox_user_info margin">
 <b>Speichern Sie Ihr individuelles PDF Layout</b><br><br>
 
 
@@ -254,29 +256,7 @@ foreach ($pdo->query($sql) as $row) {
  <img src="/gebaerden/img/pdf_preview.jpg" class="pdf_preview" style="width: 50%; border: 1px solid">
 
 </div>
-<br>
-<div class="flexbox_user_info">
 
-Kontakt<br>
-
-<form method="post" action="sendmail.php">
-<label for="Name"><b>Name:</b></label><br>
-<input type="text" id="Name" name="Name"><br><br>
-
-<label for="Email"><b>E-Mail:</b></label><br>
-<input type="text" id="Email" name="Email"><br><br>
-
-<label for="Betreff"><b>Betreff:</b></label><br>
-<input type="text" id="Betreff" name="Betreff"><br><br>
-
-<label for="Nachricht"><b>Nachricht:</b></label><br>
-<textarea id="Nachricht" name="Nachricht" rows="10" cols="50"></textarea> <br><br>
-
-<input type="submit" name="submit">
-</form>
-
-
-</div>
 
 
 
