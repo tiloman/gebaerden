@@ -1,11 +1,31 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
-
+session_start();
+if(!isset($_SESSION['userid'])) {
+  die(header("location: ../login.php"));
+;
+}
 use Spipu\Html2Pdf\Html2Pdf;
 
-$html2pdf = new HTML2PDF('L', 'A4', 'de');
+//Abfrage der Nutzer ID vom Login
+$userid = $_SESSION['userid'];
+
+$pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+
+$sql = "SELECT * FROM user WHERE id = $userid";
+foreach ($pdo->query($sql) as $row) {
+
+   $pdfSize = $row['pdf_size'];
+   $pdfFont = $row['pdf_font'];
+   $pdfFormat = $row['pdf_format'];
+
+ }
+
+
+
+$html2pdf = new HTML2PDF($pdfFormat, $pdfSize, 'de');
 // $html2pdf->addFont('candara','','fonts/candara.php');
-$html2pdf->setDefaultFont('helvetica','', 'true');
+$html2pdf->setDefaultFont($pdfFont,'', 'true');
 
 
 $selectedWordEncoded = $_GET['word'];

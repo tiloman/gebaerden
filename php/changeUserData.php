@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['userid'])) {
-  die(header("location: login.php"));
+  die(header("location: ../login.php"));
 ;
 }
   $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
@@ -20,6 +20,6 @@ if(!isset($_SESSION['userid'])) {
   $statement = $pdo->prepare("UPDATE user SET email = ? WHERE id = $userid");
   $statement->execute(array($email));
 
-  header('Location: profile.php');
+  header('Location: ../profile.php');
 
 ?>

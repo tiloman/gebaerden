@@ -6,9 +6,14 @@ session_start();
 
 $video = $_GET['video'];
 // $path = $_GET['path'];
-$file = "files/video/".$video;
+$file = "../files/video/".$video;
 
-
+if(!isset($_SESSION['userid'])) {
+  readfile("../img/forbidden.jpg");
+  die();
+;
+}
+if(isset($_GET['video'])) {
 
 
 //Script von http://www.tuxxin.com/php-mp4-streaming/
@@ -66,16 +71,9 @@ exit();
 
 
 
-if(!isset($_SESSION['userid'])) {
-  readfile("files/abholen.png");
-  die();
-;
-}
-if(isset($_GET['video'])) {
-    $video = $_GET['video'];
-    readfile($file);
+
 } else {
-    readfile("custom/videos/Aufzug_video.mp4");
+    readfile("../img/forbidden.jpg");
 }
 
 

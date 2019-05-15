@@ -5,7 +5,15 @@ session_start();
 
 $video = $_GET['video'];
 
-$file = "custom/videos/".$video;
+$file = "../custom/videos/".$video;
+
+
+if(!isset($_SESSION['userid'])) {
+  readfile("../img/forbidden.jpg");
+  die();
+;
+}
+if(isset($_GET['video'])) {
 
 
 //Script von http://www.tuxxin.com/php-mp4-streaming/ wegen SAFARI
@@ -61,17 +69,11 @@ while(!feof($fp) && ($p = ftell($fp)) <= $end) {
 fclose($fp);
 exit();
 
-if(!isset($_SESSION['userid'])) {
-  readfile("files/abholen.png");
-  die();
-;
-}
-if(isset($_GET['video'])) {
-    $video = $_GET['video'];
-    readfile($file);
+
 } else {
-    readfile("custom/videos/Aufzug_video.mp4");
+readfile("../img/forbidden.jpg");
 }
+
 
 
 

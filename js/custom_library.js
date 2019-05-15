@@ -3,12 +3,11 @@ var coll_body = document.getElementsByClassName("collapsible_body");
 var viewMetacom = true;
 var viewVideos = true;
 
-var videoPath = "files/video";
-var imgPath = "files/";
+var videoPath = "custom/videos";
+var imgPath = "custom/";
 var metacomPath = "files/metacom/";
-var imgMime = "png";
-var videoMime = "m4v";
-var phpVideoLoader = 'zeigLoadVideo.php';
+var videoMime = "mp4";
+var phpVideoLoader = 'php/video.php';
 
 
 for (i = 0; i < coll.length; i++) {
@@ -22,18 +21,19 @@ for (i = 0; i < coll.length; i++) {
     var selectedWord_lc = this.innerText.substring(0,1).toLowerCase() + this.innerText.substring(1).toLowerCase();
 
 
+
     let encodedWord = encodeURI(this.innerText);
 
 
     var c = this.nextElementSibling.children;
       for (i=0; i< c.length; i++) {
         if (c[i].classList.contains("img")){
-          c[i].innerHTML = "<img class='img_gebaerden' src='img.php?img="+this.innerText+"&path="+imgPath+"&mime="+imgMime+"'>";
+          c[i].innerHTML = "<img class='img_gebaerden' src='php/img.php?img="+this.innerText+"&path="+imgPath+"'>";
         }
         if (c[i].classList.contains("metacomLC") && viewMetacom === true){
-            c[i].innerHTML = "<img class='img_metacom' src='metacom.php?img="+selectedWord_lc+"&path="+metacomPath+"'>";
+            c[i].innerHTML = "<img class='img_metacom' src='php/metacom.php?img="+selectedWord_lc+"&path="+metacomPath+"'>";
         } else if (c[i].classList.contains("metacomUC") && viewMetacom === true){
-              c[i].innerHTML = "<img class='img_metacom' src='metacom.php?img="+selectedWord_uc+"&path="+metacomPath+"'>";
+              c[i].innerHTML = "<img class='img_metacom' src='php/metacom.php?img="+selectedWord_uc+"&path="+metacomPath+"'>";
             }
         if (c[i].classList.contains("video") && viewVideos === true){
             c[i].innerHTML = "<video class='video_gebaerden' controls preload='metadata'><source src='"+phpVideoLoader+"?video="+this.innerText+"_video."+videoMime+"#t=0.5&path="+videoPath+"' type='video/mp4'>Your browser does not support the video tag.</video>";

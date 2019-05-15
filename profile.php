@@ -7,6 +7,7 @@ if(!isset($_SESSION['userid'])) {
 
 //Abfrage der Nutzer ID vom Login
 $userid = $_SESSION['userid'];
+$userSchoolID = $_SESSION['schoolId'];
 
 $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
@@ -20,8 +21,8 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="bootstrap_navbar_custom.css">
-    <link rel="stylesheet" type="text/css" href="stylesheet_welcome.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap_navbar_custom.css">
+    <link rel="stylesheet" type="text/css" href="css/stylesheet_welcome.css">
 
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -49,7 +50,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="index.php">
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
 
@@ -70,6 +71,38 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
       <ul class="navbar-nav ml-auto" >
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-filter"></i> Mediathek
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class='dropdown-item' href='index.php'>Zeigs mir mit Gebärden</a>
+            <?php
+            $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
+            foreach ($pdo->query($sql) as $row) {
+              $schoolID = $row['school_id'];
+              $schoolName = $row['school_name'];
+            }
+            if (isset($schoolName)) {
+              if ($userSchoolID == $schoolID) {
+                echo "
+
+                <a class='dropdown-item' href='/gebaerden/custom_library.php'>".$schoolName."</a>";
+              }
+            }
+            else {
+              echo "
+
+              <a class='dropdown-item' href='/gebaerden/profile.php'>Schule anmelden</a>";
+            }; ?>
+
+
+          </div>
+        </li>
+
+
 
         <li class="nav-item">
           <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
@@ -153,7 +186,7 @@ function showChangeProfileForm(){
 <?php
 $sql = "SELECT * FROM user WHERE id = $userid";
 foreach ($pdo->query($sql) as $row) {
-   echo "<form action='changeUserData.php' method='post'>
+   echo "<form action='php/changeUserData.php' method='post'>
    Vorname: <br>
    <input type='text' name='vorname' id='vorname' value=". $row['vorname']."><br><br>
    Nachname: <br>
@@ -181,16 +214,18 @@ foreach ($pdo->query($sql) as $row) {
 
 if (isset($schoolName)) {
   if ($userSchoolID == $schoolID) {
+
     echo ($schoolName);
     echo "<br><br><hr>
     <b>Gebärden für Ihre Schule hochladen (BETA)</b><br><br>
 
-    <form action='upload.php' method='post' enctype='multipart/form-data'>
+    <form action='php/upload.php' method='post' enctype='multipart/form-data'>
+    Bild auswählen (JPG, PNG, GIF) <br>
     <input type='file' class='custom_input' name='file'><br>
     <input type='text' class='custom_input' placeholder='Name der Gebärde' name='word' required><br><br>
     <input type='submit' class='custom_button' value='Upload'>
     </form>";
-    // include('upload.php');
+
     if(isset($errorMessage)) {
         echo "<div>".$errorMessage."</div>";
     }
@@ -200,7 +235,7 @@ if (isset($schoolName)) {
   }
 }else {
   echo ("Wenn Ihre Schule bereits einen Zugang hat, können Sie hier den Zugangscode eingeben.<br><br>
-    <form id='addSchool' action='addSchool.php' method='post'>
+    <form id='addSchool' action='php/addSchool.php' method='post'>
     <input name='schoolId' type='text' placeholder='Zugangsnummer'></input><br><br>
     <input type='submit' class='custom_button' value='Check In'></input>
     </form>
@@ -228,12 +263,12 @@ if (isset($schoolName)) {
 <?php
 $sql = "SELECT * FROM user WHERE id = $userid";
 foreach ($pdo->query($sql) as $row) {
-   echo "<form id='changeLayout' action='changeLayout.php' method='post'>
+   echo "<form id='changeLayout' action='php/changeLayout.php' method='post'>
    PDF Größe:<br>
      <select name='pdf_size' class='custom_input'>
        <option style='font-weight: bold'>" . $row['pdf_size']."</option>
        <option value='A4'>A4 (Standard)</option>
-       <option value='A3'>A3</option>
+       <option value='A5'>A5</option>
      <select>
 
    <br><br>
@@ -242,9 +277,18 @@ foreach ($pdo->query($sql) as $row) {
      <select name='pdf_font' class='custom_input'>
        <option style='font-weight: bold'>".$row['pdf_font']."</option>
        <option value='Helvetica'>Helvetica (Standard)</option>
-       <option value='Norddruck'>Norddruck</option>
-       <option value='ABC'>ABC</option>
+       <option value='freemono'>Freemono</option>
+       <option value='dejavusans'>Deja Vu Sans</option>
      <select>
+
+     <br><br>
+
+     Format:<br>
+       <select name='pdf_format' class='custom_input'>
+         <option style='font-weight: bold'>".$row['pdf_format']."</option>
+         <option value='L'>Landscape (Standard)</option>
+         <option value='H'>Hochformat</option>
+       <select>
 
      <br /><br />";
    echo "<input type='submit' class='custom_button' value='Layout aktualisieren'><hr>";

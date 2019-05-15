@@ -1,12 +1,12 @@
 <?php
 session_start();
 if(!isset($_SESSION['userid'])) {
-  die(header("location: login.php"));
+  die(header("location: ../login.php"));
 ;
 }
 
 
-$upload_folder = 'custom/'; //Das Upload-Verzeichnis
+$upload_folder = '../custom/'; //Das Upload-Verzeichnis
 $filename = pathinfo($_FILES['file']['name'], PATHINFO_FILENAME);
 $word = $_POST['word'];
 $extension = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
@@ -70,7 +70,7 @@ $result = $statement->execute(array('ImgName' => $word, 'UploadedBy' => $userid)
 
 // echo "Bild hochgeladen nach: $new_name";
 // $errorMessage = "Erfolgreich";
-die(header("location: custom_library.php"));;
+die(header("location: ../custom_library.php"));;
 
 
 

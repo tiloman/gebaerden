@@ -19,9 +19,9 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
     <title>Gebärden</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="bootstrap_navbar_custom.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap_navbar_custom.css">
 
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <meta charset="UTF-8">
@@ -161,7 +161,7 @@ foreach ($dircontents as $file) {
 
             echo "
             <div class='collapsible_body_pdf'>
-            <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$extension."' method='get'> PDF generieren <i class='far fa-file-pdf'></i></a></div>
+            <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$extension."' method='get'><i class='far fa-file-pdf'></i>PDF generieren</a></div>
             ";
 
 
@@ -172,8 +172,8 @@ foreach ($dircontents as $file) {
             if (isset($uploaderID)){
               $sql = "SELECT * FROM user WHERE id = $uploaderID";
               foreach ($pdo->query($sql) as $row) {
-                echo "<div class='collapsible_body_pdf'>
-                Hochgeladen von ".$row['vorname']."
+                echo "<div class='collapsible_body_uploader'>
+                Hochgeladen von ".$row['vorname']." ".$row['nachname']."
                 </div>";
             }};
 
@@ -189,7 +189,7 @@ echo '</ul>';
 ?>
 
 
-<script src="custom_library.js"></script>
+<script src="js/custom_library.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
