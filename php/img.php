@@ -18,6 +18,8 @@ if(isset($_GET['img'])) {
       $mime = 'jpg';
     } elseif(file_exists("../".$path.$img.'.png')) {
       $mime = 'png';
+    } elseif(file_exists("../".$path.$img.'.jpeg')) {
+      $mime = 'jpeg';
     };
 
     readfile("../".$path.$img.".".$mime);
