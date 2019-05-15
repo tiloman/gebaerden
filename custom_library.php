@@ -143,7 +143,7 @@ foreach ($dircontents as $file) {
     $videoexists = null;
   }
 
-  if ($extension == 'jpg' || $extension == 'png') {
+  if ($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg') {
     echo "<li>
             <div class='collapsible-header'>$cleanFileName
             <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
