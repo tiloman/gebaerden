@@ -306,6 +306,9 @@ padding: 10px;
     display: flex;
     flex-direction: row-reverse;
   }
+.flexbox_user_info {
+  flex-direction: column;
+}
 
 }
 
