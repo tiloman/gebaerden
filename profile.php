@@ -19,11 +19,9 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
     <title>Gebärden</title>
 
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/bootstrap_navbar_custom.css">
     <link rel="stylesheet" type="text/css" href="css/stylesheet_welcome.css">
-
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
@@ -213,21 +211,28 @@ foreach ($pdo->query($sql) as $row) {
 <?php
 
 if (isset($schoolName)) {
+  include ('php/upload.php');
+  // include ('php/uploadVideo.php');
   if ($userSchoolID == $schoolID) {
-
     echo ($schoolName);
     echo "<br><br><hr>
     <b>Gebärden für Ihre Schule hochladen (BETA)</b><br><br>
 
-    <form action='php/upload.php' method='post' enctype='multipart/form-data'>
-    Bild auswählen (JPG, PNG, GIF) <br>
-    <input type='file' class='custom_input' name='file'><br>
+    <form action='' method='post' enctype='multipart/form-data'>
+
     <input type='text' class='custom_input' placeholder='Name der Gebärde' name='word' required><br><br>
+    Bild auswählen (JPG, PNG, GIF) <br>
+    <input type='file' class='custom_input' name='image'><br><br>
+    Video auswählen (optional) <br>
+    <input type='file' class='custom_input' name='video'><br>
     <input type='submit' class='custom_button' value='Upload'>
     </form>";
 
-    if(isset($errorMessage)) {
-        echo "<div>".$errorMessage."</div>";
+    if(isset($uploadNotice)) {
+        echo "<div class='notification'>".$uploadNotice."</div>";
+    }
+    if(isset($uploadNoticeVideo)) {
+        echo "<div class='notification'>".$uploadNoticeVideo."</div>";
     }
 
 
@@ -305,6 +310,7 @@ foreach ($pdo->query($sql) as $row) {
 
 
 </div>
+
   <!-- <div id="login_header">Gebärden.</div> -->
 
   <footer>
