@@ -157,6 +157,9 @@ footer a{
 
 .hidden {
   display:none;
+  max-height: 0px;
+  transition: max-height 0.7s ease-out;
+  -webkit-transition: max-height 0.7s ease-out;
 }
 
 .flexbox_login {
@@ -295,7 +298,9 @@ padding: 10px;
 
 }
 
-
+.uploadPreview {
+  width: 80%;
+}
 
 @media screen and (min-width: 1100px) {
   .login_flex_container {

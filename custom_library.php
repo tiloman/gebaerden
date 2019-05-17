@@ -79,7 +79,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
+          <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user-cog"></i> Einstellungen</a>
         </li>
 
         <li class="nav-item">
@@ -107,10 +107,9 @@ $metacomCase = null;
 $videoexists = null;
 
 $imgPath = 'custom/';
-$imgMime = 'jpg';
 
 $videoPath = 'custom/videos/';
-$videoMime = '_video.mp4';
+// $videoMime = '_video.mp4';
 
 
 
@@ -135,13 +134,27 @@ foreach ($dircontents as $file) {
     $metacomexists = null;
   }
 
-  if(file_exists($videoPath.$cleanFileNameUC.$videoMime)) {
-    $videoexists = "<i class='fas fa-video' title='Video'></i>";
-  } else if(file_exists($videoPath.$cleanFileNameLC.$videoMime)) {
-    $videoexists = "<i class='fas fa-video' title='Video'></i>";
-  } else {
-    $videoexists = null;
+  $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$cleanFileName'";
+  foreach ($pdo->query($sql) as $row) {
+     $videoMime = $row['VideoMime'];
+
+     if($videoMime !== "") {
+         $videoexists = "<i class='fas fa-video' title='Video'></i>";
+     }else {
+       $videoexists = null;
+     }
+
   }
+
+
+
+  // if(file_exists($videoPath.$cleanFileNameUC.$videoMime)) {
+  //   $videoexists = "<i class='fas fa-video' title='Video'></i>";
+  // } else if(file_exists($videoPath.$cleanFileNameLC.$videoMime)) {
+  //   $videoexists = "<i class='fas fa-video' title='Video'></i>";
+  // } else {
+  //   $videoexists = null;
+  // }
 
   if ($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg') {
     echo "<li>

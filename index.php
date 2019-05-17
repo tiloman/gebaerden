@@ -97,7 +97,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
+          <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user-cog"></i> Einstellungen</a>
         </li>
 
         <li class="nav-item">

@@ -103,7 +103,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 
         <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
+          <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user-cog"></i> Einstellungen</a>
         </li>
 
         <li class="nav-item">
@@ -162,7 +162,7 @@ if (isset($licensedSerial)) {
  ?>
 <br><br>
  <button id="changeProfileBtn" class="custom_button">Daten aktualisieren</button>
-</div>
+
 
 <!-- Update der User Daten; Wird in "user" Tabelle gespeichert -->
 
@@ -174,12 +174,19 @@ function showChangeProfileForm(){
   var changeProfileBox = document.getElementById("changeProfile");
   changeProfileBox.classList.toggle("hidden");
 
+  if (changeProfileBox.classList.contains("hidden")) {
+    changeProfileBox.style.maxHeight = "200px;"
+  } else {
+    changeProfileBox.style.maxHeight= "500px;"
+
+  }
+
 }
 
 </script>
 
 
-<div class="flexbox_user_info hidden margin" id="changeProfile">
+<div class="hidden" id="changeProfile">
 <b>Daten ändern</b><br><br>
 <?php
 $sql = "SELECT * FROM user WHERE id = $userid";
@@ -200,7 +207,7 @@ foreach ($pdo->query($sql) as $row) {
 
 
 </div>
-
+</div>
 </div>
 
 
@@ -211,22 +218,24 @@ foreach ($pdo->query($sql) as $row) {
 <?php
 
 if (isset($schoolName)) {
-  include ('php/upload.php');
+
   // include ('php/uploadVideo.php');
   if ($userSchoolID == $schoolID) {
-    echo ($schoolName);
-    echo "<br><br><hr>
-    <b>Gebärden für Ihre Schule hochladen (BETA)</b><br><br>
+    include ('php/upload.php');
 
-    <form action='' method='post' enctype='multipart/form-data'>
 
-    <input type='text' class='custom_input' placeholder='Name der Gebärde' name='word' required><br><br>
-    Bild auswählen (JPG, PNG, GIF) <br>
-    <input type='file' class='custom_input' name='image'><br><br>
-    Video auswählen (optional) <br>
-    <input type='file' class='custom_input' name='video'><br>
-    <input type='submit' class='custom_button' value='Upload'>
-    </form>";
+    if($erfolgreich == true){
+      echo "Bild erfolgreich hochgeladen";
+      echo $previewImg;
+
+      include('php/uploadVideo.php');
+      echo "<form action='php/uploadVideo.php' method='post' enctype='multipart/form-data'>
+      <div class='' id='uploadVideoForm'><br>
+      <input type='text' class='custom_input hidden' placeholder='Name der Gebärde' name='word' required value=".$word."><br>
+      <input type='file' class='custom_input' name='video'><br>
+      <input type='submit' class='custom_button' value='Video hinzufügen' id='uploadVideoBtn'>
+      </div></form>";
+    }
 
     if(isset($uploadNotice)) {
         echo "<div class='notification'>".$uploadNotice."</div>";
@@ -250,6 +259,46 @@ if (isset($schoolName)) {
 };
 
  ?>
+
+ <script>
+//  var showUploadImgBtn = document.getElementById("next");
+//      showUploadImgBtn.addEventListener("click", showUploadImgForm);
+// var showUploadImgForm = document.getElementById("uploadImg");
+//
+//  function showUploadImgForm(){
+//
+//    showUploadImgForm.classList.remove("hidden");
+//
+//    showUploadImgBtn.innerHTML = "Video hinzufügen";
+//    showUploadImgBtn.addEventListener("click", showUploadVideoForm);
+//
+//    var uploadImgBtn = document.getElementById("uploadImgBtn");
+//    uploadImgBtn.classList.remove("hidden");
+//
+//
+//    if (showUploadImgBtn.classList.contains("hidden")) {
+//      showUploadImgBtn.style.maxHeight = "200px;"
+//    } else {
+//      showUploadImgBtn.style.maxHeight= "500px;"
+//
+//    }
+//  }
+
+// var addVideoBtn = document.getElementById("addVideoBtn");
+//      addVideoBtn.addEventListener("click", showUploadVideoForm);
+//
+//
+//  function showUploadVideoForm(){
+//
+//    var showUploadVideoForm = document.getElementById("uploadVideoForm");
+//    showUploadVideoForm.classList.remove("hidden");
+//    addVideoBtn.classList.add("hidden");
+//
+// }
+
+ </script>
+
+
 
  <br>
 
@@ -316,7 +365,7 @@ foreach ($pdo->query($sql) as $row) {
   <footer>
   <p>2019 | Timo Lohmann | <a href="about.php">Impressum</a></p>
   </footer>
-<script src="script.js"></script>
+<script src="js/script.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
