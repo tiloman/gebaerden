@@ -16,7 +16,7 @@ echo "<br><br><hr>
 <br>
 
 <div class='upload-btn-wrapper'>
-  <button class='btn'><i class='fas fa-upload'></i> Bild auswählen</button>
+  <button class='file_btn'><i class='fas fa-upload'></i> Bild</button>
   <input type='file' name='image'/>
 </div>
 

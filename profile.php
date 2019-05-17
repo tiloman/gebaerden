@@ -236,11 +236,11 @@ $erfolgreich = false;
       <form action='' method='post' enctype='multipart/form-data'>
 
         <input type='text' class='custom_input hidden' placeholder='Name der Gebärde' name='word' required value=".$word."><br>
-        
+
         <div class='upload-btn-wrapper'>
-          <button class='btn'><i class='fas fa-upload'></i> Video hinzufügen</button>
+          <button class='file_btn'><i class='fas fa-upload'></i> Video</button>
           <input type='file' name='video'/>
-        </div>
+        </div><br>
 
         <input type='submit' class='custom_button' value='Video hinzufügen' id='uploadVideoBtn'>
 

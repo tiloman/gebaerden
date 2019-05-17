@@ -14,12 +14,16 @@ body {
   display: inline-block;
 }
 
-.btn {
-  background-color: #10464c;
+.file_btn {
+  background-color: #6d918e;
   padding: 8px 20px;
   border-radius: 8px;
   font-weight: 200;
+  color: white;
+}
 
+.file_btn:hover {
+  background-color: #10464c;
 }
 
 .upload-btn-wrapper input[type=file] {
