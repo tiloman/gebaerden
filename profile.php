@@ -256,12 +256,14 @@ $erfolgreich = false;
 
   }
 
-echo "<hr> Video ergänzen";
+echo "<hr> <b>Fehlende Videos hinzufügen</b><br><br>";
+include('php/uploadVideoID.php');
+
 echo "<form action='' method='post' enctype='multipart/form-data'>
 <select name='word' class='custom_input'>";
-$sql = "SELECT * FROM custom_img_12345 ORDER BY ImgName";
+$sql = "SELECT * FROM custom_img_12345 WHERE VideoID = '' ORDER BY ImgName";
 foreach ($pdo->query($sql) as $row) {
-   echo "<option value='".$row['ImgName']."'>";
+   echo "<option value='".$row['ImgID']."'>";
    echo $row['ImgName'];
    echo "</option>";
 }
