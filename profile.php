@@ -257,6 +257,7 @@ $erfolgreich = false;
   }
 
 echo "<hr> <b>Fehlende Videos hinzufügen</b><br><br>";
+
 include('php/uploadVideoID.php');
 
 echo "<form action='' method='post' enctype='multipart/form-data'>
@@ -273,8 +274,12 @@ echo "</select>
 
 
 </form>";
-
-
+if(isset($uploadNoticeVideo)) {
+    echo "<div class='notification'>".$uploadNoticeVideo."</div>";
+}
+if($erfolgreich == true){
+  echo "Video erfolgreich hinzugefügt";
+}
 
 }else {
   echo ("Wenn Ihre Schule bereits einen Zugang hat, können Sie hier den Zugangscode eingeben.<br><br>

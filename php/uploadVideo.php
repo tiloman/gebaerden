@@ -23,9 +23,9 @@ if (isset($_FILES['video']['name'])) {
 
 
   //Überprüfung der Dateiendung
-  $video_allowed_extensions = array('mp4', 'm4v');
+  $video_allowed_extensions = array('mp4', 'm4v', 'mov');
   if(!in_array($video_extension, $video_allowed_extensions)) {
-   $uploadNoticeVideo = "Es dürfen nur Dateien vom Typ MP4 hochgeladen werden.";
+   $uploadNoticeVideo = "Es dürfen nur Dateien vom Typ MP4 oder MOV hochgeladen werden.";
    $video_error = true;
    // die("Ungültige Dateiendung. Nur png, jpg, jpeg und gif-Dateien sind erlaubt");
 

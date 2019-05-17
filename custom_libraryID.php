@@ -100,8 +100,6 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 <?php
 
-$dircontents = scandir('custom');
-natcasesort($dircontents);
 $metacomexists = null;
 $metacomCase = null;
 $videoexists = null;
@@ -109,21 +107,28 @@ $videoexists = null;
 $imgPath = 'custom/';
 
 $videoPath = 'custom/videos/';
-// $videoMime = '_video.mp4';
 
 
 
-// Elemente auflisten und in ul auflisten
-echo '<ul id="wordsList">';
-foreach ($dircontents as $file) {
-  $extension = pathinfo($file, PATHINFO_EXTENSION);
-  $cleanFileName = pathinfo($file, PATHINFO_FILENAME);
+
+
+  echo '<ul id="wordsList">';
+
+
+$sql = "SELECT * FROM custom_img_12345 ORDER BY ImgName";
+foreach ($pdo->query($sql) as $row) {
+  $cleanFileName = $row['ImgName'];
+  $videoMime = $row['VideoMime'];
+
+  if($videoMime !== "") {
+      $videoexists = "<i class='fas fa-video' title='Video'></i>";
+  }else {
+    $videoexists = null;
+  }
+
+
   $cleanFileNameUC = ucfirst($cleanFileName);
   $cleanFileNameLC = lcfirst($cleanFileName);
-
-
-
-
   if(file_exists("files/metacom/".$cleanFileNameUC.".png")) {
     $metacomexists = "<i class='far fa-smile' title='Metacom'></i>";
     $metacomCase = "metacomUC";
@@ -134,62 +139,56 @@ foreach ($dircontents as $file) {
     $metacomexists = null;
   }
 
-  $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$cleanFileName'";
-  foreach ($pdo->query($sql) as $row) {
-     $videoMime = $row['VideoMime'];
-
-     if($videoMime !== "") {
-         $videoexists = "<i class='fas fa-video' title='Video'></i>";
-     }else {
-       $videoexists = null;
-     }
-
-  }
 
 
+  echo "<li>
+              <div class='collapsible-header'>$cleanFileName
+              <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
+              <div class='collapsible_body'>";
 
-  if ($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg') {
-    echo "<li>
-            <div class='collapsible-header'>$cleanFileName
-            <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
-            <div class='collapsible_body'>";
+              echo "<div class='collapsible_body_content img'></div>";
 
-            echo "<div class='collapsible_body_content img'></div>";
+              if ($videoexists !== null) {
+                echo "<div class='collapsible_body_content video'></div>";
+              }
 
-            if ($videoexists !== null) {
-              echo "<div class='collapsible_body_content video'></div>";
-            }
+              if ($metacomexists !== null) {
+                echo "<div class='collapsible_body_content ".$metacomCase."'></div>";
+              }
 
-            if ($metacomexists !== null) {
-              echo "<div class='collapsible_body_content ".$metacomCase."'></div>";
-            }
-
-            echo "
-            <div class='collapsible_body_pdf'>
-            <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$extension."' method='get'><i class='far fa-file-pdf'></i>PDF generieren</a></div>
-            ";
+              echo "
+              <div class='collapsible_body_pdf'>
+              <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$videoMime."' method='get'><i class='far fa-file-pdf'></i>PDF generieren</a></div>
+              ";
 
 
-            $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$cleanFileName'";
-            foreach ($pdo->query($sql) as $row) {
-              $uploaderID = $row['UploadedBy'];
-            };
-            if (isset($uploaderID)){
-              $sql = "SELECT * FROM user WHERE id = $uploaderID";
+              $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$cleanFileName'";
               foreach ($pdo->query($sql) as $row) {
-                echo "<div class='collapsible_body_uploader'>
-                Hochgeladen von ".$row['vorname']." ".$row['nachname']."
-                </div>";
-            }};
+                $uploaderID = $row['UploadedBy'];
+              };
+              if (isset($uploaderID)){
+                $sql = "SELECT * FROM user WHERE id = $uploaderID";
+                foreach ($pdo->query($sql) as $row) {
+                  echo "<div class='collapsible_body_uploader'>
+                  Hochgeladen von ".$row['vorname']." ".$row['nachname']."
+                  </div>";
+              }};
 
 
-          echo "</div></li>";
+            echo "</div></li>";
 
 
-  }
 
 }
-echo '</ul>';
+
+
+
+
+
+
+
+
+
 
 ?>
 

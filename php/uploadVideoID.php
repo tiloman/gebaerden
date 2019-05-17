@@ -39,14 +39,13 @@ if (isset($_FILES['video']['name'])) {
   }
 
 //Überprüfung der Dateigröße
-// if(!$video_error) {
-//   $max_size = 4000*8000; //500 KB
-//   if($_FILES['video']['size'] > $max_size) {
-//    // die("Bitte keine Dateien größer 500kb hochladen");
-//    $uploadNoticeVideo = "Bitte keine Dateien größer 500kb hochladen";
-//    $video_error = true;
-//   }
-// }
+if(!$video_error) {
+  $max_size = 7* 1000*1000; //7MB
+  if($_FILES['video']['size'] > $max_size) {
+   $uploadNoticeVideo = "Bitte keine Dateien größer 7MB hochladen";
+   $video_error = true;
+  }
+}
 
 
 if(!$video_error) {
