@@ -70,10 +70,10 @@ if(!$video_error) {
   $userid = $_SESSION['userid'];
 
 
-  $statement = $pdo->prepare("UPDATE custom_img_12345 SET VideoID = ? WHERE ImgID = '$word'");
+  $statement = $pdo->prepare("UPDATE custom_img_12345 SET VideoID = ? WHERE ImgID = '$imgID'");
   $result = $statement->execute(array($word));
 
-  $statement = $pdo->prepare("UPDATE custom_img_12345 SET VideoMime = ? WHERE ImgID = '$word'");
+  $statement = $pdo->prepare("UPDATE custom_img_12345 SET VideoMime = ? WHERE ImgID = '$imgID'");
   $result = $statement->execute(array($video_extension));
 
 
