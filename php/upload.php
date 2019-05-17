@@ -5,29 +5,7 @@
 // ;
 // }
 
-echo ($schoolName);
-echo "<br><br><hr>
-<b>Gebärden für Ihre Schule hochladen (BETA)</b><br><br>
 
-<form action='' method='post' enctype='multipart/form-data'>
-
-<input type='text' class='custom_input' placeholder='Name der Gebärde' name='word' required><br>
-<div class='' id='uploadImg'>
-<br>
-
-<div class='upload-btn-wrapper'>
-  <button class='file_btn'><i class='fas fa-upload'></i> Bild</button>
-  <input type='file' name='image'/>
-</div>
-
-</div>
-
-
-
-<input type='submit' class='custom_button' value='Upload' id='uploadImgBtn'>
-</form>
-
-";
 
 
 

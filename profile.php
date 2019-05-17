@@ -40,6 +40,11 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
       gtag('config', 'UA-21959683-2');
     </script>
 
+<!-- JQUERY für Accordion -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+
 
 
 </head>
@@ -183,11 +188,15 @@ function showChangeProfileForm(){
 
 }
 
+
+
 </script>
 
 
 <div class="hidden" id="changeProfile">
 <b>Daten ändern</b><br><br>
+
+
 <?php
 $sql = "SELECT * FROM user WHERE id = $userid";
 foreach ($pdo->query($sql) as $row) {
@@ -224,6 +233,27 @@ $erfolgreich = false;
   // include ('php/uploadVideo.php');
   if ($userSchoolID == $schoolID) {
     include ('php/upload.php');
+
+    echo ($schoolName);
+    echo "<br><br>
+    <div id='accordion'>
+        <h3>Gebärden für Ihre Schule hochladen (BETA)</h3>
+        <div>
+
+          <form action='' method='post' enctype='multipart/form-data'>
+            <input type='text' class='custom_input' placeholder='Name der Gebärde' name='word' required><br>
+
+            <br>
+              <div class='upload-btn-wrapper'>
+                <button class='file_btn'><i class='fas fa-upload'></i> Bild</button>
+                <input type='file' name='image'/>
+              </div><br>
+            <input type='submit' class='custom_button' value='Upload' id='uploadImgBtn'>
+          </form>
+
+
+    ";
+
     include('php/uploadVideo.php');
 
 
@@ -242,9 +272,10 @@ $erfolgreich = false;
 
         <input type='submit' class='custom_button' value='Video hinzufügen' id='uploadVideoBtn'>
 
-      </form>";
+      </form></div>";
+    } else {
+      echo "</div>";
     }
-
     if(isset($uploadNotice)) {
         echo "<div class='notification'>".$uploadNotice."</div>";
     }
@@ -256,24 +287,34 @@ $erfolgreich = false;
 
   }
 
-echo "<hr> <b>Fehlende Videos hinzufügen</b><br><br>";
+echo "
+ <h3>Fehlende Videos hinzfügen</h3>
+ <div>";
 
-include('php/uploadVideoID.php');
+ include('php/uploadVideoID.php');
 
-echo "<form action='' method='post' enctype='multipart/form-data'>
-<select name='word' class='custom_input'>";
-$sql = "SELECT * FROM custom_img_12345 WHERE VideoID = '' ORDER BY ImgName";
-foreach ($pdo->query($sql) as $row) {
-   echo "<option value='".$row['ImgID']."'>";
-   echo $row['ImgName'];
-   echo "</option>";
-}
-echo "</select>
-<input type='file' class='custom_input' name='video'><br>
-<input type='submit' class='custom_button' value='Video ergänzen' id='uploadVideoBtn'>
+ echo "
+ <form action='' method='post' enctype='multipart/form-data'>
+ Gebärde auswählen:<br>
+ <select name='word' class='custom_input'>";
+ $sql = "SELECT * FROM custom_img_12345 WHERE VideoID = '' ORDER BY ImgName";
+ foreach ($pdo->query($sql) as $row) {
+    echo "<option value='".$row['ImgID']."'>";
+    echo $row['ImgName'];
+    echo "</option>";
+ }
+ echo "</select>
+ <input type='file' class='custom_input' name='video'><br>
+ <input type='submit' class='custom_button' value='Video ergänzen' id='uploadVideoBtn'>
 
 
-</form>";
+ </form></div>";
+
+
+ echo "</div>";
+
+
+
 if(isset($uploadNoticeVideo)) {
     echo "<div class='notification'>".$uploadNoticeVideo."</div>";
 }
@@ -294,43 +335,11 @@ if($erfolgreich == true){
 
  ?>
 
- <script>
-//  var showUploadImgBtn = document.getElementById("next");
-//      showUploadImgBtn.addEventListener("click", showUploadImgForm);
-// var showUploadImgForm = document.getElementById("uploadImg");
-//
-//  function showUploadImgForm(){
-//
-//    showUploadImgForm.classList.remove("hidden");
-//
-//    showUploadImgBtn.innerHTML = "Video hinzufügen";
-//    showUploadImgBtn.addEventListener("click", showUploadVideoForm);
-//
-//    var uploadImgBtn = document.getElementById("uploadImgBtn");
-//    uploadImgBtn.classList.remove("hidden");
-//
-//
-//    if (showUploadImgBtn.classList.contains("hidden")) {
-//      showUploadImgBtn.style.maxHeight = "200px;"
-//    } else {
-//      showUploadImgBtn.style.maxHeight= "500px;"
-//
-//    }
-//  }
 
-// var addVideoBtn = document.getElementById("addVideoBtn");
-//      addVideoBtn.addEventListener("click", showUploadVideoForm);
-//
-//
-//  function showUploadVideoForm(){
-//
-//    var showUploadVideoForm = document.getElementById("uploadVideoForm");
-//    showUploadVideoForm.classList.remove("hidden");
-//    addVideoBtn.classList.add("hidden");
-//
-// }
 
- </script>
+
+
+
 
 
 
@@ -404,6 +413,16 @@ foreach ($pdo->query($sql) as $row) {
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <script>
+ $( function() {
+   $( "#accordion" ).accordion();
+ } );
+ </script>
+
 
 </body>
 </html>

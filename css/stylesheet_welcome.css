@@ -15,15 +15,19 @@ body {
 }
 
 .file_btn {
-  background-color: #6d918e;
+  background-color: white;
   padding: 8px 20px;
+  border-color: white;
   border-radius: 8px;
+  border: black 1px solid;
   font-weight: 200;
-  color: white;
+  font-size: 2em;
+  color: black;
 }
 
 .file_btn:hover {
   background-color: #10464c;
+  color: white;
 }
 
 .upload-btn-wrapper input[type=file] {
@@ -74,6 +78,15 @@ footer a{
   font-size: 1em;
   /* border-radius: 5px; */
   border: black, 1px, solid;
+}
+
+.ui-accordion-header-active {
+background-color: #10464c !important;
+}
+
+.titel_button:hover {
+background-color: #10464c;
+color: white;
 }
 
 /* #register_mail, #register_pw, #register_nachname, #register_vorname, #register_serial {
