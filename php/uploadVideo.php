@@ -1,21 +1,20 @@
 <?php
-session_start();
-if(!isset($_SESSION['userid'])) {
-  die(header("location: ../login.php"));
-;
-}
+// session_start();
+// if(!isset($_SESSION['userid'])) {
+//   die(header("location: ../login.php"));
+// ;
+// }
 
 
 
 $word = $_POST['word'];
 $error = false;
 
-$tmpVideoName = $_FILES['video']['name'];
-$video_upload_folder = '../custom/videos/'; //Das Upload-Verzeichnis für Videos
+$video_upload_folder = 'custom/videos/'; //Das Upload-Verzeichnis für Videos
 $uploadNoticeVideo = null;
 $video_error = false;
 
-if (isset($tmpVideoName)) {
+if (isset($_FILES['video']['name'])) {
 
   $Videofilename = pathinfo($_FILES['video']['name'], PATHINFO_FILENAME);
   $video_extension = strtolower(pathinfo($_FILES['video']['name'], PATHINFO_EXTENSION));
@@ -73,8 +72,8 @@ if(!$video_error) {
 
   // die(header("location: ../profile.php"));
   echo($_FILES['video']['name']);
-  echo "Bild hochgeladen nach: <a href='../custom_library.php'>Bibliothek</a>";
-  $uploadNoticeVideo = "Video für $word erfolgreich hochgeladen";
+  echo " erfolgreich hochgeladen!";
+  $uploadNoticeVideo = null;
 }
 };
 

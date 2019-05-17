@@ -218,23 +218,28 @@ foreach ($pdo->query($sql) as $row) {
 <?php
 
 if (isset($schoolName)) {
+$word = null;
+$erfolgreich = false;
 
   // include ('php/uploadVideo.php');
   if ($userSchoolID == $schoolID) {
     include ('php/upload.php');
+    include('php/uploadVideo.php');
 
 
     if($erfolgreich == true){
       echo "Bild erfolgreich hochgeladen";
       echo $previewImg;
 
-      include('php/uploadVideo.php');
-      echo "<form action='php/uploadVideo.php' method='post' enctype='multipart/form-data'>
-      <div class='' id='uploadVideoForm'><br>
-      <input type='text' class='custom_input hidden' placeholder='Name der Gebärde' name='word' required value=".$word."><br>
-      <input type='file' class='custom_input' name='video'><br>
-      <input type='submit' class='custom_button' value='Video hinzufügen' id='uploadVideoBtn'>
-      </div></form>";
+
+      echo "
+      <form action='' method='post' enctype='multipart/form-data'>
+
+        <input type='text' class='custom_input hidden' placeholder='Name der Gebärde' name='word' required value=".$word."><br>
+        <input type='file' class='custom_input' name='video'><br>
+        <input type='submit' class='custom_button' value='Video hinzufügen' id='uploadVideoBtn'>
+
+      </form>";
     }
 
     if(isset($uploadNotice)) {
