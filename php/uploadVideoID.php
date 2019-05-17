@@ -59,7 +59,7 @@ if(!$video_error) {
    $new_path_video = $video_upload_folder.$word.'_'.$id.'_video.'.$video_extension;
    $sql = "SELECT * FROM custom_img_12345 WHERE ImgID = '$imgID'";
    foreach ($pdo->query($sql) as $row) {
-      $word = $row['ImgName'].'_'$id;
+      $word = $row['ImgName'].'_'.$id;
    }
 
    $id++;
