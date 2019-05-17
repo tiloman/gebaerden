@@ -86,6 +86,12 @@ if(!$error) {
    $id = 1;
    do {
    $new_path = $upload_folder.$word.'_'.$id.'.'.$extension;
+   $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$imgName'";
+   foreach ($pdo->query($sql) as $row) {
+      $word = $row['ImgName'].'_'.$id;
+   }
+
+
    $id++;
    } while(file_exists($new_path));
   }
