@@ -118,6 +118,7 @@ $videoPath = 'custom/videos/';
 $sql = "SELECT * FROM custom_img_12345 ORDER BY ImgName";
 foreach ($pdo->query($sql) as $row) {
   $cleanFileName = $row['ImgName'];
+  $imgID = $row['ImgID'];
   $videoMime = $row['VideoMime'];
 
   if($videoMime !== "") {
@@ -180,14 +181,6 @@ foreach ($pdo->query($sql) as $row) {
 
 
 }
-
-
-
-
-
-
-
-
 
 
 ?>
