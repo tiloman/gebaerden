@@ -30,7 +30,9 @@ Bild auswählen (JPG, PNG, GIF) <br>
 
 $upload_folder = 'custom/'; //Das Upload-Verzeichnis
 
-$word = $_POST['word'];
+if (isset($_POST['word'])) {
+  $word = $_POST['word'];
+};
 $filename = pathinfo($_FILES['image']['name'], PATHINFO_FILENAME);
 $uploadNotice = null;
 $error = false;

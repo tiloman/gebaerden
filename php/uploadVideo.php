@@ -7,7 +7,9 @@
 
 
 
-$word = $_POST['word'];
+if (isset($_POST['word'])) {
+  $word = $_POST['word'];
+};
 $error = false;
 
 $video_upload_folder = 'custom/videos/'; //Das Upload-Verzeichnis für Videos
