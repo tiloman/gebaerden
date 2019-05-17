@@ -51,6 +51,11 @@ if(!$video_error) {
    $id = 1;
    do {
    $new_path_video = $video_upload_folder.$word.'_'.$id.'_video.'.$video_extension;
+   $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$word'";
+   foreach ($pdo->query($sql) as $row) {
+      $word = $row['ImgName'].'_'.$id;
+   }
+
    $id++;
    } while(file_exists($new_path_video));
   }
