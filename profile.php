@@ -238,7 +238,7 @@ $erfolgreich = false;
         <input type='text' class='custom_input hidden' placeholder='Name der Gebärde' name='word' required value=".$word."><br>
         <input type='file' class='custom_input' name='video'><br>
 
-  
+
 
         <input type='submit' class='custom_button' value='Video hinzufügen' id='uploadVideoBtn'>
 
@@ -255,6 +255,25 @@ $erfolgreich = false;
 
 
   }
+
+echo "<hr> Video ergänzen";
+echo "<form action='' method='post' enctype='multipart/form-data'>
+<select name='word' class='custom_input'>";
+$sql = "SELECT * FROM custom_img_12345 ORDER BY ImgName";
+foreach ($pdo->query($sql) as $row) {
+   echo "<option value='".$row['ImgName']."'>";
+   echo $row['ImgName'];
+   echo "</option>";
+}
+echo "</select>
+<input type='file' class='custom_input' name='video'><br>
+<input type='submit' class='custom_button' value='Video ergänzen' id='uploadVideoBtn'>
+
+
+</form>";
+
+
+
 }else {
   echo ("Wenn Ihre Schule bereits einen Zugang hat, können Sie hier den Zugangscode eingeben.<br><br>
     <form id='addSchool' action='php/addSchool.php' method='post'>
