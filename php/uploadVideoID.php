@@ -8,6 +8,7 @@
 
 
 if (isset($_POST['word'])) {
+  $imgID = $_POST['word'];
 
   $sql = "SELECT * FROM custom_img_12345 WHERE ImgID = '$imgID'";
   foreach ($pdo->query($sql) as $row) {
@@ -15,7 +16,6 @@ if (isset($_POST['word'])) {
   }
 
 
-  $imgID = $_POST['word'];
 };
 $error = false;
 
