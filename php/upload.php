@@ -14,8 +14,12 @@ echo "<br><br><hr>
 <input type='text' class='custom_input' placeholder='Name der Gebärde' name='word' required><br>
 <div class='' id='uploadImg'>
 <br>
-Bild auswählen (JPG, PNG, GIF) <br>
-<input type='file' class='custom_input' name='image'><br><br>
+
+<div class='upload-btn-wrapper'>
+  <button class='btn'><i class='fas fa-upload'></i> Bild auswählen</button>
+  <input type='file' name='image'/>
+</div>
+
 </div>
 
 

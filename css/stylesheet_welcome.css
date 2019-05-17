@@ -8,6 +8,29 @@ body {
 
 }
 
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  background-color: #10464c;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 200;
+
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 1em;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+
 a {
   color: black;
   text-decoration: none;
