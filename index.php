@@ -83,7 +83,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
               if ($userSchoolID == $schoolID) {
                 echo "
                 <a class='dropdown-item' href=''>Mediathek:</a>
-                <a class='dropdown-item' href='/gebaerden/custom_library.php'>".$schoolName."</a>";
+                <a class='dropdown-item' href='/gebaerden/custom_libraryID.php'>".$schoolName."</a>";
               }
             }
             else {
