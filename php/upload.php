@@ -33,12 +33,12 @@ $upload_folder = 'custom/'; //Das Upload-Verzeichnis
 if (isset($_POST['word'])) {
   $word = $_POST['word'];
 };
-$filename = pathinfo($_FILES['image']['name'], PATHINFO_FILENAME);
+
 $uploadNotice = null;
 $error = false;
 
 if (isset($_FILES['image']['name'])) {
-
+$filename = pathinfo($_FILES['image']['name'], PATHINFO_FILENAME);
   $extension = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
 
 
