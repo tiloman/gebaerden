@@ -174,7 +174,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
       echo "<div class='notification'>".$uploadNoticeVideo."</div>";
   }
 
-  if($erfolgreich == true){
+  if(isset($erfolgreich)){
     echo "Bild erfolgreich hochgeladen";
 
   }
