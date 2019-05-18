@@ -25,8 +25,8 @@ if (isset($_POST['renameWord']) && isset($_POST['newName'])) {
     $statement = $pdo->prepare("UPDATE custom_img_12345 SET VideoID = ? WHERE ImgName = '$newName'");
     $statement->execute(array($newName));
   }
-}
-  $notice = $word." ist nun umbenannt in ".$newName;
 
+  $notice = $word." ist nun umbenannt in ".$newName;
+}
 
 ?>
