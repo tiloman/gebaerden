@@ -8,34 +8,10 @@ body {
 
 }
 
-.upload-btn-wrapper {
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-}
 
-.file_btn {
-  background-color: white;
-  padding: 8px 20px;
-  border-color: white;
-  border-radius: 8px;
-  border: black 1px solid;
-  font-weight: 200;
-  font-size: 2em;
-  color: black;
-}
-
-.file_btn:hover {
-  background-color: #10464c;
-  color: white;
-}
-
-.upload-btn-wrapper input[type=file] {
-  font-size: 1em;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
+h3 {
+  text-align: left;
+  border-bottom: 1px lightgrey solid;
 }
 
 
@@ -193,6 +169,11 @@ color: white;
 
 .margin {
   margin-top: 1em;
+}
+
+.left {
+  text-align: left;
+  margin-bottom: 2em;
 }
 
 .hidden {
@@ -363,5 +344,11 @@ padding: 10px;
 }
 
 @media screen and (max-width: 600px) {
-
+.flexbox_user_info {
+  width:100%;
+  border-radius: 0;
+}
+.custom_input {
+  width: 90%;
+}
 }

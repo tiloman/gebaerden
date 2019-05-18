@@ -71,7 +71,49 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" onclick="hideMetacom()" href="javascript:void(0)" id="viewMetacom"><img src="img/metacom.png" height="20px" title="Metacom eingeblendet">Metacom</a>
             <a class="dropdown-item" onclick="hideVideos()" href="javascript:void(0)" id="viewVideos"><i class="fas fa-video-slash" title='Videos eingeblendet'></i>Video</a>
-            <div class="dropdown-divider"></div>
+
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-american-sign-language-interpreting"></i> Mediathek
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class='dropdown-item' href='index.php'>Zeigs mir mit Gebärden</a>
+            <?php
+            $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
+            foreach ($pdo->query($sql) as $row) {
+              $schoolID = $row['school_id'];
+              $schoolName = $row['school_name'];
+            }
+            if (isset($schoolName)) {
+              if ($userSchoolID == $schoolID) {
+                echo "
+
+                <a class='dropdown-item' href='/gebaerden/custom_libraryID.php'>".$schoolName."</a>";
+              }
+            }
+            else {
+              echo "
+
+              <a class='dropdown-item' href='/gebaerden/profile.php'>Schule anmelden</a>";
+            }; ?>
+
+
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-cog"></i> Einstellungen
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class='dropdown-item' href='/gebaerden/profile.php'>Profil</a>
+            <a class='dropdown-item' href='/gebaerden/pdfSettings.php'>PDF Einstellungen</a>
+
 
             <?php
             $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
@@ -82,22 +124,18 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
             if (isset($schoolName)) {
               if ($userSchoolID == $schoolID) {
                 echo "
-                <a class='dropdown-item' href=''>Mediathek:</a>
-                <a class='dropdown-item' href='/gebaerden/custom_libraryID.php'>".$schoolName."</a>";
+                <a class='dropdown-item' href='/gebaerden/manageContent.php'>Gebärden verwalten</a>";
+
               }
             }
             else {
               echo "
-              <a class='dropdown-item' href=''>Mediathek:</a>
+
               <a class='dropdown-item' href='/gebaerden/profile.php'>Schule anmelden</a>";
             }; ?>
 
 
           </div>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user-cog"></i> Einstellungen</a>
         </li>
 
         <li class="nav-item">

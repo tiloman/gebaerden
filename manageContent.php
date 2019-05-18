@@ -158,101 +158,198 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 <div class="welcome_flex_container">
 
+
+
+
+<!-- Update der School ID; Wird in "school" Tabelle gespeichert -->
 <div class="flexbox_user_info margin">
+
+  <?php if(isset($notice)){
+    echo "<div class='notification'>".$notice."</div>";
+  }
+  if(isset($uploadNotice)) {
+      echo "<div class='notification'>".$uploadNotice."</div>";
+  }
+  if(isset($uploadNoticeVideo)) {
+      echo "<div class='notification'>".$uploadNoticeVideo."</div>";
+  }
+
+  if($erfolgreich == true){
+    echo "Bild erfolgreich hochgeladen";
+
+  }
+
+  ?>
+
+
 <?php
 
-$sql = "SELECT * FROM user WHERE id = $userid";
-foreach ($pdo->query($sql) as $row) {
-   echo "<p><h3>Ihre Daten</h3></p>";
-   echo "Name: <b>" . $row['vorname']." ".$row['nachname']."</b><br />";
-   echo "E-Mail: <b>".$row['email']."</b><br /><br />";
+if (isset($schoolName)) {
+$word = null;
+$erfolgreich = false;
 
-   $userSerial = $row['serial'];
-   $userSchoolID = $row['schoolid'];
-   $serial = null;
+  // include ('php/uploadVideo.php');
+  if ($userSchoolID == $schoolID) {
+    include ('php/upload.php');
 
-   $sql = "SELECT * FROM license WHERE serial = $userSerial";
-   foreach ($pdo->query($sql) as $row) {
-     $licensedSerial = $row['serial'];
-     $licensedTo = $row['licensedto'];
-}
-   $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
-   foreach ($pdo->query($sql) as $row) {
-     $schoolID = $row['school_id'];
-     $schoolName = $row['school_name'];
-     echo "Eingetragene Schule: <br><b>".$schoolName."</b><br><br>";
-}
+    echo ("<h3>".$schoolName."</h3>");
 
 
-if (isset($licensedSerial)) {
-  if ($userSerial == $licensedSerial) {
-    echo ("Die Seriennummer ist lizensiert für: <br>");
-    echo ("<b>".$licensedTo."</b>");
+    $statement = $pdo->prepare("SELECT * FROM custom_img_12345");
+    $statement->execute(array('Words'));
+    $anzahl_words = $statement->rowCount();
+    echo "<p class='left'>Bislang wurden $anzahl_words Gebärden hochgeladen. ";
+
+    $statement = $pdo->prepare("SELECT * FROM custom_img_12345 WHERE UploadedBy = $userid");
+    $statement->execute(array('UserWords'));
+    $anzahl_user_words = $statement->rowCount();
+    if ($anzahl_user_words > 1){
+    echo "Davon haben Sie $anzahl_user_words  hochgeladen</p>";
+    }
+    echo "</div>
+
+
+
+      <div class='flexbox_user_info margin'>
+        <h3>Gebärde hochladen</h3>
+        <p class='left'>Fügen Sie hier eine neue Gebärde hinzu.</p>
+        <div>
+
+          <form action='' method='post' enctype='multipart/form-data'>
+            <input type='text' class='custom_input' placeholder='Name der Gebärde' name='word' required><br>
+
+            <br>
+            <input type='file' name='image' class='custom_input'/>
+            <br>
+            <input type='submit' class='custom_button' value='Upload' id='uploadImgBtn'>
+          </form>
+
+</div>
+    ";
+
+    include('php/uploadVideo.php');
+
+
+    if($erfolgreich == true){
+      echo $previewImg;
+
+    }
+
+
+
+
+
   }
+?>
+
+
+</div><div class='flexbox_user_info margin'>
+
+ <h3>Video hinzufügen</h3>
+<p class='left'>Laden Sie ein Video hoch um das Verständnis zu erleichtern. In der Auswahl erscheinen alle Gebärden die noch kein Video haben.</p>
+ <div>
+
+ <?php include('php/uploadVideoID.php');?>
+
+
+ <form action='' method='post' enctype='multipart/form-data'>
+ Gebärde auswählen:<br>
+ <select name='word' class='custom_input'>
+   <option>Bitte auswählen ...</option>";
+ <?php $sql = "SELECT * FROM custom_img_12345 WHERE VideoID = '' ORDER BY ImgName";
+ foreach ($pdo->query($sql) as $row) {
+    echo "<option value='".$row['ImgID']."'>";
+    echo $row['ImgName'];
+    echo "</option>";
+ }
+ ?>
+ </select>
+ <input type='file' class='custom_input' name='video'><br>
+ <input type='submit' class='custom_button' value='Upload' id='uploadVideoBtn'>
+
+
+ </form></div>
+
+
+ </div>
+
+<?php
+
+if(isset($uploadNoticeVideo)) {
+    echo "<div class='notification'>".$uploadNoticeVideo."</div>";
+}
+if($erfolgreich == true){
+  echo "Video erfolgreich hinzugefügt";
+}
+
 }else {
-  echo ("Die Lizenz ist ungültig! Bitte wenden Sie sich an lohmanntimo@gmail.com");
-}
+  echo ("Wenn Ihre Schule bereits einen Zugang hat, können Sie hier den Zugangscode eingeben.<br><br>
+    <form id='addSchool' action='php/addSchool.php' method='post'>
+    <input name='schoolId' type='text' placeholder='Zugangsnummer'></input><br><br>
+    <input type='submit' class='custom_button' value='Check In'></input>
+    </form>
 
-}
+
+  ");
+};
+
  ?>
-<br><br>
- <button id="changeProfileBtn" class="custom_button">Daten aktualisieren</button>
-
-
-<!-- Update der User Daten; Wird in "user" Tabelle gespeichert -->
-
-<script>
-var changeProfileBtn = document.getElementById("changeProfileBtn");
-    changeProfileBtn.addEventListener("click", showChangeProfileForm);
-function showChangeProfileForm(){
-
-  var changeProfileBox = document.getElementById("changeProfile");
-  changeProfileBox.classList.toggle("hidden");
-
-  if (changeProfileBox.classList.contains("hidden")) {
-    changeProfileBox.style.maxHeight = "200px;"
-  } else {
-    changeProfileBox.style.maxHeight= "500px;"
-
-  }
-
-}
 
 
 
-</script>
+<div class='flexbox_user_info margin'>
+
+ <h3>Gebärde umbenennen</h3>
+ <p class='left'>Tippfehler? Bessere Bezeichnung? Hier können Sie den Namen einer Gebärde verändern. Sie können nur Gebärden verändern, die Sie selbst hochgeladen haben.</p>
+  <?php include ('php/changeCustomWord.php'); ?>
+   <form action='' method='post' enctype='multipart/form-data'>
+   Gebärde auswählen:<br>
+     <select name='renameWord' class='custom_input'>
+        <option>Bitte auswählen ...</option>";;
+
+      <?php
+        $sql = "SELECT * FROM custom_img_12345 WHERE UploadedBy = $userid ORDER BY ImgName";
+        foreach ($pdo->query($sql) as $row) {
+           echo "<option value='".$row['ImgName']."'>";
+           echo $row['ImgName'];
+           echo "</option>";
+      }
+      ?>
+
+    </select>
+  <input type='text' class='custom_input' name='newName'><br>
+  <input type='submit' class='custom_button' value='Speichern'>
+
+  </form>
 
 
-<div class="hidden" id="changeProfile">
-<br>
+</div>
 
 
-<?php
-$sql = "SELECT * FROM user WHERE id = $userid";
+
+<div class='flexbox_user_info margin'>
+
+ <h3>Gebärde löschen</h3>
+<p class='left'>Hier können Sie Einträge löschen. Jedoch nur die die von Ihnen selbst kommen.</p>
+ <form action='' method='post' enctype='multipart/form-data'>
+ Gebärde auswählen:<br>
+ <select name='word' class='custom_input'>";
+
+<?php $sql = "SELECT * FROM custom_img_12345 WHERE UploadedBy = $userid ORDER BY ImgName";
 foreach ($pdo->query($sql) as $row) {
-   echo "<form action='php/changeUserData.php' method='post'>
-   Vorname: <br>
-   <input type='text' name='vorname' id='vorname' value=". $row['vorname']."><br><br>
-   Nachname: <br>
-   <input type='text' name='nachname' id='nachname' value=". $row['nachname']."><br><br>
-   E-Mail: <br>
-   <input type='mail' name='email' id='email' value=". $row['email']."><br><br>
-   <input  type='submit' class='custom_button' value='Update'>
-   </form>";
+   echo "<option value='".$row['ImgID']."'>";
+   echo $row['ImgName'];
+   echo "</option>";
 }
- ?>
+?>
+
+</select>
+<input type='submit' class='custom_button' value='Löschen'>
 
 
-
+</form>
 
 </div>
-</div>
-</div>
-
-
-
-
-
 
 
 

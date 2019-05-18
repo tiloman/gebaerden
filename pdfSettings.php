@@ -158,104 +158,65 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 <div class="welcome_flex_container">
 
+
+
+
+
+
 <div class="flexbox_user_info margin">
-<?php
-
-$sql = "SELECT * FROM user WHERE id = $userid";
-foreach ($pdo->query($sql) as $row) {
-   echo "<p><h3>Ihre Daten</h3></p>";
-   echo "Name: <b>" . $row['vorname']." ".$row['nachname']."</b><br />";
-   echo "E-Mail: <b>".$row['email']."</b><br /><br />";
-
-   $userSerial = $row['serial'];
-   $userSchoolID = $row['schoolid'];
-   $serial = null;
-
-   $sql = "SELECT * FROM license WHERE serial = $userSerial";
-   foreach ($pdo->query($sql) as $row) {
-     $licensedSerial = $row['serial'];
-     $licensedTo = $row['licensedto'];
-}
-   $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
-   foreach ($pdo->query($sql) as $row) {
-     $schoolID = $row['school_id'];
-     $schoolName = $row['school_name'];
-     echo "Eingetragene Schule: <br><b>".$schoolName."</b><br><br>";
-}
-
-
-if (isset($licensedSerial)) {
-  if ($userSerial == $licensedSerial) {
-    echo ("Die Seriennummer ist lizensiert für: <br>");
-    echo ("<b>".$licensedTo."</b>");
-  }
-}else {
-  echo ("Die Lizenz ist ungültig! Bitte wenden Sie sich an lohmanntimo@gmail.com");
-}
-
-}
- ?>
+<h3>PDF Einstellungen</h3>
+Speichern Sie hier Ihre individuellen Einstellungen für den PDF Export.
 <br><br>
- <button id="changeProfileBtn" class="custom_button">Daten aktualisieren</button>
-
-
-<!-- Update der User Daten; Wird in "user" Tabelle gespeichert -->
-
-<script>
-var changeProfileBtn = document.getElementById("changeProfileBtn");
-    changeProfileBtn.addEventListener("click", showChangeProfileForm);
-function showChangeProfileForm(){
-
-  var changeProfileBox = document.getElementById("changeProfile");
-  changeProfileBox.classList.toggle("hidden");
-
-  if (changeProfileBox.classList.contains("hidden")) {
-    changeProfileBox.style.maxHeight = "200px;"
-  } else {
-    changeProfileBox.style.maxHeight= "500px;"
-
-  }
-
-}
 
 
 
-</script>
 
-
-<div class="hidden" id="changeProfile">
-<br>
-
-
+<!-- Update des Layouts; Wird in "user" Tabelle gespeichert -->
 <?php
 $sql = "SELECT * FROM user WHERE id = $userid";
 foreach ($pdo->query($sql) as $row) {
-   echo "<form action='php/changeUserData.php' method='post'>
-   Vorname: <br>
-   <input type='text' name='vorname' id='vorname' value=". $row['vorname']."><br><br>
-   Nachname: <br>
-   <input type='text' name='nachname' id='nachname' value=". $row['nachname']."><br><br>
-   E-Mail: <br>
-   <input type='mail' name='email' id='email' value=". $row['email']."><br><br>
-   <input  type='submit' class='custom_button' value='Update'>
-   </form>";
+   echo "<form id='changeLayout' action='php/changeLayout.php' method='post'>
+   PDF Größe:<br>
+     <select name='pdf_size' class='custom_input'>
+       <option style='font-weight: bold'>" . $row['pdf_size']."</option>
+       <option value='A4'>A4 (Standard)</option>
+       <option value='A5'>A5</option>
+     <select>
+
+   <br><br>
+
+   Schriftart:<br>
+     <select name='pdf_font' class='custom_input'>
+       <option style='font-weight: bold'>".$row['pdf_font']."</option>
+       <option value='Helvetica'>Helvetica (Standard)</option>
+       <option value='freemono'>Freemono</option>
+       <option value='dejavusans'>Deja Vu Sans</option>
+     <select>
+
+     <br><br>
+
+     Format:<br>
+       <select name='pdf_format' class='custom_input'>
+         <option style='font-weight: bold'>".$row['pdf_format']."</option>
+         <option value='L'>Landscape (Standard)</option>
+         <option value='H'>Hochformat</option>
+       <select>
+
+     <br /><br />";
+   echo "<input type='submit' class='custom_button' value='Layout aktualisieren'><hr>";
+
 }
  ?>
 
+ <br><br>
+ <img src="/gebaerden/img/pdf_preview.jpg" class="pdf_preview" style="width: 50%; border: 1px solid">
 
-
-
-</div>
-</div>
 </div>
 
 
 
 
-
-
-
-
+</div>
 
   <!-- <div id="login_header">Gebärden.</div> -->
 
