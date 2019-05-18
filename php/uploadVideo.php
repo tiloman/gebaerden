@@ -1,11 +1,5 @@
 <?php
-// session_start();
-// if(!isset($_SESSION['userid'])) {
-//   die(header("location: ../login.php"));
-// ;
-// }
-
-
+$erfolgreichVideo = null;
 
 if (isset($_POST['word'])) {
   $word = $_POST['word'];
