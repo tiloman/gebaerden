@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['renameWord'])) {
+if (isset($_POST['renameWord']) && isset($_POST['newName'])) {
   $word = $_POST['renameWord'];
   $newName = $_POST['newName'];
 
