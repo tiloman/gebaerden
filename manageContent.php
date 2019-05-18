@@ -333,7 +333,7 @@ if($erfolgreich == true){
 <p class='left'>Hier können Sie Einträge löschen. Jedoch nur die die von Ihnen selbst kommen.</p>
  <form action='' method='post' enctype='multipart/form-data'>
  Gebärde auswählen:<br>
- <select name='word' class='custom_input'>";
+ <select name='deleteWord' class='custom_input'>";
 
 <?php $sql = "SELECT * FROM custom_img_12345 WHERE UploadedBy = $userid ORDER BY ImgName";
 foreach ($pdo->query($sql) as $row) {
