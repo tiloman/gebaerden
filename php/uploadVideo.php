@@ -1,5 +1,4 @@
 <?php
-$erfolgreichVideo = null;
 
 if (isset($_POST['word'])) {
   $word = $_POST['word'];

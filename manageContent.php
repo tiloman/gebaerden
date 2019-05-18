@@ -180,7 +180,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
   }
 
 
-  if($erfolgreichVideo == true){
+  if(isset($erfolgreichVideo)){
     echo "Video erfolgreich hinzugefügt";
   }
 
