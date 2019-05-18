@@ -6,10 +6,6 @@
 // }
 
 
-
-
-
-
 $upload_folder = 'custom/'; //Das Upload-Verzeichnis
 
 if (isset($_POST['word'])) {
@@ -91,8 +87,7 @@ if(!$error) {
   $erfolgreich = true;
 
   $uploadNotice = null;
-  $previewImg = "<img class='uploadPreview' src='php/img.php?img=".$word."&path=".$upload_folder."&mime=".$extension."'>";
-  $addVideoBtn = "<button id='addVideoBtn' class='custom_input'>Video hinzufügen</button>";
+  $previewImg = "<img class='uploadPreview' style='max-height:100px' src='php/img.php?img=".$word."&path=".$upload_folder."&mime=".$extension."'>";
   // die(header("location: ../custom_library.php"));;
 }
 };

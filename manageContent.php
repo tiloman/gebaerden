@@ -179,6 +179,12 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
   }
 
+
+  if($erfolgreichVideo == true){
+    echo "Video erfolgreich hinzugefügt";
+  }
+
+
   ?>
 
 
@@ -275,12 +281,7 @@ $erfolgreich = false;
 
 <?php
 
-if(isset($uploadNoticeVideo)) {
-    echo "<div class='notification'>".$uploadNoticeVideo."</div>";
-}
-if($erfolgreich == true){
-  echo "Video erfolgreich hinzugefügt";
-}
+
 
 }else {
   echo ("Wenn Ihre Schule bereits einen Zugang hat, können Sie hier den Zugangscode eingeben.<br><br>
