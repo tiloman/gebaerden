@@ -81,7 +81,7 @@ if(!$video_error) {
 
   // die(header("location: ../profile.php"));
   echo($_FILES['video']['name']);
-  echo " wurde erfolgreich hochgeladen!";
+  $erfolgreich = "Video wurde erfolgreich hochgeladen!";
   $uploadNoticeVideo = null;
 }
 };
