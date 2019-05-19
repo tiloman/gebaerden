@@ -233,7 +233,7 @@ $erfolgreich = false;
 </div>
     ";
 
-    include('php/uploadVideo.php');
+   
 
 
     if($erfolgreich == true){
@@ -260,7 +260,7 @@ $erfolgreich = false;
 
  <form action='' method='post' enctype='multipart/form-data'>
  Gebärde auswählen:<br>
- <select name='word' class='custom_input'>
+ <select name='imgIDforVideo' class='custom_input'>
    <option>Bitte auswählen ...</option>";
  <?php $sql = "SELECT * FROM custom_img_12345 WHERE VideoID = '' ORDER BY ImgName";
  foreach ($pdo->query($sql) as $row) {
