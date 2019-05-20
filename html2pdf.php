@@ -88,7 +88,7 @@ h1 {
 }
 </style>
 
-<h1>".$ImgFile."</h1>
+<h1>".$ImgName."</h1>
 <img class='gebaerde' src='php/imgDb.php?imgID=".$imgID."'>
 
 
