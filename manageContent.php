@@ -139,11 +139,6 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
         </li>
 
 
-
-        <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/about.php"><i class="fas fa-info"></i> About</a>
-        </li>
-
         <li class="nav-item">
           <a class="nav-link" href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
         </li>
@@ -163,6 +158,15 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 <!-- Update der School ID; Wird in "school" Tabelle gespeichert -->
 <div class="flexbox_user_info margin">
+
+  <?php
+  include ('php/deleteEntry.php');
+  include ('php/changeCustomWord.php');
+  include ('php/uploadVideoID.php');
+  include ('php/upload.php'); ?>
+
+
+
 
   <?php if(isset($notice)){
     echo "<div class='notification'>".$notice."</div>";
@@ -196,7 +200,6 @@ $erfolgreich = false;
 
   // include ('php/uploadVideo.php');
   if ($userSchoolID == $schoolID) {
-    include ('php/upload.php');
 
     echo ("<h3>".$schoolName."</h3>");
 
@@ -233,7 +236,7 @@ $erfolgreich = false;
 </div>
     ";
 
-   
+
 
 
     if($erfolgreich == true){
@@ -255,14 +258,13 @@ $erfolgreich = false;
 <p class='left'>Laden Sie ein Video hoch um das Verständnis zu erleichtern. In der Auswahl erscheinen alle Gebärden die noch kein Video haben.</p>
  <div>
 
- <?php include('php/uploadVideoID.php');?>
 
 
  <form action='' method='post' enctype='multipart/form-data'>
  Gebärde auswählen:<br>
  <select name='imgIDforVideo' class='custom_input'>
    <option>Bitte auswählen ...</option>";
- <?php $sql = "SELECT * FROM custom_img_12345 WHERE VideoID = '' ORDER BY ImgName";
+ <?php $sql = "SELECT * FROM custom_img_12345 WHERE VideoFile = '' ORDER BY ImgName";
  foreach ($pdo->query($sql) as $row) {
     echo "<option value='".$row['ImgID']."'>";
     echo $row['ImgName'];
@@ -302,7 +304,6 @@ $erfolgreich = false;
 
  <h3>Gebärde umbenennen</h3>
  <p class='left'>Tippfehler? Bessere Bezeichnung? Hier können Sie den Namen einer Gebärde verändern. Sie können nur Gebärden verändern, die Sie selbst hochgeladen haben.</p>
-  <?php include ('php/changeCustomWord.php'); ?>
    <form action='' method='post' enctype='multipart/form-data'>
    Gebärde auswählen:<br>
      <select name='renameWord' class='custom_input'>
@@ -331,10 +332,11 @@ $erfolgreich = false;
 <div class='flexbox_user_info margin'>
 
  <h3>Gebärde löschen</h3>
+
 <p class='left'>Hier können Sie Einträge löschen. Jedoch nur die die von Ihnen selbst kommen.</p>
  <form action='' method='post' enctype='multipart/form-data'>
  Gebärde auswählen:<br>
- <select name='deleteWord' class='custom_input'>";
+ <select name='deleteImgID' class='custom_input'>";
 
 <?php $sql = "SELECT * FROM custom_img_12345 WHERE UploadedBy = $userid ORDER BY ImgName";
 foreach ($pdo->query($sql) as $row) {

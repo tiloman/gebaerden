@@ -59,9 +59,6 @@
           <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/about.php"><i class="fas fa-info"></i> About</a>
-        </li>
 
         <li class="nav-item">
           <a class="nav-link" href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a

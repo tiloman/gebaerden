@@ -78,8 +78,8 @@ if(!$error) {
   $userid = $_SESSION['userid'];
 
 
-  $statement = $pdo->prepare("INSERT INTO custom_img_12345 (ImgName, UploadedBy, ImgMime) VALUES (:ImgName, :UploadedBy, :ImgMime)");
-  $result = $statement->execute(array('ImgName' => $word, 'UploadedBy' => $userid, 'ImgMime' => $extension));
+  $statement = $pdo->prepare("INSERT INTO custom_img_12345 (ImgName, UploadedBy, ImgMime, ImgFile, path) VALUES (:ImgName, :UploadedBy, :ImgMime, :ImgFile, :path)");
+  $result = $statement->execute(array('ImgName' => $word, 'UploadedBy' => $userid, 'ImgMime' => $extension, 'ImgFile' => $word, 'path' => $upload_folder));
 
 
 

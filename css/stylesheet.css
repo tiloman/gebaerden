@@ -43,6 +43,9 @@ a {
 
 }
 
+.hidden {
+  display: none;
+}
 
 .collapsible_body {
   margin: 0;

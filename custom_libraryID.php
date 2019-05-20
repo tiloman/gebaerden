@@ -138,9 +138,6 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
           </div>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/about.php"><i class="fas fa-info"></i> About</a>
-        </li>
 
         <li class="nav-item">
           <a class="nav-link" href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
@@ -200,36 +197,37 @@ foreach ($pdo->query($sql) as $row) {
 
   echo "<li>
               <div class='collapsible-header'>$cleanFileName
-              <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
+                <div class='collapsible-icons'>$metacomexists$videoexists</div>
+              </div>
               <div class='collapsible_body'>";
+                echo "<div class='collapsible_body_content hidden ID' style='display:none'>$imgID</div>";
+                echo "<div class='collapsible_body_content img'></div>";
 
-              echo "<div class='collapsible_body_content img'></div>";
+                if ($videoexists !== null) {
+                  echo "<div class='collapsible_body_content video'></div>";
+                }
 
-              if ($videoexists !== null) {
-                echo "<div class='collapsible_body_content video'></div>";
-              }
+                if ($metacomexists !== null) {
+                  echo "<div class='collapsible_body_content ".$metacomCase."'></div>";
+                }
 
-              if ($metacomexists !== null) {
-                echo "<div class='collapsible_body_content ".$metacomCase."'></div>";
-              }
-
-              echo "
-              <div class='collapsible_body_pdf'>
-              <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$videoMime."' method='get'><i class='far fa-file-pdf'></i>PDF generieren</a></div>
-              ";
+                echo "
+                <div class='collapsible_body_pdf'>
+                <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$videoMime."' method='get'><i class='far fa-file-pdf'></i>PDF generieren</a></div>
+                ";
 
 
-              $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$cleanFileName'";
-              foreach ($pdo->query($sql) as $row) {
-                $uploaderID = $row['UploadedBy'];
-              };
-              if (isset($uploaderID)){
-                $sql = "SELECT * FROM user WHERE id = $uploaderID";
+                $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$cleanFileName'";
                 foreach ($pdo->query($sql) as $row) {
-                  echo "<div class='collapsible_body_uploader'>
-                  Hochgeladen von ".$row['vorname']." ".$row['nachname']."
-                  </div>";
-              }};
+                  $uploaderID = $row['UploadedBy'];
+                };
+                if (isset($uploaderID)){
+                  $sql = "SELECT * FROM user WHERE id = $uploaderID";
+                  foreach ($pdo->query($sql) as $row) {
+                    echo "<div class='collapsible_body_uploader'>
+                    Hochgeladen von ".$row['vorname']." ".$row['nachname']."
+                    </div>";
+                }};
 
 
             echo "</div></li>";

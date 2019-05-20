@@ -3,18 +3,19 @@
 session_start();
 
 
-$video = $_GET['video'];
+$imgID = $_GET['imgID'];
 
 $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
-$sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$video'";
+$sql = "SELECT * FROM custom_img_12345 WHERE ImgID = $imgID";
 foreach ($pdo->query($sql) as $row) {
-
+   $VideoFile = $row['VideoFile'];
    $videoMime = $row['VideoMime'];
+   $path = $row['path'];
 
 }
 
 
-$file = "../custom/videos/".$video."_video.".$videoMime;
+$file = "../custom/videos/".$VideoFile."_video.".$videoMime;
 
 
 if(!isset($_SESSION['userid'])) {
@@ -22,7 +23,7 @@ if(!isset($_SESSION['userid'])) {
   die();
 ;
 }
-if(isset($_GET['video'])) {
+if(isset($_GET['imgID'])) {
 
 
 //Script von http://www.tuxxin.com/php-mp4-streaming/ wegen SAFARI

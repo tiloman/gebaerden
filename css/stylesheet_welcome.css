@@ -351,4 +351,9 @@ padding: 10px;
 .custom_input {
   width: 90%;
 }
+
+.welcome_flex_container {
+  margin-top: 40px;
+}
+
 }
