@@ -7,12 +7,6 @@ if (isset($_POST['renameWord']) && isset($_POST['newName'])) {
   $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
 
-// $sql = "SELECT * FROM custom_img_12345 ORDER BY ImgName";
-    // $statement = $pdo->prepare("SELECT * FROM custom_img_12345");
-    // $statement->execute(array('wordsArray'));
-// $wordsArray = $pdo->query($sql);
-
-
   $statement = $pdo->prepare("UPDATE custom_img_12345 SET ImgName = ? WHERE ImgName = '$word'");
   $statement->execute(array($newName));
 

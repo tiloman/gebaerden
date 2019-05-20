@@ -19,8 +19,6 @@ foreach ($pdo->query($sql) as $row) {
    $path = $row['path'];
 }
 
-
-
     readfile("../".$path.$imgFile.".".$imgMime);
 } else {
     readfile("../img/forbidden.jpg");

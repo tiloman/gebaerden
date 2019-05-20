@@ -213,7 +213,7 @@ foreach ($pdo->query($sql) as $row) {
 
                 echo "
                 <div class='collapsible_body_pdf'>
-                <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$videoMime."' method='get'><i class='far fa-file-pdf'></i>PDF generieren</a></div>
+                <a class='a_white' target='_blank' href='html2pdf.php?imgID=".$imgID."&path=".$imgPath."&imgEnding=.".$videoMime."' method='get'><i class='far fa-file-pdf'></i>PDF generieren</a></div>
                 ";
 
 

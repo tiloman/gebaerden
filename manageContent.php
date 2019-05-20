@@ -151,8 +151,10 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
     </div>
   </nav>
 
-<div class="welcome_flex_container">
 
+
+
+<div class="welcome_flex_container">
 
 
 
@@ -163,36 +165,17 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
   include ('php/deleteEntry.php');
   include ('php/changeCustomWord.php');
   include ('php/uploadVideoID.php');
-  include ('php/upload.php'); ?>
-
-
-
-
-  <?php if(isset($notice)){
-    echo "<div class='notification'>".$notice."</div>";
-  }
-  if(isset($uploadNotice)) {
-      echo "<div class='notification'>".$uploadNotice."</div>";
-  }
-  if(isset($uploadNoticeVideo)) {
-      echo "<div class='notification'>".$uploadNoticeVideo."</div>";
-  }
-
-  if(isset($erfolgreich)){
-    echo "Bild erfolgreich hochgeladen";
-
-  }
-
-
-  if(isset($erfolgreichVideo)){
-    echo "Video erfolgreich hinzugefügt";
-  }
-
+  include ('php/upload.php');
 
   ?>
 
 
-<?php
+
+
+  <?php
+
+
+
 
 if (isset($schoolName)) {
 $word = null;
@@ -201,7 +184,7 @@ $erfolgreich = false;
   // include ('php/uploadVideo.php');
   if ($userSchoolID == $schoolID) {
 
-    echo ("<h3>".$schoolName."</h3>");
+    echo ("<h3><i class='fas fa-school'></i> ".$schoolName."</h3>");
 
 
     $statement = $pdo->prepare("SELECT * FROM custom_img_12345");
@@ -213,14 +196,33 @@ $erfolgreich = false;
     $statement->execute(array('UserWords'));
     $anzahl_user_words = $statement->rowCount();
     if ($anzahl_user_words > 1){
-    echo "Davon haben Sie $anzahl_user_words  hochgeladen</p>";
+    echo "Davon haben Sie $anzahl_user_words  hochgeladen</p><br>";
     }
+
+    if(isset($notice)){
+      echo "<div class='notification'>".$notice."</div>";
+    }
+    if(isset($uploadNotice)) {
+        echo "<div class='notification'>".$uploadNotice."</div>";
+    }
+    if(isset($uploadNoticeVideo)) {
+        echo "<div class='notification'>".$uploadNoticeVideo."</div>";
+    }
+
+    if(isset($erfolgreich)){
+      echo "<div class='notification'>".$erfolgreich."</div>";
+
+    }
+
+
+
+
     echo "</div>
 
 
 
       <div class='flexbox_user_info margin'>
-        <h3>Gebärde hochladen</h3>
+        <h3><i class='far fa-file-image'></i> Gebärde hochladen</h3>
         <p class='left'>Fügen Sie hier eine neue Gebärde hinzu.</p>
         <div>
 
@@ -239,10 +241,6 @@ $erfolgreich = false;
 
 
 
-    if($erfolgreich == true){
-      echo $previewImg;
-
-    }
 
 
 
@@ -254,7 +252,7 @@ $erfolgreich = false;
 
 </div><div class='flexbox_user_info margin'>
 
- <h3>Video hinzufügen</h3>
+ <h3><i class="far fa-file-video"></i> Video hinzufügen</h3>
 <p class='left'>Laden Sie ein Video hoch um das Verständnis zu erleichtern. In der Auswahl erscheinen alle Gebärden die noch kein Video haben.</p>
  <div>
 
@@ -302,7 +300,7 @@ $erfolgreich = false;
 
 <div class='flexbox_user_info margin'>
 
- <h3>Gebärde umbenennen</h3>
+ <h3><i class="far fa-edit"></i> Gebärde umbenennen</h3>
  <p class='left'>Tippfehler? Bessere Bezeichnung? Hier können Sie den Namen einer Gebärde verändern. Sie können nur Gebärden verändern, die Sie selbst hochgeladen haben.</p>
    <form action='' method='post' enctype='multipart/form-data'>
    Gebärde auswählen:<br>
@@ -331,12 +329,13 @@ $erfolgreich = false;
 
 <div class='flexbox_user_info margin'>
 
- <h3>Gebärde löschen</h3>
+ <h3><i class="far fa-trash-alt"></i> Gebärde löschen</h3>
 
 <p class='left'>Hier können Sie Einträge löschen. Jedoch nur die die von Ihnen selbst kommen.</p>
  <form action='' method='post' enctype='multipart/form-data'>
  Gebärde auswählen:<br>
  <select name='deleteImgID' class='custom_input'>";
+   <option value=''>Bitte auswählen ...</option>
 
 <?php $sql = "SELECT * FROM custom_img_12345 WHERE UploadedBy = $userid ORDER BY ImgName";
 foreach ($pdo->query($sql) as $row) {

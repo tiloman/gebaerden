@@ -21,17 +21,23 @@ foreach ($pdo->query($sql) as $row) {
 
  }
 
+$imgID = $_POST['imgID'];
 
+ $sql = "SELECT * FROM custom_img_12345 WHERE ImgID = $imgID";
+ foreach ($pdo->query($sql) as $row) {
+
+    $ImgName = $row['ImgName'];
+    $ImgMime = $row['ImgMime'];
+
+  }
 
 $html2pdf = new HTML2PDF($pdfFormat, $pdfSize, 'de');
 // $html2pdf->addFont('candara','','fonts/candara.php');
 $html2pdf->setDefaultFont($pdfFont,'', 'true');
 
 
-$selectedWordEncoded = $_GET['word'];
-$selectedWord = urldecode($selectedWordEncoded);
-$selectedWordUC = ucfirst($selectedWord);
-$selectedWordLC = lcfirst($selectedWord);
+$selectedWordUC = ucfirst($ImgName);
+$selectedWordLC = lcfirst($ImgName);
 $imgPath = $_GET['path'];
 $imgEnding = $_GET['imgEnding'];
 
@@ -83,8 +89,8 @@ h1 {
 }
 </style>
 
-<h1>".$selectedWord."</h1>
-<img class='gebaerde' src='".$imgPath.$selectedWord.$imgEnding."'>
+<h1>".$ImgFile."</h1>
+<img class='gebaerde' src='php/imgDb.php?imgID=".$imgID."'>
 
 
 ".$metacom."
@@ -93,6 +99,6 @@ h1 {
 </page>");
 
 
-$html2pdf->Output($selectedWord.'.pdf');
+$html2pdf->Output($ImgName.'.pdf');
 
 ?>

@@ -1,9 +1,5 @@
 <?php
-// session_start();
-// if(!isset($_SESSION['userid'])) {
-//   die(header("location: ../login.php"));
-// ;
-// }
+
 
 
 $upload_folder = 'custom/'; //Das Upload-Verzeichnis
@@ -84,10 +80,9 @@ if(!$error) {
 
 
   // echo "Bild hochgeladen nach: ";
-  $erfolgreich = true;
+  $erfolgreich = "Bild wurde erfolgreich hochgeladen!";
 
   $uploadNotice = null;
-  $previewImg = "<img class='uploadPreview' style='max-height:100px' src='php/img.php?img=".$word."&path=".$upload_folder."&mime=".$extension."'>";
   // die(header("location: ../custom_library.php"));;
 }
 };
