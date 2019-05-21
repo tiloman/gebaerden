@@ -15,7 +15,7 @@ if (isset($_POST['imgIDforVideo'])) {
 };
 $error = false;
 
-$video_upload_folder = 'custom/school_'.$userSchoolID; //Das Upload-Verzeichnis für Videos
+$video_upload_folder = 'custom/school_'.$userSchoolID.'/'; //Das Upload-Verzeichnis für Videos
 $uploadNoticeVideo = null;
 $video_error = false;
 

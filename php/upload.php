@@ -2,7 +2,7 @@
 
 
 $userSchoolID = $_SESSION['schoolId'];
-$upload_folder = 'custom/school_'.$userSchoolID; //Das Upload-Verzeichnis
+$upload_folder = 'custom/school_'.$userSchoolID.'/'; //Das Upload-Verzeichnis
 
 if (isset($_POST['word'])) {
   $word = $_POST['word'];
