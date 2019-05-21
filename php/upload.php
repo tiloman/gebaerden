@@ -35,7 +35,7 @@ if(!$error) {
   }
 }
 
-  Überprüfung dass das Bild keine Fehler enthält
+  // Überprüfung dass das Bild keine Fehler enthält
 if(!$error) {
   if(function_exists('exif_imagetype')) { //Die exif_imagetype-Funktion erfordert die exif-Erweiterung auf dem Server
    $allowed_types = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF, IMG_PNG);
