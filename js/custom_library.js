@@ -39,10 +39,10 @@ for (i = 0; i < coll.length; i++) {
               c[i].innerHTML = "<img class='img_metacom' src='php/metacom.php?img="+selectedWord_uc+"&path="+metacomPath+"'>";
             }
         if (c[i].classList.contains("video") && viewVideos === true){
-            c[i].classList.remove("hidden";
+            c[i].classList.remove("hidden");
             c[i].innerHTML = "<video class='video_gebaerden' controls preload='metadata'><source src='"+phpVideoLoader+"?imgID="+imgID+"' type='video/mp4'>Your browser does not support the video tag.</video>";
           } else if (c[i].classList.contains("video") && viewVideos === false){
-            c[i].classList.add("hidden";
+            c[i].classList.add("hidden");
           }
       }
 
