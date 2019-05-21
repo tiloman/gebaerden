@@ -1,9 +1,4 @@
 <?php
-// session_start();
-// if(!isset($_SESSION['userid'])) {
-//   die(header("location: ../login.php"));
-// ;
-// }
 
 
 
@@ -80,7 +75,6 @@ if(!$video_error) {
 
 
   // die(header("location: ../profile.php"));
-  echo($_FILES['video']['name']);
   $erfolgreich = "Video wurde erfolgreich hochgeladen!";
   $uploadNoticeVideo = null;
 }

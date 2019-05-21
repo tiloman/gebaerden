@@ -9,6 +9,8 @@ use Spipu\Html2Pdf\Html2Pdf;
 
 //Abfrage der Nutzer ID vom Login
 $userid = $_SESSION['userid'];
+$imgID = $_GET['imgID'];
+
 
 $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
@@ -22,18 +24,21 @@ foreach ($pdo->query($sql) as $row) {
  }
 
 
+ $sql = "SELECT * FROM custom_img_12345 WHERE ImgID = $imgID";
+ foreach ($pdo->query($sql) as $row) {
+
+    $ImgName = $row['ImgName'];
+    $ImgMime = $row['ImgMime'];
+
+  }
 
 $html2pdf = new HTML2PDF($pdfFormat, $pdfSize, 'de');
 // $html2pdf->addFont('candara','','fonts/candara.php');
 $html2pdf->setDefaultFont($pdfFont,'', 'true');
 
 
-$selectedWordEncoded = $_GET['word'];
-$selectedWord = urldecode($selectedWordEncoded);
-$selectedWordUC = ucfirst($selectedWord);
-$selectedWordLC = lcfirst($selectedWord);
-$imgPath = $_GET['path'];
-$imgEnding = $_GET['imgEnding'];
+$selectedWordUC = ucfirst($ImgName);
+$selectedWordLC = lcfirst($ImgName);
 
 if(file_exists("files/metacom/".$selectedWordUC.".png")) {
   $metacom = "<img class='metacom' src='files/metacom/".$selectedWordUC.".png'>";
@@ -83,8 +88,8 @@ h1 {
 }
 </style>
 
-<h1>".$selectedWord."</h1>
-<img class='gebaerde' src='".$imgPath.$selectedWord.$imgEnding."'>
+<h1>".$ImgName."</h1>
+<img class='gebaerde' src='php/imgDb.php?imgID=".$imgID."'>
 
 
 ".$metacom."
@@ -93,6 +98,6 @@ h1 {
 </page>");
 
 
-$html2pdf->Output($selectedWord.'.pdf');
+$html2pdf->Output($ImgName.'.pdf');
 
 ?>
