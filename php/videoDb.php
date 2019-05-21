@@ -17,7 +17,7 @@ foreach ($pdo->query($sql) as $row) {
 }
 
 
-$file = "../".$path.$VideoFile.".".$videoMime."#t=0.01";
+$file = "../".$path.$VideoFile.".".$videoMime;
 
 
 if(!isset($_SESSION['userid'])) {

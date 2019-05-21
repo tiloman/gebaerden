@@ -39,7 +39,7 @@ for (i = 0; i < coll.length; i++) {
               c[i].innerHTML = "<img class='img_metacom' src='php/metacom.php?img="+selectedWord_uc+"&path="+metacomPath+"'>";
             }
         if (c[i].classList.contains("video") && viewVideos === true){
-            c[i].innerHTML = "<video class='video_gebaerden' controls preload='metadata'><source src='"+phpVideoLoader+"?imgID="+imgID+"&path="+videoPath+"' type='video/mp4'>Your browser does not support the video tag.</video>";
+            c[i].innerHTML = "<video class='video_gebaerden' controls preload='metadata'><source src='"+phpVideoLoader+"?imgID="+imgID+"' type='video/mp4'>Your browser does not support the video tag.</video>";
           }
       }
 
