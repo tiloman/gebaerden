@@ -16,7 +16,7 @@ if (isset($_POST['imgIDforVideo'])) {
 $error = false;
 
 $video_upload_folder = 'custom/school_'.$userSchoolID.'/'; //Das Upload-Verzeichnis für Videos
-$uploadNoticeVideo = null;
+$uploadNotice = null;
 $video_error = false;
 
 if (isset($_FILES['video']['name'])) {
@@ -28,7 +28,7 @@ if (isset($_FILES['video']['name'])) {
   //Überprüfung der Dateiendung
   $video_allowed_extensions = array('mp4', 'm4v', 'mov');
   if(!in_array($video_extension, $video_allowed_extensions)) {
-   $uploadNoticeVideo = "Es dürfen nur Dateien vom Typ MP4 hochgeladen werden.";
+   $uploadNotice = "Es dürfen nur Dateien vom Typ MP4 hochgeladen werden.";
    $video_error = true;
    // die("Ungültige Dateiendung. Nur png, jpg, jpeg und gif-Dateien sind erlaubt");
 
@@ -38,7 +38,7 @@ if (isset($_FILES['video']['name'])) {
 if(!$video_error) {
   $max_size = 7* 1000*1000; //7MB
   if($_FILES['video']['size'] > $max_size) {
-   $uploadNoticeVideo = "Bitte keine Dateien größer 7MB hochladen";
+   $uploadNotice = "Bitte keine Dateien größer 7MB hochladen";
    $video_error = true;
   }
 }
@@ -77,7 +77,7 @@ if(!$video_error) {
 
   // die(header("location: ../profile.php"));
   $erfolgreich = "Video wurde erfolgreich hochgeladen!";
-  $uploadNoticeVideo = null;
+  $uploadNotice = null;
 }
 };
 

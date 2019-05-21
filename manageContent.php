@@ -153,38 +153,13 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 <div class="welcome_flex_container">
 
 
+<div class='flexbox_user_info margin'>
 
-<!-- Update der School ID; Wird in "school" Tabelle gespeichert -->
-<div class="flexbox_user_info margin">
-
-  <?php
+<?php
   include ('php/deleteEntry.php');
   include ('php/changeCustomWord.php');
   include ('php/uploadVideoID.php');
   include ('php/upload.php');
-
-
-  if(isset($notice)){
-    echo "<div class='notification'>".$notice."</div>";
-  }
-  if(isset($uploadNotice)) {
-      echo "<div class='notification'>".$uploadNotice."</div>";
-  }
-  if(isset($uploadNoticeVideo)) {
-      echo "<div class='notification'>".$uploadNoticeVideo."</div>";
-  }
-
-  if(isset($erfolgreich)){
-    echo $erfolgreich;
-  }
-
-  if(isset($erfolgreichVideo)){
-    echo "Video erfolgreich hinzugefügt";
-  }
-
-
-
-
 
 
 if (isset($schoolName)) {
@@ -196,165 +171,126 @@ $erfolgreich = false;
 
     echo ("<h3><i class='fas fa-school'></i> ".$schoolName."</h3>");
 
-
     $statement = $pdo->prepare("SELECT * FROM school_$userSchoolID");
     $statement->execute(array('Words'));
+
     $anzahl_words = $statement->rowCount();
     echo "<p class='left'>Bislang wurden $anzahl_words Gebärden hochgeladen. ";
 
     $statement = $pdo->prepare("SELECT * FROM school_$userSchoolID WHERE UploadedBy = $userid");
     $statement->execute(array('UserWords'));
+
     $anzahl_user_words = $statement->rowCount();
     if ($anzahl_user_words > 1){
-    echo "Davon haben Sie $anzahl_user_words  hochgeladen</p><br>";
-    }
-
-    if(isset($notice)){
-      echo "<div class='notification'>".$notice."</div>";
-    }
-    if(isset($uploadNotice)) {
-        echo "<div class='notification'>".$uploadNotice."</div>";
-    }
-    if(isset($uploadNoticeVideo)) {
-        echo "<div class='notification'>".$uploadNoticeVideo."</div>";
-    }
-
-    if(isset($erfolgreich)){
-      echo "<div class='notification'>".$erfolgreich."</div>";
-
+      echo "Davon haben Sie $anzahl_user_words  hochgeladen</p><br>";
     }
 
 
+      if(isset($notice)){
+        echo "<div class='notification'>".$notice."</div>";
+      }
+      if(isset($uploadNotice)) {
+          echo "<div class='notification'>".$uploadNotice."</div>";
+      }
 
+      if(isset($erfolgreich)){
+        echo "<div class='success'>".$erfolgreich."</div>";
+      }
 
-    echo "</div>
+};
+    ?>
 
+    </div>
 
 
       <div class='flexbox_user_info margin'>
         <h3><i class='far fa-file-image'></i> Gebärde hochladen</h3>
         <p class='left'>Fügen Sie hier eine neue Gebärde hinzu.</p>
-        <div>
-
-          <form action='' method='post' enctype='multipart/form-data'>
-            <input type='text' class='custom_input' placeholder='Name der Gebärde' name='word' required><br>
-
-            <br>
-            <input type='file' name='image' class='custom_input'/>
-            <br>
-            <input type='submit' class='custom_button' value='Upload' id='uploadImgBtn'>
-          </form>
-
-</div>
-    ";
+        <form action='' method='post' enctype='multipart/form-data'>
+          <input type='text' class='custom_input' placeholder='Name der Gebärde' name='word' required>
+          <br>
+          <br>
+          <input type='file' name='image' class='custom_input'/>
+          <br>
+          <input type='submit' class='custom_button' value='Upload' id='uploadImgBtn'>
+        </form>
+      </div>
 
 
-
-
-
-
-
-
-
-  }
-?>
-
-
-</div><div class='flexbox_user_info margin'>
-
- <h3><i class="far fa-file-video"></i> Video hinzufügen</h3>
-<p class='left'>Laden Sie ein Video hoch um das Verständnis zu erleichtern. In der Auswahl erscheinen alle Gebärden die noch kein Video haben.</p>
- <div>
-
-
-
- <form action='' method='post' enctype='multipart/form-data'>
- Gebärde auswählen:<br>
- <select name='imgIDforVideo' class='custom_input'>
-   <option>Bitte auswählen ...</option>";
- <?php $sql = "SELECT * FROM school_$userSchoolID WHERE VideoFile = '' ORDER BY ImgName";
- foreach ($pdo->query($sql) as $row) {
-    echo "<option value='".$row['ImgID']."'>";
-    echo $row['ImgName'];
-    echo "</option>";
- }
- ?>
- </select>
- <input type='file' class='custom_input' name='video'><br>
- <input type='submit' class='custom_button' value='Upload' id='uploadVideoBtn'>
-
-
- </form></div>
-
-
- </div>
+      <div class='flexbox_user_info margin'>
+        <h3><i class="far fa-file-video"></i> Video hinzufügen</h3>
+        <p class='left'>Laden Sie ein Video hoch um das Verständnis zu erleichtern. In der Auswahl erscheinen alle Gebärden die noch kein Video haben.</p>
+         <form action='' method='post' enctype='multipart/form-data'>
+           Gebärde auswählen:<br>
+           <select name='imgIDforVideo' class='custom_input'>
+             <option>Bitte auswählen ...</option>";
+             <?php
+               $sql = "SELECT * FROM school_$userSchoolID WHERE VideoFile = '' ORDER BY ImgName";
+               foreach ($pdo->query($sql) as $row) {
+                  echo "<option value='".$row['ImgID']."'>";
+                  echo $row['ImgName'];
+                  echo "</option>";
+                }
+             ?>
+           </select>
+           <input type='file' class='custom_input' name='video'><br>
+           <input type='submit' class='custom_button' value='Upload' id='uploadVideoBtn'>
+         </form>
+       </div>
 
 
 
 
 
-<div class='flexbox_user_info margin'>
-
- <h3><i class="far fa-edit"></i> Gebärde umbenennen</h3>
- <p class='left'>Tippfehler? Bessere Bezeichnung? Hier können Sie den Namen einer Gebärde verändern. Sie können nur Gebärden verändern, die Sie selbst hochgeladen haben.</p>
-   <form action='' method='post' enctype='multipart/form-data'>
-   Gebärde auswählen:<br>
-     <select name='renameWord' class='custom_input'>
-        <option>Bitte auswählen ...</option>";;
-
-      <?php
-        $sql = "SELECT * FROM school_$userSchoolID WHERE UploadedBy = $userid ORDER BY ImgName";
-        foreach ($pdo->query($sql) as $row) {
-           echo "<option value='".$row['ImgName']."'>";
-           echo $row['ImgName'];
-           echo "</option>";
-      }
-      ?>
-
-    </select>
-  <input type='text' class='custom_input' name='newName'><br>
-  <input type='submit' class='custom_button' value='Speichern'>
-
-  </form>
-
-
-</div>
+       <div class='flexbox_user_info margin'>
+         <h3><i class="far fa-edit"></i> Gebärde umbenennen</h3>
+         <p class='left'>Tippfehler? Bessere Bezeichnung? Hier können Sie den Namen einer Gebärde verändern. Sie können nur Gebärden verändern, die Sie selbst hochgeladen haben.</p>
+         <form action='' method='post' enctype='multipart/form-data'>
+           Gebärde auswählen:<br>
+           <select name='renameWord' class='custom_input'>
+              <option>Bitte auswählen ...</option>";;
+              <?php
+                $sql = "SELECT * FROM school_$userSchoolID WHERE UploadedBy = $userid ORDER BY ImgName";
+                foreach ($pdo->query($sql) as $row) {
+                   echo "<option value='".$row['ImgName']."'>";
+                   echo $row['ImgName'];
+                   echo "</option>";
+                 }
+              ?>
+          </select>
+          <input type='text' class='custom_input' name='newName'><br>
+          <input type='submit' class='custom_button' value='Speichern'>
+        </form>
+      </div>
 
 
 
-<div class='flexbox_user_info margin'>
-
- <h3><i class="far fa-trash-alt"></i> Gebärde löschen</h3>
-
-<p class='left'>Hier können Sie Einträge löschen. Jedoch nur die die von Ihnen selbst kommen.</p>
- <form action='' method='post' enctype='multipart/form-data'>
- Gebärde auswählen:<br>
- <select name='deleteImgID' class='custom_input'>";
-   <option value=''>Bitte auswählen ...</option>
-
-<?php $sql = "SELECT * FROM school_$userSchoolID WHERE UploadedBy = $userid ORDER BY ImgName";
-foreach ($pdo->query($sql) as $row) {
-   echo "<option value='".$row['ImgID']."'>";
-   echo $row['ImgName'];
-   echo "</option>";
-}
-?>
-
-</select>
-<input type='submit' class='custom_button' value='Löschen'>
-
-
-</form>
-
-</div>
+      <div class='flexbox_user_info margin'>
+        <h3><i class="far fa-trash-alt"></i> Gebärde löschen</h3>
+        <p class='left'>Hier können Sie Einträge löschen. Jedoch nur die die von Ihnen selbst kommen.</p>
+         <form action='' method='post' enctype='multipart/form-data'>
+             Gebärde auswählen:<br>
+             <select name='deleteImgID' class='custom_input'>";
+             <option value=''>Bitte auswählen ...</option>
+             <?php
+               $sql = "SELECT * FROM school_$userSchoolID WHERE UploadedBy = $userid ORDER BY ImgName";
+               foreach ($pdo->query($sql) as $row) {
+                 echo "<option value='".$row['ImgID']."'>";
+                 echo $row['ImgName'];
+                 echo "</option>";
+               }
+              ?>
+            </select>
+            <input type='submit' class='custom_button' value='Löschen'>
+        </form>
+      </div>
 
 
 
 <?php
 
 
-
-};
+}; //if wird an dieser Stelle geschlossen
 
 
 //Falls keine Schule angemeldet ist.

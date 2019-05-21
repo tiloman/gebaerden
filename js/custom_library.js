@@ -114,12 +114,16 @@ function hideMetacom(){
   if (viewMetacom === true) {
   viewMetacom = false;
   document.getElementById("viewMetacom").innerHTML = "<img src='img/metacom.png' height='20px' title='Metacom ausgeblendet' style='filter: grayscale(1)'> Metacom";
-    document.getElementById("viewMetacom").style.opacity = "0.5";
+  document.getElementById("viewMetacom").style.opacity = "0.5";
+  document.getElementById("viewMetacom").classList.add("hidden");
+
 
 } else {
   viewMetacom = true;
   document.getElementById("viewMetacom").innerHTML = "<img src='img/metacom.png' height='20px' title='Metacom eingeblendet'> Metacom";
-    document.getElementById("viewMetacom").style.opacity = "1";
+  document.getElementById("viewMetacom").style.opacity = "1";
+  document.getElementById("viewMetacom").classList.remove("hidden");
+
   }
 }
 
@@ -131,9 +135,13 @@ function hideVideos(){
   viewVideos = false;
   document.getElementById("viewVideos").innerHTML = "<i class='fas fa-video-slash' title='Videos ausgeblendet'></i> Videos";
   document.getElementById("viewVideos").style.opacity = "0.5";
+  document.getElementById("viewVideos").classList.add("hidden");
+
   } else {
   viewVideos = true;
   document.getElementById("viewVideos").innerHTML = "<i class='fas fa-video' title='Videos eingeblendet'></i> Videos";
   document.getElementById("viewVideos").style.opacity = "1";
+  document.getElementById("viewVideos").classList.remove("hidden");
+
   }
   }

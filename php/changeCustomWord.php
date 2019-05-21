@@ -1,22 +1,24 @@
 <?php
 
 if (isset($_POST['renameWord']) && isset($_POST['newName'])) {
+  $userSchoolID = $_SESSION['schoolId'];
+
   $word = $_POST['renameWord'];
   $newName = $_POST['newName'];
 
   $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
 
-  $statement = $pdo->prepare("UPDATE custom_img_12345 SET ImgName = ? WHERE ImgName = '$word'");
+  $statement = $pdo->prepare("UPDATE school_$userSchoolID SET ImgName = ? WHERE ImgName = '$word'");
   $statement->execute(array($newName));
 
-  $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$newName'";
+  $sql = "SELECT * FROM school_$userSchoolID WHERE ImgName = '$newName'";
     foreach ($pdo->query($sql) as $row) {
       $VideoID = $row['VideoID'];
   }
 
   if($VideoID !== ''){
-    $statement = $pdo->prepare("UPDATE custom_img_12345 SET VideoID = ? WHERE ImgName = '$newName'");
+    $statement = $pdo->prepare("UPDATE school_$userSchoolID SET VideoID = ? WHERE ImgName = '$newName'");
     $statement->execute(array($newName));
   }
 

@@ -316,6 +316,18 @@ padding: 10px;
 .notification {
   color: red;
   font-weight: 400;
+  border: 1px red solid;
+  border-radius: 5px;
+  margin-bottom: 2em;
+
+}
+
+.success {
+  color: green;
+  font-weight: 400;
+  border: 1px green solid;
+  border-radius: 5px;
+  margin-bottom: 2em;
 
 }
 
