@@ -167,7 +167,6 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
 
 
-
   <?php if(isset($notice)){
     echo "<div class='notification'>".$notice."</div>";
   }
@@ -180,9 +179,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
   if(isset($erfolgreich)){
     echo "Bild erfolgreich hochgeladen";
-
   }
-
 
   if(isset($erfolgreichVideo)){
     echo "Video erfolgreich hinzugefügt";
