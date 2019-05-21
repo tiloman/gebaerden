@@ -46,13 +46,13 @@ if(!$video_error) {
 
 if(!$video_error) {
   //Pfad zum Upload
-  $new_path_video = $video_upload_folder.$word.$video_extension;
+  $new_path_video = $video_upload_folder.$word.'.'.$video_extension;
 
   //Neuer Dateiname falls die Datei bereits existiert
   if(file_exists($new_path_video)) { //Falls Datei existiert, hänge eine Zahl an den Dateinamen
    $id = 1;
    do {
-   $new_path_video = $video_upload_folder.$word.'_'.$id.$video_extension;
+   $new_path_video = $video_upload_folder.$word.'_'.$id.'.'.$video_extension;
 
    $id++;
    } while(file_exists($new_path_video));
