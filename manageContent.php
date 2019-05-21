@@ -175,7 +175,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
   }
 
   if(isset($erfolgreich)){
-    echo "Bild erfolgreich hochgeladen";
+    echo $erfolgreich;
   }
 
   if(isset($erfolgreichVideo)){

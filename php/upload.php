@@ -35,17 +35,17 @@ if(!$error) {
   }
 }
 
-  //Überprüfung dass das Bild keine Fehler enthält
-// if(!$error) {
-//   if(function_exists('exif_imagetype')) { //Die exif_imagetype-Funktion erfordert die exif-Erweiterung auf dem Server
-//    $allowed_types = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF, IMG_PNG);
-//    $detected_type = exif_imagetype($_FILES['image']['tmp_name']);
-//    if(!in_array($detected_type, $allowed_types)) {
-//      $uploadNotice = "Nur der Upload von Bilddateien ist gestattet";
-//      $error = true;
-//       }
-//     }
-//   }
+  Überprüfung dass das Bild keine Fehler enthält
+if(!$error) {
+  if(function_exists('exif_imagetype')) { //Die exif_imagetype-Funktion erfordert die exif-Erweiterung auf dem Server
+   $allowed_types = array(IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF, IMG_PNG);
+   $detected_type = exif_imagetype($_FILES['image']['tmp_name']);
+   if(!in_array($detected_type, $allowed_types)) {
+     $uploadNotice = "Nur der Upload von Bilddateien ist gestattet";
+     $error = true;
+      }
+    }
+  }
 
 if(!$error) {
   //Pfad zum Upload
