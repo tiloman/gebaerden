@@ -95,11 +95,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
                 <a class='dropdown-item' href='/gebaerden/custom_libraryID.php'>".$schoolName."</a>";
               }
             }
-            else {
-              echo "
-
-              <a class='dropdown-item' href='/gebaerden/profile.php'>Schule anmelden</a>";
-            }; ?>
+             ?>
 
 
           </div>
@@ -131,7 +127,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
             else {
               echo "
 
-              <a class='dropdown-item' href='/gebaerden/profile.php'>Schule anmelden</a>";
+              <a class='dropdown-item' href='/gebaerden/manageContent.php'>Schule anmelden</a>";
             }; ?>
 
 
@@ -157,18 +153,13 @@ $metacomexists = null;
 $metacomCase = null;
 $videoexists = null;
 
-$imgPath = 'custom/';
-
-$videoPath = 'custom/videos/';
-
-
 
 
 
   echo '<ul id="wordsList">';
 
 
-$sql = "SELECT * FROM custom_img_12345 ORDER BY ImgName";
+$sql = "SELECT * FROM school_$userSchoolID ORDER BY ImgName";
 foreach ($pdo->query($sql) as $row) {
   $cleanFileName = $row['ImgName'];
   $imgID = $row['ImgID'];
@@ -217,7 +208,7 @@ foreach ($pdo->query($sql) as $row) {
                 ";
 
 
-                $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$cleanFileName'";
+                $sql = "SELECT * FROM school_$userSchoolID WHERE ImgName = '$cleanFileName'";
                 foreach ($pdo->query($sql) as $row) {
                   $uploaderID = $row['UploadedBy'];
                 };

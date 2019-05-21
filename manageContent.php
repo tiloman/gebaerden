@@ -95,11 +95,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
                 <a class='dropdown-item' href='/gebaerden/custom_libraryID.php'>".$schoolName."</a>";
               }
             }
-            else {
-              echo "
-
-              <a class='dropdown-item' href='/gebaerden/profile.php'>Schule anmelden</a>";
-            }; ?>
+             ?>
 
 
           </div>
@@ -131,7 +127,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
             else {
               echo "
 
-              <a class='dropdown-item' href='/gebaerden/profile.php'>Schule anmelden</a>";
+              <a class='dropdown-item' href='/gebaerden/manageContent.php'>Schule anmelden</a>";
             }; ?>
 
 
@@ -167,11 +163,8 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
   include ('php/uploadVideoID.php');
   include ('php/upload.php');
 
-  ?>
 
-
-<<<<<<< HEAD
-  <?php if(isset($notice)){
+  if(isset($notice)){
     echo "<div class='notification'>".$notice."</div>";
   }
   if(isset($uploadNotice)) {
@@ -188,11 +181,8 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
   if(isset($erfolgreichVideo)){
     echo "Video erfolgreich hinzugefügt";
   }
-=======
 
->>>>>>> 110f340d0a6983b3cadf77e0007e18aa8ca52747
 
-  <?php
 
 
 
@@ -207,12 +197,12 @@ $erfolgreich = false;
     echo ("<h3><i class='fas fa-school'></i> ".$schoolName."</h3>");
 
 
-    $statement = $pdo->prepare("SELECT * FROM custom_img_12345");
+    $statement = $pdo->prepare("SELECT * FROM school_$userSchoolID");
     $statement->execute(array('Words'));
     $anzahl_words = $statement->rowCount();
     echo "<p class='left'>Bislang wurden $anzahl_words Gebärden hochgeladen. ";
 
-    $statement = $pdo->prepare("SELECT * FROM custom_img_12345 WHERE UploadedBy = $userid");
+    $statement = $pdo->prepare("SELECT * FROM school_$userSchoolID WHERE UploadedBy = $userid");
     $statement->execute(array('UserWords'));
     $anzahl_user_words = $statement->rowCount();
     if ($anzahl_user_words > 1){
@@ -282,7 +272,7 @@ $erfolgreich = false;
  Gebärde auswählen:<br>
  <select name='imgIDforVideo' class='custom_input'>
    <option>Bitte auswählen ...</option>";
- <?php $sql = "SELECT * FROM custom_img_12345 WHERE VideoFile = '' ORDER BY ImgName";
+ <?php $sql = "SELECT * FROM school_$userSchoolID WHERE VideoFile = '' ORDER BY ImgName";
  foreach ($pdo->query($sql) as $row) {
     echo "<option value='".$row['ImgID']."'>";
     echo $row['ImgName'];
@@ -299,22 +289,7 @@ $erfolgreich = false;
 
  </div>
 
-<?php
 
-
-
-}else {
-  echo ("Wenn Ihre Schule bereits einen Zugang hat, können Sie hier den Zugangscode eingeben.<br><br>
-    <form id='addSchool' action='php/addSchool.php' method='post'>
-    <input name='schoolId' type='text' placeholder='Zugangsnummer'></input><br><br>
-    <input type='submit' class='custom_button' value='Check In'></input>
-    </form>
-
-
-  ");
-};
-
- ?>
 
 
 
@@ -328,7 +303,7 @@ $erfolgreich = false;
         <option>Bitte auswählen ...</option>";;
 
       <?php
-        $sql = "SELECT * FROM custom_img_12345 WHERE UploadedBy = $userid ORDER BY ImgName";
+        $sql = "SELECT * FROM school_$userSchoolID WHERE UploadedBy = $userid ORDER BY ImgName";
         foreach ($pdo->query($sql) as $row) {
            echo "<option value='".$row['ImgName']."'>";
            echo $row['ImgName'];
@@ -357,7 +332,7 @@ $erfolgreich = false;
  <select name='deleteImgID' class='custom_input'>";
    <option value=''>Bitte auswählen ...</option>
 
-<?php $sql = "SELECT * FROM custom_img_12345 WHERE UploadedBy = $userid ORDER BY ImgName";
+<?php $sql = "SELECT * FROM school_$userSchoolID WHERE UploadedBy = $userid ORDER BY ImgName";
 foreach ($pdo->query($sql) as $row) {
    echo "<option value='".$row['ImgID']."'>";
    echo $row['ImgName'];
@@ -373,6 +348,39 @@ foreach ($pdo->query($sql) as $row) {
 
 </div>
 
+
+
+<?php
+
+
+
+};
+
+
+//Falls keine Schule angemeldet ist.
+if (!isset($schoolName)) {
+
+  echo ("<h3><i class='fas fa-school'></i> Sie sind bei keiner Schule angemeldet.</h3>
+    <p class='left'>
+      Wenn Ihre Schule bereits einen Zugang hat, geben Sie hier bitte den Zugangscode ein.
+    </p>
+    <br>
+    <form id='addSchool' action='php/addSchool.php' method='post'>
+    <input name='schoolId' type='text' placeholder='Zugangsnummer'></input><br><br>
+    <input type='submit' class='custom_button' value='Check In'></input>
+    </form>");
+
+    if(isset($_SESSION['schoolError'])) {echo ($_SESSION['schoolError']);}
+
+    echo ("<p class='left'>
+    Mit einem Zugang für Ihre Schule, können Sie individuelle Gebärden hochladen. Somit haben Sie neben der Mediathek von <i>Zeigs mir mit Gebärden</i> noch Ihre eigenen, die Sie mit Ihren Kollegen teilen können.
+    Um einen Zugang für Ihre Schule zu bekommen, wenden Sie sich bitte an lohmanntimo@gmail.com. Sie erhalten im Anschluss einen Zugangscode, den Sie mit Ihren Kolleg*innen teilen können.
+
+
+  ");
+};
+
+ ?>
 
 
 

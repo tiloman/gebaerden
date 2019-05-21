@@ -4,9 +4,11 @@ session_start();
 
 
 $imgID = $_GET['imgID'];
+$userSchoolID = $_SESSION['schoolId'];
+
 
 $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
-$sql = "SELECT * FROM custom_img_12345 WHERE ImgID = $imgID";
+$sql = "SELECT * FROM school_$userSchoolID WHERE ImgID = $imgID";
 foreach ($pdo->query($sql) as $row) {
    $VideoFile = $row['VideoFile'];
    $videoMime = $row['VideoMime'];
@@ -15,7 +17,7 @@ foreach ($pdo->query($sql) as $row) {
 }
 
 
-$file = "../custom/videos/".$VideoFile."_video.".$videoMime;
+$file = "../".$path.$VideoFile.$videoMime;
 
 
 if(!isset($_SESSION['userid'])) {

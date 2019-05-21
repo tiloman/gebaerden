@@ -7,13 +7,25 @@ if(!isset($_SESSION['userid'])) {
   $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
   $userid = $_SESSION['userid'];
 
-  $schoolID = $_POST['schoolId'];
+  $userSchoolID = $_POST['schoolId'];
 
   $statement = $pdo->prepare("UPDATE user SET schoolid = ? WHERE id = $userid");
-  $statement->execute(array($schoolID));
+  $statement->execute(array($userSchoolID));
 
-  $schoolID = $_SESSION['schoolId'];
 
-  header('Location: ../profile.php');
+  $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
+  foreach ($pdo->query($sql) as $row) {
+    $schoolName = $row['school_name'];
+  }
+
+if(isset($schoolName)){
+  $_SESSION['schoolId'] = $userSchoolID;
+  $_SESSION['schoolError'] = null;
+
+
+} else {
+  $_SESSION['schoolError'] = "<div class='notification'>Die eingegene Nummer ist keiner Schule zugeordnet.<br></div><br>";
+}
+  header('Location: ../manageContent.php');
 
 ?>

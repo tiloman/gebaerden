@@ -8,11 +8,14 @@ if(!isset($_SESSION['userid'])) {
 ;
 }
 
+$userSchoolID = $_SESSION['schoolId'];
+
+
 if(isset($_GET['imgID'])) {
     $imgID = $_GET['imgID'];
 
 $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
-$sql = "SELECT * FROM custom_img_12345 WHERE ImgID = '$imgID'";
+$sql = "SELECT * FROM school_$userSchoolID WHERE ImgID = '$imgID'";
 foreach ($pdo->query($sql) as $row) {
    $imgFile = $row['ImgFile'];
    $imgMime = $row['ImgMime'];

@@ -1,8 +1,8 @@
 <?php
 
 
-
-$upload_folder = 'custom/'; //Das Upload-Verzeichnis
+$userSchoolID = $_SESSION['schoolId'];
+$upload_folder = 'custom/school_'.$userSchoolID; //Das Upload-Verzeichnis
 
 if (isset($_POST['word'])) {
   $word = $_POST['word'];
@@ -56,7 +56,7 @@ if(!$error) {
    $id = 1;
    do {
    $new_path = $upload_folder.$word.'_'.$id.'.'.$extension;
-   $sql = "SELECT * FROM custom_img_12345 WHERE ImgName = '$word'";
+   $sql = "SELECT * FROM school_$userSchoolID WHERE ImgName = '$word'";
    foreach ($pdo->query($sql) as $row) {
       $word = $row['ImgName'].'_'.$id;
    }
@@ -74,7 +74,7 @@ if(!$error) {
   $userid = $_SESSION['userid'];
 
 
-  $statement = $pdo->prepare("INSERT INTO custom_img_12345 (ImgName, UploadedBy, ImgMime, ImgFile, path) VALUES (:ImgName, :UploadedBy, :ImgMime, :ImgFile, :path)");
+  $statement = $pdo->prepare("INSERT INTO school_$userSchoolID (ImgName, UploadedBy, ImgMime, ImgFile, path) VALUES (:ImgName, :UploadedBy, :ImgMime, :ImgFile, :path)");
   $result = $statement->execute(array('ImgName' => $word, 'UploadedBy' => $userid, 'ImgMime' => $extension, 'ImgFile' => $word, 'path' => $upload_folder));
 
 

@@ -9,6 +9,7 @@ use Spipu\Html2Pdf\Html2Pdf;
 
 //Abfrage der Nutzer ID vom Login
 $userid = $_SESSION['userid'];
+$userSchoolID = $_SESSION['schoolId'];
 $imgID = $_GET['imgID'];
 
 
@@ -24,7 +25,7 @@ foreach ($pdo->query($sql) as $row) {
  }
 
 
- $sql = "SELECT * FROM custom_img_12345 WHERE ImgID = $imgID";
+ $sql = "SELECT * FROM school_$userSchoolID WHERE ImgID = $imgID";
  foreach ($pdo->query($sql) as $row) {
 
     $ImgName = $row['ImgName'];

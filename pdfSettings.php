@@ -95,11 +95,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
                 <a class='dropdown-item' href='/gebaerden/custom_libraryID.php'>".$schoolName."</a>";
               }
             }
-            else {
-              echo "
-
-              <a class='dropdown-item' href='/gebaerden/profile.php'>Schule anmelden</a>";
-            }; ?>
+             ?>
 
 
           </div>
@@ -131,7 +127,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
             else {
               echo "
 
-              <a class='dropdown-item' href='/gebaerden/profile.php'>Schule anmelden</a>";
+              <a class='dropdown-item' href='/gebaerden/manageContent.php'>Schule anmelden</a>";
             }; ?>
 
 

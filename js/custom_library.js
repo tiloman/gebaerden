@@ -4,7 +4,6 @@ var viewMetacom = true;
 var viewVideos = true;
 
 var videoPath = "custom/videos";
-var imgPath = "custom/";
 var metacomPath = "files/metacom/";
 var videoMime = "mp4";
 var phpVideoLoader = 'php/videoDb.php';

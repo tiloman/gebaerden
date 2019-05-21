@@ -1,11 +1,12 @@
 <?php
 
 
+$userSchoolID = $_SESSION['schoolId'];
 
 if (isset($_POST['imgIDforVideo'])) {
   $imgID = $_POST['imgIDforVideo'];
 
-  $sql = "SELECT * FROM custom_img_12345 WHERE ImgID = '$imgID'";
+  $sql = "SELECT * FROM school_$userSchoolID WHERE ImgID = '$imgID'";
   foreach ($pdo->query($sql) as $row) {
      $word = $row['ImgName'];
   }
@@ -14,7 +15,7 @@ if (isset($_POST['imgIDforVideo'])) {
 };
 $error = false;
 
-$video_upload_folder = 'custom/videos/'; //Das Upload-Verzeichnis für Videos
+$video_upload_folder = 'custom/school_'.$userSchoolID; //Das Upload-Verzeichnis für Videos
 $uploadNoticeVideo = null;
 $video_error = false;
 
@@ -45,13 +46,13 @@ if(!$video_error) {
 
 if(!$video_error) {
   //Pfad zum Upload
-  $new_path_video = $video_upload_folder.$word.'_video.'.$video_extension;
+  $new_path_video = $video_upload_folder.$word.$video_extension;
 
   //Neuer Dateiname falls die Datei bereits existiert
   if(file_exists($new_path_video)) { //Falls Datei existiert, hänge eine Zahl an den Dateinamen
    $id = 1;
    do {
-   $new_path_video = $video_upload_folder.$word.'_'.$id.'_video.'.$video_extension;
+   $new_path_video = $video_upload_folder.$word.'_'.$id.$video_extension;
 
    $id++;
    } while(file_exists($new_path_video));
@@ -65,10 +66,10 @@ if(!$video_error) {
   $userid = $_SESSION['userid'];
 
 
-  $statement = $pdo->prepare("UPDATE custom_img_12345 SET VideoFile = ? WHERE ImgID = '$imgID'");
+  $statement = $pdo->prepare("UPDATE school_$userSchoolID SET VideoFile = ? WHERE ImgID = '$imgID'");
   $result = $statement->execute(array($word));
 
-  $statement = $pdo->prepare("UPDATE custom_img_12345 SET VideoMime = ? WHERE ImgID = '$imgID'");
+  $statement = $pdo->prepare("UPDATE school_$userSchoolID SET VideoMime = ? WHERE ImgID = '$imgID'");
   $result = $statement->execute(array($video_extension));
 
 

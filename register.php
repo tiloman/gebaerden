@@ -110,7 +110,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
               $empfaenger = $email;
               $betreff = "Willkommen";
               $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
-              $text = "Willkommen $vorname $nachname.";
+              $text = "Willkommen $vorname $nachname, \n Sie haben sich erfolgreich bei der Gebärden-Mediathek registriert. \n\n Wir wünschen Ihnen viel Spaß! ";
               $headers = "MIME-Version: 1.0\r\n";
               mail($empfaenger, $betreff, $text, $from, $headers);
 
