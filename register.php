@@ -95,14 +95,25 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
           $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname, 'serial' => $serial));
 
           if($result) {
-              echo "Du wurdest erfolgreich registriert.'.'<a href='/gebaerden/login.php'>Zum Login </a>";
+              echo "
+              <div class='flexbox_head'>
+                <div class='flexbox_login'>
+                  <p class='login_text_head'>Willkommen.</p>
+                  <p class='login_text'>Die Registrierung war erfolgreich.</p><br>
+                  <a href='login.php'>
+                    <input type='submit' class='custom_button' value='Zum Login'>
+                  </a>
+                </div>
+              </div>";
               $showFormular = false;
 
               //Bestätigungsmail an mich verschicken
               $empfaenger = "timo.lohmann@uni-koeln.de";
               $betreff = "Neue Registrierung";
               $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
-              $text = "$vorname $nachname hat sich soeben auf Gebärden registriert.";
+              $text = "$vorname $nachname hat sich soeben auf Gebärden registriert. \n
+              Seriennummer: $serial \n
+              Mail-Adresse: $email \n";
               $headers = "MIME-Version: 1.0\r\n";
               mail($empfaenger, $betreff, $text, $from, $headers);
 

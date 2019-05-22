@@ -16,7 +16,7 @@ if (isset($_POST['imgIDforVideo'])) {
 $error = false;
 
 $video_upload_folder = 'custom/school_'.$userSchoolID.'/'; //Das Upload-Verzeichnis für Videos
-$uploadNotice = null;
+
 $video_error = false;
 
 if (isset($_FILES['video']['name'])) {
@@ -77,7 +77,6 @@ if(!$video_error) {
 
   // die(header("location: ../profile.php"));
   $erfolgreich = "Video wurde erfolgreich hochgeladen!";
-  $uploadNotice = null;
 }
 };
 

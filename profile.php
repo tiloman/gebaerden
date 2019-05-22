@@ -223,11 +223,11 @@ $sql = "SELECT * FROM user WHERE id = $userid";
 foreach ($pdo->query($sql) as $row) {
    echo "<form action='php/changeUserData.php' method='post'>
    Vorname: <br>
-   <input type='text' name='vorname' id='vorname' value=". $row['vorname']."><br><br>
+   <input type='text' class='custom_input' name='vorname' id='vorname' value=". $row['vorname']."><br><br>
    Nachname: <br>
-   <input type='text' name='nachname' id='nachname' value=". $row['nachname']."><br><br>
+   <input type='text' class='custom_input' name='nachname' id='nachname' value=". $row['nachname']."><br><br>
    E-Mail: <br>
-   <input type='mail' name='email' id='email' value=". $row['email']."><br><br>
+   <input type='mail' class='custom_input' name='email' id='email' value=". $row['email']."><br><br>
    <input  type='submit' class='custom_button' value='Update'>
    </form>";
 }

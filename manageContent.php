@@ -162,6 +162,19 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
   include ('php/upload.php');
 
 
+  if(isset($notice)){
+    echo "<div class='notification'>".$notice."</div>";
+  }
+  if(isset($uploadNotice)) {
+      echo "<div class='notification'>".$uploadNotice."</div>";
+  }
+
+  if(isset($erfolgreich)){
+    echo "<div class='success'>".$erfolgreich."</div>";
+  }
+
+
+
 if (isset($schoolName)) {
 $word = null;
 $erfolgreich = false;
@@ -185,17 +198,19 @@ $erfolgreich = false;
       echo "Davon haben Sie $anzahl_user_words  hochgeladen</p><br>";
     }
 
+    echo "<p class='left'style='margin-bottom: 0em'><b>Mitglieder Ihres Teams: </b></p>
+          <ol class='left' >";
 
-      if(isset($notice)){
-        echo "<div class='notification'>".$notice."</div>";
-      }
-      if(isset($uploadNotice)) {
-          echo "<div class='notification'>".$uploadNotice."</div>";
-      }
+    $sql = "SELECT * FROM user WHERE schoolid = $schoolID ORDER BY nachname";
+    foreach ($pdo->query($sql) as $row) {
+      $vorname = $row['vorname'];
+      $nachname = $row['nachname'];
+      echo "<li>$vorname $nachname</li>";
+    }
+    echo "</ol>";
 
-      if(isset($erfolgreich)){
-        echo "<div class='success'>".$erfolgreich."</div>";
-      }
+
+
 
 };
     ?>
@@ -297,21 +312,24 @@ $erfolgreich = false;
 if (!isset($schoolName)) {
 
   echo ("<h3><i class='fas fa-school'></i> Sie sind bei keiner Schule angemeldet.</h3>
-    <p class='left'>
-      Wenn Ihre Schule bereits einen Zugang hat, geben Sie hier bitte den Zugangscode ein.
-    </p>
+      <p class='left'>
+        Wenn Ihre Schule bereits einen Zugang hat, geben Sie hier bitte den Zugangscode ein.
+      </p>
     <br>
-    <form id='addSchool' action='php/addSchool.php' method='post'>
-    <input name='schoolId' type='text' placeholder='Zugangsnummer'></input><br><br>
-    <input type='submit' class='custom_button' value='Check In'></input>
-    </form>");
+      <form id='addSchool' action='php/addSchool.php' method='post'>
+        <input name='schoolId' class='custom_input' type='text' placeholder='Zugangsnummer'></input><br><br>
+        <input type='submit' class='custom_button' value='Check In'></input>
+      </form>");
 
     if(isset($_SESSION['schoolError'])) {echo ($_SESSION['schoolError']);}
 
-    echo ("<p class='left'>
-    Mit einem Zugang für Ihre Schule, können Sie individuelle Gebärden hochladen. Somit haben Sie neben der Mediathek von <i>Zeigs mir mit Gebärden</i> noch Ihre eigenen, die Sie mit Ihren Kollegen teilen können.
-    Um einen Zugang für Ihre Schule zu bekommen, wenden Sie sich bitte an lohmanntimo@gmail.com. Sie erhalten im Anschluss einen Zugangscode, den Sie mit Ihren Kolleg*innen teilen können.
+    echo ("
+    <p class='left'>
+      Mit einem Zugang für Ihre Schule können Sie individuelle Gebärden hochladen. Somit haben Sie neben der Mediathek von <i>Zeigs mir mit Gebärden</i> noch Ihre eigenen, die Sie mit Ihren Kollegen teilen können.
+      Um einen Zugang für Ihre Schule zu bekommen, wenden Sie sich bitte an lohmanntimo@gmail.com. Sie erhalten im Anschluss einen Zugangscode, den Sie mit Ihren Kolleg*innen teilen können.
+    </p>
 
+</div>
 
   ");
 };

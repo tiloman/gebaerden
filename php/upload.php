@@ -8,7 +8,6 @@ if (isset($_POST['word'])) {
   $word = $_POST['word'];
 };
 
-$uploadNotice = null;
 $error = false;
 
 if (isset($_FILES['image']['name'])) {
@@ -82,7 +81,6 @@ if(!$error) {
   // echo "Bild hochgeladen nach: ";
   $erfolgreich = "Bild wurde erfolgreich hochgeladen!";
 
-  $uploadNotice = null;
   // die(header("location: ../custom_library.php"));;
 }
 };
