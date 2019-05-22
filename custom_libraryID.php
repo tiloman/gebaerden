@@ -164,6 +164,7 @@ foreach ($pdo->query($sql) as $row) {
   $cleanFileName = $row['ImgName'];
   $imgID = $row['ImgID'];
   $videoMime = $row['VideoMime'];
+  $imgFile = $row['ImgFile'];
 
   if($videoMime !== "") {
       $videoexists = "<i class='fas fa-video' title='Video'></i>";
@@ -204,7 +205,7 @@ foreach ($pdo->query($sql) as $row) {
 
                 echo "
                 <div class='collapsible_body_pdf'>
-                <a class='a_white' target='_blank' href='html2pdf.php?imgID=".$imgID."' method='get'><i class='far fa-file-pdf'></i>PDF generieren</a></div>
+                <a class='a_white' target='_blank' href='html2pdf.php?imgFile=".$imgFile."' method='get'><i class='far fa-file-pdf'></i>PDF generieren</a></div>
                 ";
 
 
@@ -216,17 +217,14 @@ foreach ($pdo->query($sql) as $row) {
                   $sql = "SELECT * FROM user WHERE id = $uploaderID";
                   foreach ($pdo->query($sql) as $row) {
                     echo "<div class='collapsible_body_uploader'>
-                    Hochgeladen von ".$row['vorname']." ".$row['nachname']."
+                    <i class='fas fa-user'></i> ".$row['vorname']." ".$row['nachname']."
                     </div>";
                 }};
 
 
             echo "</div></li>";
 
-
-
 }
-
 
 ?>
 

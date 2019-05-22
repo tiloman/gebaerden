@@ -10,7 +10,6 @@ use Spipu\Html2Pdf\Html2Pdf;
 //Abfrage der Nutzer ID vom Login
 $userid = $_SESSION['userid'];
 $userSchoolID = $_SESSION['schoolId'];
-$imgID = $_GET['imgID'];
 
 
 $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
@@ -24,22 +23,42 @@ foreach ($pdo->query($sql) as $row) {
 
  }
 
+if (isset($_GET['word'])) {
 
- $sql = "SELECT * FROM school_$userSchoolID WHERE ImgID = $imgID";
- foreach ($pdo->query($sql) as $row) {
+  $imgFile = urldecode($_GET['word']);
+  $imgName = $imgFile;
+  $path = 'files/';
+  $imgMime = 'png';
 
-    $ImgName = $row['ImgName'];
-    $ImgMime = $row['ImgMime'];
 
-  }
+}
+
+
+ if(isset($_GET['imgFile'])) {
+
+   $imgFile = $_GET['imgFile'];
+
+   $sql = "SELECT * FROM school_$userSchoolID WHERE ImgFile = '$imgFile'";
+   foreach ($pdo->query($sql) as $row) {
+
+      $imgName = $row['ImgName'];
+      $imgMime = $row['ImgMime'];
+      $path = $row['path'];
+
+    }
+
+}
+
+$selectedWordUC = ucfirst($imgFile);
+$selectedWordLC = lcfirst($imgFile);
+
 
 $html2pdf = new HTML2PDF($pdfFormat, $pdfSize, 'de');
 // $html2pdf->addFont('candara','','fonts/candara.php');
 $html2pdf->setDefaultFont($pdfFont,'', 'true');
 
 
-$selectedWordUC = ucfirst($ImgName);
-$selectedWordLC = lcfirst($ImgName);
+
 
 if(file_exists("files/metacom/".$selectedWordUC.".png")) {
   $metacom = "<img class='metacom' src='files/metacom/".$selectedWordUC.".png'>";
@@ -89,8 +108,8 @@ h1 {
 }
 </style>
 
-<h1>".$ImgName."</h1>
-<img class='gebaerde' src='php/imgDb.php?imgID=".$imgID."'>
+<h1>".$imgName."</h1>
+<img class='gebaerde' src='".$path.$imgFile.".".$imgMime."'>
 
 
 ".$metacom."

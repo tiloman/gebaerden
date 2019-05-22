@@ -205,7 +205,7 @@ $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zei
 
               echo "
               <div class='collapsible_body_pdf'>
-              <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."&path=".$imgPath."&imgEnding=.".$imgMime."' method='get'> PDF generieren <i class='far fa-file-pdf'></i></a></div>
+              <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."' method='get'> PDF generieren <i class='far fa-file-pdf'></i></a></div>
               </div></li>";
 
 

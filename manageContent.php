@@ -198,7 +198,7 @@ $erfolgreich = false;
       echo "Davon haben Sie $anzahl_user_words  hochgeladen</p><br>";
     }
 
-    echo "<p class='left'style='margin-bottom: 0em'><b>Mitglieder Ihres Teams: </b></p>
+    echo "<p class='left'style='margin-bottom: 0em'><b><i class='fas fa-users'></i> Mitglieder Ihres Teams: </b></p>
           <ol class='left' >";
 
     $sql = "SELECT * FROM user WHERE schoolid = $schoolID ORDER BY nachname";

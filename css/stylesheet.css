@@ -44,7 +44,7 @@ a {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .collapsible_body {
@@ -94,8 +94,12 @@ a {
 }
 
 .collapsible_body_uploader {
-align-self: right;
 text-align: right;
+color: #6d918e;
+font-size: 0.8em;
+width: 100%;
+padding: 1em;
+
   /* border: none;
   width: 85%;
   align-self: right;

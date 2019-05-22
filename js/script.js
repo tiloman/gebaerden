@@ -33,11 +33,16 @@ for (i = 0; i < coll.length; i++) {
         if (c[i].classList.contains("metacomLC") && viewMetacom === true){
             c[i].innerHTML = "<img class='img_metacom' src='php/metacom.php?img="+selectedWord_lc+"&path="+metacomPath+"'>";
         } else if (c[i].classList.contains("metacomUC") && viewMetacom === true){
-              c[i].innerHTML = "<img class='img_metacom' src='php/metacom.php?img="+selectedWord_uc+"&path="+metacomPath+"'>";
-            }
+            c[i].innerHTML = "<img class='img_metacom' src='php/metacom.php?img="+selectedWord_uc+"&path="+metacomPath+"'>";
+        } else {
+            c[i].style.opacity= 0;
+        }
+
         if (c[i].classList.contains("video") && viewVideos === true){
             c[i].innerHTML = "<video class='video_gebaerden' controls preload='metadata'><source src='"+phpVideoLoader+"?video="+this.innerText+"_video."+videoMime+"#t=0.1&path="+videoPath+"' type='video/mp4'>Your browser does not support the video tag.</video>";
-          }
+        } else if (c[i].classList.contains("video") && viewVideos === false){
+            c[i].style.opacity = 0;
+        }
       }
 
 
