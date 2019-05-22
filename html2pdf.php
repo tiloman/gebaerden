@@ -30,7 +30,6 @@ if (isset($_GET['word'])) {
   $path = 'files/';
   $imgMime = 'png';
 
-
 }
 
 
@@ -40,25 +39,15 @@ if (isset($_GET['word'])) {
 
    $sql = "SELECT * FROM school_$userSchoolID WHERE ImgFile = '$imgFile'";
    foreach ($pdo->query($sql) as $row) {
-
-      $imgName = $row['ImgName'];
-      $imgMime = $row['ImgMime'];
-      $path = $row['path'];
-
+     $imgName = $row['ImgName'];
+     $imgMime = $row['ImgMime'];
+     $path = $row['path'];
     }
 
 }
 
 $selectedWordUC = ucfirst($imgFile);
 $selectedWordLC = lcfirst($imgFile);
-
-
-$html2pdf = new HTML2PDF($pdfFormat, $pdfSize, 'de');
-// $html2pdf->addFont('candara','','fonts/candara.php');
-$html2pdf->setDefaultFont($pdfFont,'', 'true');
-
-
-
 
 if(file_exists("files/metacom/".$selectedWordUC.".png")) {
   $metacom = "<img class='metacom' src='files/metacom/".$selectedWordUC.".png'>";
@@ -68,6 +57,11 @@ if(file_exists("files/metacom/".$selectedWordUC.".png")) {
   else {
   $metacom = "";
 }
+
+$html2pdf = new HTML2PDF($pdfFormat, $pdfSize, 'de');
+// $html2pdf->addFont('candara','','fonts/candara.php');
+$html2pdf->setDefaultFont($pdfFont,'', 'true');
+
 
 $html2pdf->WriteHTML("<page>
 <style>
