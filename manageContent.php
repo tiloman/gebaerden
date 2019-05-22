@@ -273,7 +273,7 @@ $erfolgreich = false;
                  }
               ?>
           </select>
-          <input type='text' class='custom_input' name='newName'><br>
+          <input type='text' class='custom_input' name='newName' placeholder='Neuer Name'><br>
           <input type='submit' class='custom_button' value='Speichern'>
         </form>
       </div>
