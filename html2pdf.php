@@ -112,6 +112,6 @@ h1 {
 </page>");
 
 
-$html2pdf->Output($ImgName.'.pdf');
+$html2pdf->Output($imgName.'.pdf');
 
 ?>
