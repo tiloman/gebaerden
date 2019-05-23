@@ -5,7 +5,7 @@ if (isset($_POST['deleteImgID'])) {
   $userSchoolID = $_SESSION['schoolId'];
 
 
-  $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+  $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
 
   $statement = $pdo->prepare("DELETE FROM school_$userSchoolID WHERE ImgID = ?");

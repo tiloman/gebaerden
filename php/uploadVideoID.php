@@ -62,7 +62,7 @@ if(!$video_error) {
   move_uploaded_file($_FILES['video']['tmp_name'], $new_path_video);
 
   // Eintragen in die Datenbank
-  $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+  $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
   $userid = $_SESSION['userid'];
 
 

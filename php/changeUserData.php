@@ -4,7 +4,7 @@ if(!isset($_SESSION['userid'])) {
   die(header("location: ../login.php"));
 ;
 }
-  $pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+  $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
   $userid = $_SESSION['userid'];
 
   $vorname = $_POST['vorname'];

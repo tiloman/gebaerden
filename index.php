@@ -9,7 +9,7 @@ if(!isset($_SESSION['userid'])) {
 $userid = $_SESSION['userid'];
 $userSchoolID = $_SESSION['schoolId'];
 
-$pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+$pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
 ?>
 

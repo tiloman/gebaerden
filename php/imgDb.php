@@ -14,7 +14,7 @@ $userSchoolID = $_SESSION['schoolId'];
 if(isset($_GET['imgID'])) {
     $imgID = $_GET['imgID'];
 
-$pdo = new PDO('mysql:host=tiloman.mooo.com;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+$pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 $sql = "SELECT * FROM school_$userSchoolID WHERE ImgID = '$imgID'";
 foreach ($pdo->query($sql) as $row) {
    $imgFile = $row['ImgFile'];
