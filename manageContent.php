@@ -234,11 +234,11 @@ $erfolgreich = false;
 
       <div class='flexbox_user_info margin'>
         <h3><i class="far fa-file-video"></i> Video hinzufügen</h3>
-        <p class='left'>Laden Sie ein Video hoch um das Verständnis zu erleichtern. In der Auswahl erscheinen alle Gebärden die noch kein Video haben.</p>
+        <p class='left'>Laden Sie ein Video hoch um das Verständnis zu erleichtern. Voraussetzung für den Upload eines Videos ist eine existierende Gebärde mit Bild.</p>
          <form action='' method='post' enctype='multipart/form-data'>
            Gebärde auswählen:<br>
-           <select name='imgIDforVideo' class='custom_input'>
-             <option>Bitte auswählen ...</option>";
+           <select name='imgIDforVideo' class='custom_input' required>
+             <option value=''>Bitte auswählen ...</option>";
              <?php
                $sql = "SELECT * FROM school_$userSchoolID WHERE VideoFile = '' ORDER BY ImgName";
                foreach ($pdo->query($sql) as $row) {
@@ -262,8 +262,8 @@ $erfolgreich = false;
          <p class='left'>Tippfehler? Bessere Bezeichnung? Hier können Sie den Namen einer Gebärde verändern. Sie können nur Gebärden verändern, die Sie selbst hochgeladen haben.</p>
          <form action='' method='post' enctype='multipart/form-data'>
            Gebärde auswählen:<br>
-           <select name='renameWord' class='custom_input'>
-              <option>Bitte auswählen ...</option>";;
+           <select name='renameWord' class='custom_input' required>
+              <option value=''>Bitte auswählen ...</option>";;
               <?php
                 $sql = "SELECT * FROM school_$userSchoolID WHERE UploadedBy = $userid ORDER BY ImgName";
                 foreach ($pdo->query($sql) as $row) {
@@ -285,7 +285,7 @@ $erfolgreich = false;
         <p class='left'>Hier können Sie Einträge löschen. Jedoch nur die die von Ihnen selbst kommen.</p>
          <form action='' method='post' enctype='multipart/form-data'>
              Gebärde auswählen:<br>
-             <select name='deleteImgID' class='custom_input'>";
+             <select name='deleteImgID' class='custom_input' required>";
              <option value=''>Bitte auswählen ...</option>
              <?php
                $sql = "SELECT * FROM school_$userSchoolID WHERE UploadedBy = $userid ORDER BY ImgName";
