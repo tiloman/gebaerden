@@ -296,13 +296,13 @@ $erfolgreich = false;
                }
               ?>
             </select>
-            <input type='submit' class='custom_button' value='Löschen'>
+            <input type='submit' class='custom_button' value='Löschen' onclick="return confirm('Sind Sie sicher?')">
         </form>
       </div>
 
       <div class="flexbox_user_info trans">
         <form action="php/quitSchool.php">
-          <button type="submit" class="custom_button red"><i class="fas fa-sign-out-alt"></i> Schule verlassen</button>
+          <button type="submit" class="custom_button red" onclick="return confirm('Sind Sie sicher?')"><i class="fas fa-sign-out-alt"></i> Schule verlassen</button>
         </form>
       </div>
 
