@@ -11,6 +11,7 @@ if(!isset($_SESSION['userid'])) {
   $statement = $pdo->prepare("UPDATE user SET schoolid = ? WHERE id = $userid");
   $statement->execute(array('0'));
 
+  $_SESSION['schoolId'] = 0;
 
   header('Location: ../profile.php');
 
