@@ -78,7 +78,7 @@
     <p>Made with HTML5 | JavaScript | CSS | JQuery | PHP</p>
     </div>
 <br><br>
-    <div class="login_flex_container_white">
+    <div class="login_flex_container bg_white">
       <div class="flexbox">
 
           <p>Timo Lohmann<br />
