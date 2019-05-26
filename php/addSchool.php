@@ -23,7 +23,8 @@ if(!isset($_SESSION['userid'])) {
 
     mail($empfaenger, $betreff, $text, $from);
   }
+  
+echo "<script>window.location.assign('../manageContent.php')</script>";
 
-  header('Location: ../manageContent.php');
 
 ?>
