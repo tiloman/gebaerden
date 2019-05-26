@@ -8,9 +8,6 @@ if (isset($_POST['deleteImgID'])) {
   $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
 
-  $statement = $pdo->prepare("DELETE FROM school_$userSchoolID WHERE ImgID = ?");
-  $statement->execute(array($imgID));
-
   $sql = "SELECT * FROM school_$userSchoolID WHERE ImgID = '$imgID'";
   foreach ($pdo->query($sql) as $row) {
      $imgFile = $row['ImgFile'];
@@ -19,6 +16,12 @@ if (isset($_POST['deleteImgID'])) {
 
      unlink("../".$path.$imgFile.".".$imgMime);
   }
+
+
+  $statement = $pdo->prepare("DELETE FROM school_$userSchoolID WHERE ImgID = ?");
+  $statement->execute(array($imgID));
+
+
 
 
   $notice = "Der Eintrag wurde gelöscht";
