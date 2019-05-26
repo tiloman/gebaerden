@@ -14,7 +14,7 @@ if (isset($_POST['deleteImgID'])) {
      $imgMime = $row['ImgMime'];
      $path = $row['path'];
 
-     unlink("../".$path.$imgFile.".".$imgMime);
+     unlink($path.$imgFile.".".$imgMime);
   }
 
 
