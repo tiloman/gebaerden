@@ -327,7 +327,7 @@ if (!isset($schoolName)) {
 
 
 if ($requestedSchool != 0){
-  echo ("<h3><i class='fas fa-school'></i> Sie sind bei keiner Schule angemeldet.</h3>
+  echo ("<h3><i class='fas fa-school'></i> Anfrage wurde gesendet.</h3>
       <p class='left'>
         Ihre Anfrage wird nun von einem Team Administrator bearbeitet. Sie erhalten eine Mail, sobald Sie freigegeben wurden.
       </p>");
@@ -335,7 +335,7 @@ if ($requestedSchool != 0){
 
   echo ("<h3><i class='fas fa-school'></i> Sie sind bei keiner Schule angemeldet.</h3>
       <p class='left'>
-        Wenn Ihre Schule bereits einen Zugang hat, geben Sie hier bitte den Zugangscode ein.
+        Wenn Ihre Schule bereits einen Zugang hat, wählen Sie sie bitte hier aus.
       </p>
     <br>
       <form id='addSchool' action='php/addSchool.php' method='post'>
@@ -362,7 +362,7 @@ if ($requestedSchool != 0){
 
     echo ("
     <p class='left'>
-      Mit einem Zugang für Ihre Schule können Sie individuelle Gebärden hochladen. Somit haben Sie neben der Mediathek von <i>Zeigs mir mit Gebärden</i> noch Ihre eigenen, die Sie mit Ihren Kollegen teilen können.
+      Mit einem Zugang für Ihre Schule können Sie individuelle Gebärden hochladen. Somit haben Sie neben der Mediathek von <i>Zeigs mir mit Gebärden</i> noch Ihre eigenen, die Sie mit Ihren Kolleg*innen teilen können.
       Um einen Zugang für Ihre Schule zu bekommen, wenden Sie sich bitte an lohmanntimo@gmail.com. Sie erhalten im Anschluss einen Zugangscode, den Sie mit Ihren Kolleg*innen teilen können.
     </p>
 

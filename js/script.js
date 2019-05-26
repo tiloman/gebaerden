@@ -15,7 +15,7 @@ for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     if(this.classList.contains("active") == false) {closeAllActiveHeaders(this);} //schließt alle anderen Aktiven Header.
     this.classList.toggle("active");
-    this.scrollIntoViewIfNeeded(); //scrollt den Bildschirm hoch
+    // this.scrollIntoViewIfNeeded(); //scrollt den Bildschirm hoch
 
     //Wort in klein- und großschreibung
     var selectedWord_uc = this.innerText.substring(0,1).toUpperCase() + this.innerText.substring(1).toLowerCase();
