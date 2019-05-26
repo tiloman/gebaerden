@@ -26,7 +26,10 @@ if(!isset($_SESSION['userid'])) {
   $empfaenger = (string)$requestedUserMail;
   $betreff = "Aufnahme in Schule";
   $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
-  $text = "Sie wurden zur Schule hinzugefügt. \n";
+  $text = "Sie wurden zur Schule hinzugefügt. \n\n
+            Schauen Sie sich nun die Gebärden an: tiloman.mooo.com/gebaerden/custom_libraryID.php \n
+            Viel Spaß!
+            ";
   $headers = "MIME-Version: 1.0\r\n";
   mail($empfaenger, $betreff, $text, $from, $headers);
 
