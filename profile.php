@@ -116,7 +116,6 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
             foreach ($pdo->query($sql) as $row) {
               $schoolID = $row['school_id'];
               $schoolName = $row['school_name'];
-              $teamAdmin = $row['teamAdmin'];
             }
             if (isset($schoolName)) {
               if ($userSchoolID == $schoolID) {
