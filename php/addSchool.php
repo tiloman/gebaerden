@@ -9,23 +9,21 @@ if(!isset($_SESSION['userid'])) {
 
   $userSchoolID = $_POST['schoolId'];
 
-  $statement = $pdo->prepare("UPDATE user SET schoolid = ? WHERE id = $userid");
+  $statement = $pdo->prepare("UPDATE user SET grantedAccess = ? WHERE id = $userid");
   $statement->execute(array($userSchoolID));
 
 
-  $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
+  $sql = "SELECT * FROM user WHERE schoolid = $userSchoolID AND teamAdmin = 'Ja'";
   foreach ($pdo->query($sql) as $row) {
-    $schoolName = $row['school_name'];
+    $adminMail = $row['mail'];
+    $empfaenger = (string)$adminMail;
+    $betreff = "Mitgliedschaftsanfrage für Ihre Schule";
+    $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
+    $text = "Sie haben eine neue Mitgliedschaftsanfrage für Ihre Schule. Bitte bearbeiten Sie diese in Ihrer Teamverwaltung.";
+    $headers = "MIME-Version: 1.0\r\n";
+    mail($empfaenger, $betreff, $text, $from, $headers);
   }
 
-if(isset($schoolName)){
-  $_SESSION['schoolId'] = $userSchoolID;
-  $_SESSION['schoolError'] = null;
-
-
-} else {
-  $_SESSION['schoolError'] = "<div class='notification'>Die eingegene Nummer ist keiner Schule zugeordnet.<br></div><br>";
-}
   header('Location: ../manageContent.php');
 
 ?>

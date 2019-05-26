@@ -133,14 +133,11 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
                 echo "
                 <a class='dropdown-item' href='/gebaerden/manageTeam.php'>Team verwalten</a>";
             };
-
             ?>
 
 
           </div>
         </li>
-
-
 
 
         <li class="nav-item">
@@ -155,67 +152,182 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
     </div>
   </nav>
 
+
+
+
 <div class="welcome_flex_container">
 
 
+<div class='flexbox_user_info margin'>
 
-
-
-
-<div class="flexbox_user_info margin">
-<h3>PDF Einstellungen</h3>
-Speichern Sie hier Ihre individuellen Einstellungen für den PDF Export.
-<br><br>
-
-
-
-
-<!-- Update des Layouts; Wird in "user" Tabelle gespeichert -->
 <?php
-$sql = "SELECT * FROM user WHERE id = $userid";
+
+
+
+  if(isset($_GET['admin'])){
+    echo "<div class='success'>Wurde aktualisiert</div>";
+  }
+  if(isset($_GET['decline'])){
+    echo "<div class='notification'>Der User wurde nicht hinzugefügt.</div>";
+  }
+
+  if(isset($_GET['confirmed'])){
+    echo "<div class='success'>Der User wurde hinzugefügt.</div>";
+  }
+
+
+
+if (isset($schoolName)) {
+$word = null;
+$erfolgreich = false;
+
+  // include ('php/uploadVideo.php');
+  if ($userSchoolID == $schoolID) {
+
+    echo ("<h3><i class='fas fa-school'></i> ".$schoolName."</h3>");
+
+
+
+
+    echo "<p class='left'style='margin-bottom: 0em'><b><i class='fas fa-users'></i> Mitglieder Ihres Teams: </b></p>
+          <p class='left'>Wählen Sie hier aus wer Ihr Team verwalten darf. Team Administratoren können Mitgliedschaftsanfragen bearbeiten.</p><br>
+          <table style='width:100%' class='left'>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Mail</th>
+            <th>Admin</th>"
+            ;
+
+    $sql = "SELECT * FROM user WHERE schoolid = $schoolID ORDER BY nachname";
+    foreach ($pdo->query($sql) as $row) {
+      $vorname = $row['vorname'];
+      $nachname = $row['nachname'];
+      $mail = $row['email'];
+      $admin = $row['teamAdmin'];
+      $changeUser = $row['id'];
+      echo "<tr>
+      <td>$vorname  </td>
+      <td>$nachname</td>
+      <td>$mail</td>
+      <td>
+        <form name='selectAdmin' action='php/selectAdmin.php' method='post'>
+        <select name='admin' class=''>
+          <option value='$admin'>$admin</option>";
+
+          if ($admin === 'Nein') {
+            $adminAlt = 'Ja';
+          } else {
+            $adminAlt = 'Nein';}
+
+
+      echo "
+          <option value='$adminAlt'>$adminAlt</option>
+          </select>
+          <input type='text' value='$changeUser' class='hidden' name='changeUser'>
+          <input type='submit' value='Update' class=''>
+        </form>
+      </td>
+      </tr>";
+    }
+    echo "</table>
+  ";
+
+
+};
+
+?>
+<script type="text/javascript">
+  function submitForm(action) {
+    var form = document.getElementById('confirmUser');
+    form.action = action;
+    form.submit();
+  }
+</script>
+
+<?php
+
+
+
+
+
+$sql = "SELECT * FROM user WHERE grantedAccess = $schoolID ORDER BY nachname";
 foreach ($pdo->query($sql) as $row) {
-   echo "<form id='changeLayout' action='php/changeLayout.php' method='post'>
-   PDF Größe:<br>
-     <select name='pdf_size' class='custom_input'>
-       <option style='font-weight: bold'>" . $row['pdf_size']."</option>
-       <option value='A4'>A4 (Standard)</option>
-       <option value='A5'>A5</option>
-     <select>
+  $vorname = $row['vorname'];
+  $nachname = $row['nachname'];
+  $grantedSchool = $row['grantedAccess'];
+  $grantedUserId = $row['id'];
+  echo "<hr>
 
-   <br><br>
+  <p class='left'><b>Anfragen für die Aufnahme in Ihr Team:</b></p>
+    <table style='width:100%' class='left'>
+      <th>Vorname</th>
+      <th>Nachname</th>
+      <th style='text-align:right'>Beitritt</th>";
 
-   Schriftart:<br>
-     <select name='pdf_font' class='custom_input'>
-       <option style='font-weight: bold'>".$row['pdf_font']."</option>
-       <option value='Helvetica'>Helvetica (Standard)</option>
-       <option value='freemono'>Freemono</option>
-       <option value='dejavusans'>Deja Vu Sans</option>
-     <select>
+  echo "
+    <form method=post id='confirmUser'>
+    <tr>
+    <td>$vorname</td>
+    <td>$nachname</td>
+    <td style='text-align:right'>
+    <input type='text' class='hidden' value='$grantedUserId' name='grantedUser'>
+    <input type='text' class='hidden' value='$grantedSchool' name='access' id=requestedSchool>";
+    ?>
 
-     <br><br>
+    <button type='submit' onclick="submitForm('php/confirmUser.php')" ><i class='fas fa-check'></i></button>
+    <button type='submit' onclick="submitForm('php/declineUser.php')" ><i class='fas fa-times'></i></button>
 
-     Format:<br>
-       <select name='pdf_format' class='custom_input'>
-         <option style='font-weight: bold'>".$row['pdf_format']."</option>
-         <option value='L'>Landscape (Standard)</option>
-         <option value='H'>Hochformat</option>
-       <select>
-
-     <br /><br />";
-   echo "<input type='submit' class='custom_button' value='Layout aktualisieren'><hr>";
-
+    <?php
+    echo"
+    </form>
+    </td>
+    </tr>";
 }
+echo "  </table>
+";
+
+?>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+
+
+}; //if wird an dieser Stelle geschlossen
+
+
+//Falls keine Schule angemeldet ist.
+if (!isset($schoolName)) {
+
+  echo ("<h3><i class='fas fa-school'></i> Sie haben keine Berechtigung.</h3>
+      <p class='left'>
+        Sie sind nicht berechtigt diese Seite zu sehen.
+      </p>
+  ");
+};
+
  ?>
 
- <br><br>
- <img src="/gebaerden/img/pdf_preview.jpg" class="pdf_preview" style="width: 50%; border: 1px solid">
 
-</div>
-
-
-
-
-</div>
 
   <!-- <div id="login_header">Gebärden.</div> -->
 

@@ -128,7 +128,12 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
               echo "
 
               <a class='dropdown-item' href='/gebaerden/manageContent.php'>Schule anmelden</a>";
-            }; ?>
+            };
+            if ($_SESSION['teamAdmin'] == "Ja") {
+                echo "
+                <a class='dropdown-item' href='/gebaerden/manageTeam.php'>Team verwalten</a>";
+            };
+            ?>
 
 
           </div>

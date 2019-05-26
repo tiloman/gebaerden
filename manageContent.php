@@ -128,7 +128,12 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
               echo "
 
               <a class='dropdown-item' href='/gebaerden/manageContent.php'>Schule anmelden</a>";
-            }; ?>
+            };
+            if ($_SESSION['teamAdmin'] == "Ja") {
+                echo "
+                <a class='dropdown-item' href='/gebaerden/manageTeam.php'>Team verwalten</a>";
+            };
+            ?>
 
 
           </div>
@@ -315,6 +320,18 @@ $erfolgreich = false;
 
 //Falls keine Schule angemeldet ist.
 if (!isset($schoolName)) {
+  $sql = "SELECT * FROM user WHERE id = $userid";
+  foreach ($pdo->query($sql) as $row) {
+    $requestedSchool = $row['grantedAccess'];
+  }
+
+
+if ($requestedSchool != 0){
+  echo ("<h3><i class='fas fa-school'></i> Sie sind bei keiner Schule angemeldet.</h3>
+      <p class='left'>
+        Ihre Anfrage wird nun von einem Team Administrator bearbeitet. Sie erhalten eine Mail, sobald Sie freigegeben sind.
+      </p>");
+} else {
 
   echo ("<h3><i class='fas fa-school'></i> Sie sind bei keiner Schule angemeldet.</h3>
       <p class='left'>
@@ -322,9 +339,24 @@ if (!isset($schoolName)) {
       </p>
     <br>
       <form id='addSchool' action='php/addSchool.php' method='post'>
-        <input name='schoolId' class='custom_input' type='text' placeholder='Zugangsnummer'></input><br><br>
-        <input type='submit' class='custom_button' value='Check In'></input>
-      </form>");
+      Teilnehmende Schulen:<br>
+      <select name='schoolId' class='custom_input' required>;
+      <option value=''>Bitte auswählen ...</option>");
+
+
+        $sql = "SELECT * FROM school ORDER BY school_name";
+        foreach ($pdo->query($sql) as $row) {
+          echo "<option value='".$row['school_id']."'>";
+          echo $row['school_name'];
+          echo "</option>";
+        }
+
+
+      echo "
+      </select>
+        <br>
+        <input type='submit' class='custom_button' value='Anfrage stellen'></input>
+      </form>";
 
     if(isset($_SESSION['schoolError'])) {echo ($_SESSION['schoolError']);}
 
@@ -337,6 +369,7 @@ if (!isset($schoolName)) {
 </div>
 
   ");
+}
 };
 
  ?>

@@ -116,6 +116,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
             foreach ($pdo->query($sql) as $row) {
               $schoolID = $row['school_id'];
               $schoolName = $row['school_name'];
+              $teamAdmin = $row['teamAdmin'];
             }
             if (isset($schoolName)) {
               if ($userSchoolID == $schoolID) {
@@ -128,7 +129,14 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
               echo "
 
               <a class='dropdown-item' href='/gebaerden/manageContent.php'>Schule anmelden</a>";
-            }; ?>
+            };
+
+            if ($_SESSION['teamAdmin'] == "Ja") {
+                echo "
+                <a class='dropdown-item' href='/gebaerden/manageTeam.php'>Team verwalten</a>";
+            };
+
+            ?>
 
 
           </div>
