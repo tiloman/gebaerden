@@ -19,7 +19,21 @@ if(!isset($_SESSION['userid'])) {
     $empfaenger = (string)$adminMail;
     $betreff = "Mitgliedschaftsanfrage für Ihre Schule";
     $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
-    $text = "Sie haben eine neue Mitgliedschaftsanfrage für Ihre Schule. Bitte bearbeiten Sie diese in Ihrer Teamverwaltung.";
+    $text = "<html>
+          <head>
+              <title>Mitgliedschaftsanfrage</title>
+          </head>
+
+          <body>
+
+          <h1>Mitgliedschaftsanfrage</h1>
+          <p>Sie haben eine neue Mitgliedschaftsanfrage für Ihre Schule. Bitte bearbeiten Sie diese in Ihrer Teamverwaltung.</p>
+          <a href='tiloman.mooo.com/gebaerden/manageTeam.php>Zur Teamverwaltung</a>
+          </body>
+          </html>
+
+
+    ";
 
     mail($empfaenger, $betreff, $text, $from);
   }
