@@ -329,7 +329,7 @@ if (!isset($schoolName)) {
 if ($requestedSchool != 0){
   echo ("<h3><i class='fas fa-school'></i> Sie sind bei keiner Schule angemeldet.</h3>
       <p class='left'>
-        Ihre Anfrage wird nun von einem Team Administrator bearbeitet. Sie erhalten eine Mail, sobald Sie freigegeben sind.
+        Ihre Anfrage wird nun von einem Team Administrator bearbeitet. Sie erhalten eine Mail, sobald Sie freigegeben wurden.
       </p>");
 } else {
 

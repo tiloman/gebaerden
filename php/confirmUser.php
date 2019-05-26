@@ -23,12 +23,12 @@ if(!isset($_SESSION['userid'])) {
 
 
   //Bestätigungsmail an Requester verschicken
-  // $empfaenger = (string)$requestedUserMail;
-  // $betreff = "Aufnahme in Schule";
-  // $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
-  // $text = "Sie wurden zur Schule hinzugefügt. \n";
-  // $headers = "MIME-Version: 1.0\r\n";
-  // mail($empfaenger, $betreff, $text, $from, $headers);
+  $empfaenger = (string)$requestedUserMail;
+  $betreff = "Aufnahme in Schule";
+  $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
+  $text = "Sie wurden zur Schule hinzugefügt. \n";
+  $headers = "MIME-Version: 1.0\r\n";
+  mail($empfaenger, $betreff, $text, $from, $headers);
 
 
 
