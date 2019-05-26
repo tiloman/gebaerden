@@ -16,9 +16,10 @@ if (isset($_POST['deleteImgID'])) {
      $imgFile = $row['ImgFile'];
      $imgMime = $row['ImgMime'];
      $path = $row['path'];
+
+     unlink("../".$path.$imgFile.".".$imgMime);
   }
 
-      unlink("../".$path.$imgFile.".".$imgMime);
 
   $notice = "Der Eintrag wurde gelöscht";
 }
