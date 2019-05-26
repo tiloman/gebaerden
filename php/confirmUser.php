@@ -18,7 +18,7 @@ if(!isset($_SESSION['userid'])) {
 
   $sql = "SELECT * FROM user WHERE id = $grantedUser";
   foreach ($pdo->query($sql) as $row) {
-    $requestedUserMail = $row['mail'];
+    $requestedUserMail = $row['email'];
   }
 
 
