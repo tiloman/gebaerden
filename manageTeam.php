@@ -224,7 +224,7 @@ $erfolgreich = false;
           <option value='$adminAlt'>$adminAlt</option>
           </select>
           <input type='text' value='$changeUser' class='hidden' name='changeUser'>
-          <input type='submit' value='Update' class=''>
+          <button type='submit' class=''><i class='fas fa-sync'></i></button>
         </form>
       </td>
       </tr>";
