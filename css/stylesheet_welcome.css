@@ -91,12 +91,15 @@ color: white;
   letter-spacing: 0.1em;
 }
 
+.custom_button:hover {
+  color: black;
+}
+
 .red {
   color: white;
   background-color: #cc3333;
-  width: 220px;
-  height: 50px;
-  font-size: 1.1em;
+  height: 2em;
+  font-size: 1em;
   border: 1px solid black;
 }
 

@@ -77,7 +77,6 @@ if(!$error) {
   $result = $statement->execute(array('ImgName' => $word, 'UploadedBy' => $userid, 'ImgMime' => $extension, 'ImgFile' => $word, 'path' => $upload_folder));
 
 
-
   // echo "Bild hochgeladen nach: ";
   $erfolgreich = "Bild wurde erfolgreich hochgeladen!";
 

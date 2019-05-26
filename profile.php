@@ -178,7 +178,13 @@ foreach ($pdo->query($sql) as $row) {
    foreach ($pdo->query($sql) as $row) {
      $schoolID = $row['school_id'];
      $schoolName = $row['school_name'];
-     echo "Eingetragene Schule: <br><b>".$schoolName."</b><br><br>";
+     echo "Eingetragene Schule: <br><b>".$schoolName."</b>";
+     ?>
+     <form action='php/quitSchool.php'>
+       <button type='submit' class='custom_button red' onclick="return confirm('Sind Sie sicher?')"><i class='fas fa-sign-out-alt'></i> Schule verlassen</button>
+     </form>
+<?php
+     Echo "<br><br>";
 }
 
 
@@ -246,8 +252,6 @@ foreach ($pdo->query($sql) as $row) {
 </div>
 </div>
 </div>
-
-
 
 
 

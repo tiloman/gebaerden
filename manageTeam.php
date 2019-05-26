@@ -194,24 +194,23 @@ $erfolgreich = false;
           <table style='width:100%' class='left'>
             <th>Vorname</th>
             <th>Nachname</th>
-            <th>Mail</th>
-            <th>Admin</th>"
+            <th class='right'>Admin</th>"
             ;
 
     $sql = "SELECT * FROM user WHERE schoolid = $schoolID ORDER BY nachname";
     foreach ($pdo->query($sql) as $row) {
       $vorname = $row['vorname'];
       $nachname = $row['nachname'];
-      $mail = $row['email'];
+
       $admin = $row['teamAdmin'];
       $changeUser = $row['id'];
       echo "<tr>
       <td>$vorname  </td>
       <td>$nachname</td>
-      <td>$mail</td>
-      <td>
+
+      <td class='right'>
         <form name='selectAdmin' action='php/selectAdmin.php' method='post'>
-        <select name='admin' class=''>
+        <select name='admin' class='browser-default custom-select' style='width: 80px;'>
           <option value='$admin'>$admin</option>";
 
           if ($admin === 'Nein') {
@@ -224,7 +223,7 @@ $erfolgreich = false;
           <option value='$adminAlt'>$adminAlt</option>
           </select>
           <input type='text' value='$changeUser' class='hidden' name='changeUser'>
-          <button type='submit' class=''><i class='fas fa-sync'></i></button>
+          <button type='submit' class='custom_button' style='width: 40px; margin: 0;'><i class='fas fa-sync'></i></button>
         </form>
       </td>
       </tr>";
@@ -274,8 +273,8 @@ foreach ($pdo->query($sql) as $row) {
     <input type='text' class='hidden' value='$grantedSchool' name='access' id=requestedSchool>";
     ?>
 
-    <button type='submit' onclick="submitForm('php/confirmUser.php')" ><i class='fas fa-check'></i></button>
-    <button type='submit' onclick="submitForm('php/declineUser.php')" ><i class='fas fa-times'></i></button>
+    <button type='submit' onclick="submitForm('php/confirmUser.php')" class='custom_button' style='width: 40px; margin: 0;'><i class='fas fa-check'></i></button>
+    <button type='submit' onclick="submitForm('php/declineUser.php')" class='custom_button red' style='width: 40px; margin: 0;'><i class='fas fa-times'></i></button>
 
     <?php
     echo"
