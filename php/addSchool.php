@@ -20,8 +20,8 @@ if(!isset($_SESSION['userid'])) {
     $betreff = "Mitgliedschaftsanfrage für Ihre Schule";
     $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
     $text = "Sie haben eine neue Mitgliedschaftsanfrage für Ihre Schule. Bitte bearbeiten Sie diese in Ihrer Teamverwaltung.";
-    $headers = "MIME-Version: 1.0\r\n";
-    mail($empfaenger, $betreff, $text, $from, $headers);
+
+    mail($empfaenger, $betreff, $text, $from);
   }
 
   header('Location: ../manageContent.php');
