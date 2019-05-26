@@ -15,8 +15,8 @@ if(!isset($_SESSION['userid'])) {
 
   $sql = "SELECT * FROM user WHERE schoolid = $userSchoolID AND teamAdmin = 'Ja'";
   foreach ($pdo->query($sql) as $row) {
-    $adminMail = $row['mail'];
-    $empfaenger = "lohmanntimo@gmail.com";
+    $adminMail = $row['email'];
+    $empfaenger = (string)$adminMail;
     $betreff = "Mitgliedschaftsanfrage für Ihre Schule";
     $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
     $text = "Sie haben eine neue Mitgliedschaftsanfrage für Ihre Schule. Bitte bearbeiten Sie diese in Ihrer Teamverwaltung.";
