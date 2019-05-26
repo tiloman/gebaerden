@@ -13,8 +13,14 @@ if (isset($_POST['deleteImgID'])) {
      $imgFile = $row['ImgFile'];
      $imgMime = $row['ImgMime'];
      $path = $row['path'];
+     $videoFile = $row['VideoFile'];
+     $videoMime = $row['VideoPath']
 
      unlink($path.$imgFile.".".$imgMime);
+
+     if (isset($videoFile)) {
+       unlink($path.$videoFile.".".$videoMime);
+     }
   }
 
 
