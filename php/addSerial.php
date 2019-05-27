@@ -20,6 +20,7 @@ if(!isset($_SESSION['userid'])) {
   } else {
     $statement = $pdo->prepare("UPDATE user SET serial = ? WHERE id = $userid");
     $statement->execute(array($userLicense));
+    $_SESSION['serial'] = $userLicense;
     echo "<script>window.location.assign('../index.php')</script>";
   }
 

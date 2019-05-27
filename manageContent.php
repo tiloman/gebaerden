@@ -8,6 +8,7 @@ if(!isset($_SESSION['userid'])) {
 //Abfrage der Nutzer ID vom Login
 $userid = $_SESSION['userid'];
 $userSchoolID = $_SESSION['schoolId'];
+$serial = $_SESSION['serial'];
 
 $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
@@ -81,7 +82,11 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
           </a>
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class='dropdown-item' href='index.php'>Zeigs mir mit Gebärden</a>
+            <?php
+            if ($serial != 0) {
+              echo "<a class='dropdown-item' href='index.php'>Zeigs mir mit Gebärden</a>";
+            }
+            ?>
             <?php
             $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
             foreach ($pdo->query($sql) as $row) {
@@ -124,11 +129,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
               }
             }
-            else {
-              echo "
-
-              <a class='dropdown-item' href='/gebaerden/manageContent.php'>Schule anmelden</a>";
-            };
+          
             if ($_SESSION['teamAdmin'] == "Ja") {
                 echo "
                 <a class='dropdown-item' href='/gebaerden/manageTeam.php'>Team verwalten</a>";
@@ -305,7 +306,7 @@ $erfolgreich = false;
         </form>
       </div>
 
-      
+
 
 
 <?php

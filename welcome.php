@@ -5,24 +5,13 @@ if(!isset($_SESSION['userid'])) {
 ;
 }
 
-
-
 //Abfrage der Nutzer ID vom Login
 $userid = $_SESSION['userid'];
 $userSchoolID = $_SESSION['schoolId'];
 $serial = $_SESSION['serial'];
 
-if ($userSchoolID != 0 and $serial == 0) {
-  header("location: custom_libraryID.php");
-  exit(1);
-}
-
-if ($userSchoolID == 0  and $serial == 0) {
-  header("location: welcome.php");
-  exit(1);
-}
-
 $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+
 
 ?>
 
@@ -33,8 +22,6 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/bootstrap_navbar_custom.css">
-
-    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     <link rel="stylesheet" type="text/css" href="css/stylesheet_welcome.css">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -54,41 +41,37 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
       gtag('config', 'UA-21959683-2');
     </script>
 
+<!-- JQUERY für Accordion -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
 </head>
 
-<body>
+<body style="background-image: linear-gradient(#6d918e, #10464c); text-align: center;">
+
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
-     <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="index.php">
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
 
-<form class="input-group-custom" action="index.php" method="get">
-      <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
-        <div class="input-group-append">
-          <button class="btn btn-success" type="submit"><i class="fas fa-search" title='Suche'></i></button>
-        </div>
-      </div>
-</form>
+      <form class="input-group-custom" action="index.php" method="get">
+            <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
+              <div class="input-group-append">
+                <button class="btn btn-success" type="submit"><i class="fas fa-search" title='Suche'></i></button>
+              </div>
+            </div>
+      </form>
+
 
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars navbar_sandwich"></i>
+      <i class="fas fa-bars navbar_sandwich"></i>
       </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
       <ul class="navbar-nav ml-auto" >
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-filter"></i> Filtern
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" onclick="hideMetacom()" href="javascript:void(0)" id="viewMetacom"><img src="img/metacom.png" height="20px" title="Metacom eingeblendet">Metacom</a>
-            <a class="dropdown-item" onclick="hideVideos()" href="javascript:void(0)" id="viewVideos"><i class="fas fa-video-slash" title='Videos eingeblendet'></i>Video</a>
-
-          </div>
-        </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,6 +84,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
               echo "<a class='dropdown-item' href='index.php'>Zeigs mir mit Gebärden</a>";
             }
             ?>
+
+
             <?php
             $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
             foreach ($pdo->query($sql) as $row) {
@@ -144,15 +129,19 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
               }
             }
             
+
+
             if ($_SESSION['teamAdmin'] == "Ja") {
                 echo "
                 <a class='dropdown-item' href='/gebaerden/manageTeam.php'>Team verwalten</a>";
             };
+
             ?>
 
 
           </div>
         </li>
+
 
         <li class="nav-item">
           <a class="nav-link" href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
@@ -166,101 +155,105 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
     </div>
   </nav>
 
+<div class='welcome_flex_container'>
+        <div class='flexbox_user_info'>
+          <h3>Willkommen!</h3>
+          <p class='left'>Um zu beginnen, melden Sie sich bitte bei einer teilnehmenden Schule an. Wählen Sie Ihre Schule dafür aus der unten stehenden Liste aus. Falls Ihre Schule dort nicht gelistet ist, können Sie hier einen Zugang beantragen. <br>
+          Einige Schulen haben bereits die Lizenz für Zeigs mir mit Gebärden integriert. Das heisst bei erfolgreicher Anmeldung ist müssen Sie nichts weiter unternehmen um die Mediathek freizuschalten. Falls Ihre Schule keine Lizenz hat, können Sie die Seriennummer unten eingeben. </p>
+        </div>
+        <div class='flexbox_user_info margin'>
 <?php
-
-	$dircontents = scandir('files');
-  natcasesort($dircontents);
-  $metacomexists = null;
-  $metacomCase = null;
-  $videoexists = null;
-
-  $imgPath = 'files/';
-  $imgMime = 'png';
-
-  $videoPath = 'files/video/';
-  $videoMime = '_video.m4v';
-
-	// Elemente auflisten und in ul auflisten
+          //Falls keine Schule angemeldet ist.
+          if (!isset($schoolName)) {
+            $sql = "SELECT * FROM user WHERE id = $userid";
+            foreach ($pdo->query($sql) as $row) {
+              $requestedSchool = $row['grantedAccess'];
+            }
 
 
-  $sql = "SELECT * FROM user WHERE id = $userid";
-  foreach ($pdo->query($sql) as $row) {
-    $userSerial = $row['serial'];
-  }
+          if ($requestedSchool != 0){
+            echo ("
+            <h3><i class='fas fa-school'></i> Anfrage wurde gesendet.</h3>
+                <p class='left'>
+                  Ihre Anfrage wird nun von einem Team Administrator bearbeitet. Sie erhalten eine Mail, sobald Sie freigegeben wurden.
+                </p>");
+          } else {
 
-  $sql = "SELECT * FROM license WHERE serial = $userSerial";
-  foreach ($pdo->query($sql) as $row) {
-    $licensedSerial = $row['serial'];
-    $licensedTo = $row['licensedto'];
-  }
-
-if ($licensedSerial !== $userSerial) {
-
-  include('welcome.php');
-
-} else {
-
-	echo '<ul id="wordsList">';
-	foreach ($dircontents as $file) {
-		$extension = pathinfo($file, PATHINFO_EXTENSION);
-    $cleanFileName = pathinfo($file, PATHINFO_FILENAME);
-    $cleanFileNameUC = ucfirst($cleanFileName);
-    $cleanFileNameLC = lcfirst($cleanFileName);
+            echo ("<h3><i class='fas fa-school'></i> Melden Sie sich bei Ihrer Schule an.</h3>
+                <p class='left'>
+                  Wenn Ihre Schule bereits einen Zugang hat, wählen Sie sie bitte hier aus.
+                </p>
+              <br>
+                <form id='addSchool' action='php/addSchool.php' method='post'>
+                Teilnehmende Schulen:<br>
+                <select name='schoolId' class='custom_input browser-default custom-select' required>;
+                <option value=''>Bitte auswählen ...</option>");
 
 
-    if(file_exists("files/metacom/".$cleanFileNameUC.".png")) {
-      $metacomexists = "<i class='far fa-smile' title='Metacom'></i>";
-      $metacomCase = "metacomUC";
-    } else if(file_exists("files/metacom/".$cleanFileNameLC.".png")) {
-      $metacomexists = "<i class='far fa-smile' title='Metacom'></i>";
-      $metacomCase = "metacomLC";
-    } else {
-      $metacomexists = null;
-    }
-
-    if(file_exists($videoPath.$cleanFileNameUC.$videoMime)) {
-      $videoexists = "<i class='fas fa-video' title='Video'></i>";
-    } else if(file_exists($videoPath.$cleanFileNameLC.$videoMime)) {
-      $videoexists = "<i class='fas fa-video' title='Video'></i>";
-    } else {
-      $videoexists = null;
-    }
-
-		if ($extension == $imgMime) {
-			echo "<li>
-              <div class='collapsible-header'>$cleanFileName
-              <div class='collapsible-icons'>$metacomexists$videoexists</div></div>
-              <div class='collapsible_body'>";
-
-              echo "<div class='collapsible_body_content img'></div>";
-
-              if ($videoexists !== null) {
-                echo "<div class='collapsible_body_content video'></div>";
-              }
-
-              if ($metacomexists !== null) {
-                echo "<div class='collapsible_body_content ".$metacomCase."'></div>";
-              }
-
-              echo "
-              <div class='collapsible_body_pdf'>
-              <a class='a_white' target='_blank' href='html2pdf.php?word=".urlencode($cleanFileName)."' method='get'> PDF generieren <i class='far fa-file-pdf'></i></a></div>
-              </div></li>";
+                  $sql = "SELECT * FROM school ORDER BY school_name";
+                  foreach ($pdo->query($sql) as $row) {
+                    echo "<option value='".$row['school_id']."'>";
+                    echo $row['school_name'];
+                    echo "</option>";
+                  }
 
 
-            ;
-		}
-	}
-	echo '</ul>';
-  }
+                echo "
+                </select>
+                  <br>
+                  <input type='submit' class='custom_button' value='Anfrage stellen'></input>
+                </form>";
+
+              if(isset($_SESSION['schoolError'])) {echo ($_SESSION['schoolError']);}
+
+              echo ("
+              <p class='left'>
+                Mit einem Zugang für Ihre Schule können Sie individuelle Gebärden hochladen. Somit haben Sie neben der Mediathek von <i>Zeigs mir mit Gebärden</i> noch Ihre eigenen, die Sie mit Ihren Kolleg*innen teilen können.
+                Um einen Zugang für Ihre Schule zu bekommen, wenden Sie sich bitte an lohmanntimo@gmail.com. Sie erhalten im Anschluss einen Zugangscode, den Sie mit Ihren Kolleg*innen teilen können.
+              </p>
+
+
+            ");
+          }
+
+          };
+
+
 ?>
+</div>
+<div class='flexbox_user_info margin'>
+      <h3><i class='fas fa-american-sign-language-interpreting'></i> Zeigs mir mit Gebärden</h3>
+          <p class='left'>
+            Sie haben noch keine Lizenz für die Bibliothek von Zeigs mir mit Gebärden eingegeben.
+          </p>
+        <br>
+          <form id='addSchool' action='php/addSerial.php' method='post'>
+            <input type='text' name='userLicense' class='custom_input' placeholder='Seriennummer' required></input>
+            <br>
+            <input type='submit' class='custom_button' value='Freischalten'></input>
+          </form>
+
+          <?php
+          if($_GET['error'] == 1){
+            echo "<div class='notification'>Die eingegebene Seriennummer ist leider falsch.</div>";
+          }
+?>
+    </div>
+  </div>
 
 
+
+
+<footer>
+<p>2019 | Timo Lohmann | <a href="about.php">Impressum</a></p>
+</footer>
 <script src="js/script.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
 
 
 </body>

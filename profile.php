@@ -8,6 +8,7 @@ if(!isset($_SESSION['userid'])) {
 //Abfrage der Nutzer ID vom Login
 $userid = $_SESSION['userid'];
 $userSchoolID = $_SESSION['schoolId'];
+$serial = $_SESSION['serial'];
 
 $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
@@ -81,7 +82,13 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
           </a>
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class='dropdown-item' href='index.php'>Zeigs mir mit Gebärden</a>
+            <?php
+            if ($serial != 0) {
+              echo "<a class='dropdown-item' href='index.php'>Zeigs mir mit Gebärden</a>";
+            }
+            ?>
+
+
             <?php
             $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
             foreach ($pdo->query($sql) as $row) {
@@ -124,11 +131,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
               }
             }
-            else {
-              echo "
-
-              <a class='dropdown-item' href='/gebaerden/manageContent.php'>Schule anmelden</a>";
-            };
+          
 
             if ($_SESSION['teamAdmin'] == "Ja") {
                 echo "
@@ -169,11 +172,12 @@ foreach ($pdo->query($sql) as $row) {
    $userSchoolID = $row['schoolid'];
    $serial = null;
 
+if ($userSerial != 0) {
    $sql = "SELECT * FROM license WHERE serial = $userSerial";
    foreach ($pdo->query($sql) as $row) {
      $licensedSerial = $row['serial'];
      $licensedTo = $row['licensedto'];
-}
+}}
    $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
    foreach ($pdo->query($sql) as $row) {
      $schoolID = $row['school_id'];
@@ -187,18 +191,8 @@ foreach ($pdo->query($sql) as $row) {
      Echo "<br><br>";
 }
 
+?>
 
-if (isset($licensedSerial)) {
-  if ($userSerial == $licensedSerial) {
-    echo ("Die Seriennummer ist lizensiert für: <br>");
-    echo ("<b>".$licensedTo."</b>");
-  }
-}else {
-  echo ("Die Lizenz ist ungültig! Bitte wenden Sie sich an lohmanntimo@gmail.com");
-}
-
-}
- ?>
 <br><br>
  <button id="changeProfileBtn" class="custom_button">Daten aktualisieren</button>
 
@@ -250,7 +244,102 @@ foreach ($pdo->query($sql) as $row) {
 
 
 </div>
+
+
+<?php
+
+
+if (isset($licensedSerial)) {
+  if ($userSerial == $licensedSerial) {
+    echo ("Die Seriennummer ist lizensiert für: <br>");
+    echo ("<b>".$licensedTo."</b>");
+  }
+}else {
+  echo ("
+        <h3><i class='fas fa-american-sign-language-interpreting'></i> Zeigs mir mit Gebärden</h3>
+            <p class='left'>
+              Sie haben noch keine Lizenz für die Bibliothek von Zeigs mir mit Gebärden eingegeben.
+            </p>
+          <br>
+            <form id='addSchool' action='php/addSerial.php' method='post'>
+              <input type='text' name='userLicense' class='custom_input' placeholder='Seriennummer' required></input>
+              <br>
+              <input type='submit' class='custom_button' value='Freischalten'></input>
+            </form>");
+
+             if($_GET['error'] == 1){
+              echo "<div class='notification'>Die eingegebene Seriennummer ist leider falsch.</div>";
+            }
+}
+
+}
+
+
+//Falls keine Schule angemeldet ist.
+if (!isset($schoolName)) {
+  $sql = "SELECT * FROM user WHERE id = $userid";
+  foreach ($pdo->query($sql) as $row) {
+    $requestedSchool = $row['grantedAccess'];
+  }
+
+
+if ($requestedSchool != 0){
+  echo ("<h3><i class='fas fa-school'></i> Anfrage wurde gesendet.</h3>
+      <p class='left'>
+        Ihre Anfrage wird nun von einem Team Administrator bearbeitet. Sie erhalten eine Mail, sobald Sie freigegeben wurden.
+      </p>");
+} else {
+
+  echo ("<h3><i class='fas fa-school'></i> Sie sind bei keiner Schule angemeldet.</h3>
+      <p class='left'>
+        Wenn Ihre Schule bereits einen Zugang hat, wählen Sie sie bitte hier aus.
+      </p>
+    <br>
+      <form id='addSchool' action='php/addSchool.php' method='post'>
+      Teilnehmende Schulen:<br>
+      <select name='schoolId' class='custom_input browser-default custom-select' required>;
+      <option value=''>Bitte auswählen ...</option>");
+
+
+        $sql = "SELECT * FROM school ORDER BY school_name";
+        foreach ($pdo->query($sql) as $row) {
+          echo "<option value='".$row['school_id']."'>";
+          echo $row['school_name'];
+          echo "</option>";
+        }
+
+
+      echo "
+      </select>
+        <br>
+        <input type='submit' class='custom_button' value='Anfrage stellen'></input>
+      </form>";
+
+    if(isset($_SESSION['schoolError'])) {echo ($_SESSION['schoolError']);}
+
+    echo ("
+    <p class='left'>
+      Mit einem Zugang für Ihre Schule können Sie individuelle Gebärden hochladen. Somit haben Sie neben der Mediathek von <i>Zeigs mir mit Gebärden</i> noch Ihre eigenen, die Sie mit Ihren Kolleg*innen teilen können.
+      Um einen Zugang für Ihre Schule zu bekommen, wenden Sie sich bitte an lohmanntimo@gmail.com. Sie erhalten im Anschluss einen Zugangscode, den Sie mit Ihren Kolleg*innen teilen können.
+    </p>
+
 </div>
+
+  ");
+}
+};
+
+
+
+
+
+
+
+
+ ?>
+
+
+
 </div>
 
 

@@ -15,6 +15,7 @@ if(isset($_GET['login'])) {
         $_SESSION['userid'] = $user['id'];
         $_SESSION['schoolId'] = $user['schoolid'];
         $_SESSION['teamAdmin'] = $user['teamAdmin'];
+        $_SESSION['serial'] = $user['serial'];
         die(header("location: index.php"));
     } else {
         $errorMessage = "E-Mail oder Passwort war ungültig<br>";
