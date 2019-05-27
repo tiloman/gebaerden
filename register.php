@@ -45,7 +45,6 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
       $passwort2 = $_POST['passwort2'];
       $vorname = $_POST['vorname'];
       $nachname = $_POST['nachname'];
-      $serial = $_POST['serial'];
       $errorMessage = null;
 
 
@@ -74,25 +73,15 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
           }
       }
 
-      //Seriennummer überprüfen
-      if(!$error) {
-        $statement = $pdo->prepare("SELECT * FROM license WHERE serial = :serial");
-        $result = $statement->execute(array('serial' => $serial));
-        $user = $statement->fetch();
 
-        if($user == false) {
-            $errorMessage = 'Die eingegebene Seriennummer ist falsch <br> Bitte wenden Sie sich an: lohmanntimo@gmail.com.';
-            $error = true;
-        }
-      }
 
 
       //Keine Fehler, wir können den Nutzer registrieren
       if(!$error) {
           $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
 
-          $statement = $pdo->prepare("INSERT INTO user (email, passwort, vorname, nachname, serial) VALUES (:email, :passwort, :vorname, :nachname, :serial)");
-          $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname, 'serial' => $serial));
+          $statement = $pdo->prepare("INSERT INTO user (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
+          $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
 
           if($result) {
               echo "
@@ -112,7 +101,6 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
               $betreff = "Neue Registrierung";
               $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
               $text = "$vorname $nachname hat sich soeben auf Gebärden registriert. \n
-              Seriennummer: $serial \n
               Mail-Adresse: $email \n";
               $headers = "MIME-Version: 1.0\r\n";
               mail($empfaenger, $betreff, $text, $from, $headers);
@@ -144,13 +132,11 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
       <div class="flexbox_login">
         <form id="register_form" action="?register=1" method="post">
           <p class="login_text_head">Registrierung.</p>
-          <p class="login_text">Für die vollständige Registrierung ist eine gültige Seriennummer erforderlich. </p>
         <input required type="email" id="register_mail" name="email" placeholder="E-Mail"><br><br>
         <input required type="text" id="register_vorname" name="vorname" placeholder="Vorname"><br>
         <input required type="text" id="register_nachname" name="nachname" placeholder="Nachname"><br><br>
         <input required type="password" id="register_pw" name="passwort" placeholder="Passwort"><br>
         <input required type="password" id="register_pw" name="passwort2" placeholder="Passwort wiederholen"><br><br>
-        <input required type="text" id="register_serial" name="serial" placeholder="Seriennummer"><br>
 
         <input type="submit" name="submit" value="Registrieren" id="register_btn"/>
         </form>

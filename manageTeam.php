@@ -8,6 +8,7 @@ if(!isset($_SESSION['userid'])) {
 //Abfrage der Nutzer ID vom Login
 $userid = $_SESSION['userid'];
 $userSchoolID = $_SESSION['schoolId'];
+$teamAdmin = $_SESSION['teamAdmin'];
 
 $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 
@@ -156,46 +157,60 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
 
 <div class="welcome_flex_container">
-
-
 <div class='flexbox_user_info margin'>
 
 <?php
 
 
-
-  if(isset($_GET['admin'])){
-    echo "<div class='success'>Wurde aktualisiert</div>";
-  }
-  if(isset($_GET['decline'])){
-    echo "<div class='notification'>Der User wurde nicht hinzugefügt.</div>";
-  }
-
-  if(isset($_GET['confirmed'])){
-    echo "<div class='success'>Der User wurde hinzugefügt.</div>";
+if(isset($_GET['admin'])){
+  $newAdmin = $_GET['admin'];
+  $sql = "SELECT * FROM user WHERE id = $newAdmin";
+  foreach ($pdo->query($sql) as $row) {
+    $vorname = $row['vorname'];
+    $nachname = $row['nachname'];
   }
 
+  echo "<div class='success'>Die Adminrechte für $vorname $nachname wurden aktualisiert</div>";
+}
 
 
-if (isset($schoolName)) {
-$word = null;
-$erfolgreich = false;
+if(isset($_GET['decline'])){
+  $declinedUser = $_GET['decline'];
+  $sql = "SELECT * FROM user WHERE id = $declinedUser";
+  foreach ($pdo->query($sql) as $row) {
+    $vorname = $row['vorname'];
+    $nachname = $row['nachname'];
+  }
 
-  // include ('php/uploadVideo.php');
+  echo "<div class='notification'>$vorname $nachname wurde nicht hinzugefügt.</div>";
+}
+
+if(isset($_GET['confirmed'])){
+  $confirmedUser = $_GET['confirmed'];
+  $sql = "SELECT * FROM user WHERE id = $confirmedUser";
+  foreach ($pdo->query($sql) as $row) {
+    $vorname = $row['vorname'];
+    $nachname = $row['nachname'];
+  }
+  echo "<div class='success'>$vorname $nachname wurde deinem Team hinzugefügt.</div>";
+}
+
+
+
+if ($teamAdmin === 'Ja') {
+  $word = null;
+  $erfolgreich = false;
+
   if ($userSchoolID == $schoolID) {
 
     echo ("<h3><i class='fas fa-school'></i> ".$schoolName."</h3>");
-
-
-
 
     echo "<p class='left'style='margin-bottom: 0em'><b><i class='fas fa-users'></i> Mitglieder Ihres Teams: </b></p>
           <p class='left'>Wählen Sie hier aus wer Ihr Team verwalten darf. Team Administratoren können Mitgliedschaftsanfragen bearbeiten.</p><br>
           <table style='width:100%' class='left'>
             <th>Vorname</th>
             <th>Nachname</th>
-            <th class='right'>Admin</th>"
-            ;
+            <th class='right'>Admin</th>";
 
     $sql = "SELECT * FROM user WHERE schoolid = $schoolID ORDER BY nachname";
     foreach ($pdo->query($sql) as $row) {
@@ -218,7 +233,6 @@ $erfolgreich = false;
           } else {
             $adminAlt = 'Nein';}
 
-
       echo "
           <option value='$adminAlt'>$adminAlt</option>
           </select>
@@ -227,95 +241,75 @@ $erfolgreich = false;
         </form>
       </td>
       </tr>";
+      }
+      echo "</table>";
+
+    };
+
+  ?>
+  <script type="text/javascript">
+    function submitForm(action) {
+      var form = document.getElementById('confirmUser');
+      form.action = action;
+      form.submit();
     }
-    echo "</table>
-  ";
+  </script>
+  <?php
 
 
-};
-
-?>
-<script type="text/javascript">
-  function submitForm(action) {
-    var form = document.getElementById('confirmUser');
-    form.action = action;
-    form.submit();
-  }
-</script>
-
-<?php
-
-
-
-
-
-$sql = "SELECT * FROM user WHERE grantedAccess = $schoolID ORDER BY nachname";
-foreach ($pdo->query($sql) as $row) {
-  $vorname = $row['vorname'];
-  $nachname = $row['nachname'];
-  $grantedSchool = $row['grantedAccess'];
-  $grantedUserId = $row['id'];
   echo "<hr>
 
-  <p class='left'><b>Anfragen für die Aufnahme in Ihr Team:</b></p>
-    <table style='width:100%' class='left'>
-      <th>Vorname</th>
-      <th>Nachname</th>
-      <th style='text-align:right'>Beitritt</th>";
+  <p class='left'><b>Anfragen für die Aufnahme in Ihr Team:</b><br>";
 
-  echo "
-    <form method=post id='confirmUser'>
-    <tr>
-    <td>$vorname</td>
-    <td>$nachname</td>
-    <td style='text-align:right'>
-    <input type='text' class='hidden' value='$grantedUserId' name='grantedUser'>
-    <input type='text' class='hidden' value='$grantedSchool' name='access' id=requestedSchool>";
-    ?>
 
-    <button type='submit' onclick="submitForm('php/confirmUser.php')" class='custom_button' style='width: 40px; margin: 0;'><i class='fas fa-check'></i></button>
-    <button type='submit' onclick="submitForm('php/declineUser.php')" class='custom_button red' style='width: 40px; margin: 0;'><i class='fas fa-times'></i></button>
+  $sql = "SELECT * FROM user WHERE grantedAccess = $schoolID ORDER BY nachname";
+  foreach ($pdo->query($sql) as $row) {
+    $existingRequest = $row['grantedAccess'];
+  }
+  if ($existingRequest != 0) {
+    echo "
+      <table style='width:100%' class='left'>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th style='text-align:right'>Beitritt</th>";
 
-    <?php
-    echo"
-    </form>
-    </td>
-    </tr>";
+    foreach ($pdo->query($sql) as $row) {
+      $vorname = $row['vorname'];
+      $nachname = $row['nachname'];
+      $grantedSchool = $row['grantedAccess'];
+      $grantedUserId = $row['id'];
+      echo "
+        <form method=post id='confirmUser'>
+        <tr>
+        <td>$vorname</td>
+        <td>$nachname</td>
+        <td style='text-align:right'>
+        <input type='text' class='hidden' value='$grantedUserId' name='grantedUser'>
+        <input type='text' class='hidden' value='$grantedSchool' name='access' id=requestedSchool>";
+          ?>
+
+          <button type='submit' onclick="submitForm('php/confirmUser.php')" class='custom_button' style='width: 40px; margin: 0;'><i class='fas fa-check'></i></button>
+          <button type='submit' onclick="submitForm('php/declineUser.php')" class='custom_button red' style='width: 40px; margin: 0;'><i class='fas fa-times'></i></button>
+
+          <?php
+        echo"
+        </form>
+        </td>
+        </tr>";
+    }
+  echo "</table>";
+  } else {
+    echo "Derzeit gibt es keine Beitrittsanfragen.</p>";
+    }
+
+  echo "</div>";
+
 }
-echo "  </table>
-";
-
-?>
 
 
 
-
-
-
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
-
-
-}; //if wird an dieser Stelle geschlossen
-
-
-//Falls keine Schule angemeldet ist.
-if (!isset($schoolName)) {
+//Fehler, wenn man kein Teamadmin ist.
+if ($teamAdmin === 'Nein') {
 
   echo ("<h3><i class='fas fa-school'></i> Sie haben keine Berechtigung.</h3>
       <p class='left'>
@@ -327,18 +321,13 @@ if (!isset($schoolName)) {
  ?>
 
 
+<footer>
+<p>2019 | Timo Lohmann | <a href="about.php">Impressum</a></p>
+</footer>
 
-  <!-- <div id="login_header">Gebärden.</div> -->
-
-  <footer>
-  <p>2019 | Timo Lohmann | <a href="about.php">Impressum</a></p>
-  </footer>
 <script src="js/script.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
 
 
 

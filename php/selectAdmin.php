@@ -14,11 +14,11 @@ if(!isset($_SESSION['userid'])) {
   $statement->execute(array($admin));
 
 
+
   $sql = "SELECT * FROM user WHERE id = $changeUser";
   foreach ($pdo->query($sql) as $row) {
     $requestedUserMail = $row['mail'];
   }
-
 
   //Bestätigungsmail an Requester verschicken
   // $empfaenger = (string)$requestedUserMail;
@@ -27,8 +27,6 @@ if(!isset($_SESSION['userid'])) {
   // $text = "Sie wurden zur Schule hinzugefügt.";
   // $headers = "MIME-Version: 1.0\r\n";
   // mail($empfaenger, $betreff, $text, $from, $headers);
-
-
 
 
   header('Location: ../manageTeam.php?admin='.$changeUser);

@@ -22,6 +22,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
     <link rel="stylesheet" type="text/css" href="css/bootstrap_navbar_custom.css">
 
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="css/stylesheet_welcome.css">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <meta charset="UTF-8">
@@ -166,6 +168,48 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
   $videoMime = '_video.m4v';
 
 	// Elemente auflisten und in ul auflisten
+
+
+  $sql = "SELECT * FROM user WHERE id = $userid";
+  foreach ($pdo->query($sql) as $row) {
+    $userSerial = $row['serial'];
+  }
+
+  $sql = "SELECT * FROM license WHERE serial = $userSerial";
+  foreach ($pdo->query($sql) as $row) {
+    $licensedSerial = $row['serial'];
+    $licensedTo = $row['licensedto'];
+  }
+
+if ($licensedSerial !== $userSerial) {
+
+  echo" <div class='welcome_flex_container'>
+          <div class='flexbox_user_info'>
+
+        <h3><i class='fas fa-school'></i> Zeigs mir mit Gebärden</h3>
+            <p class='left'>
+              Sie haben noch keine Lizenz für die Bibliothek von Zeigs mir mit Gebärden eingegeben.
+            </p>
+          <br>
+            <form id='addSchool' action='php/addSerial.php' method='post'>
+              <input type='text' name='userLicense' class='custom_input' placeholder='Seriennummer' required></input>
+              <br>
+              <input type='submit' class='custom_button' value='Freischalten'></input>
+            </form>";
+
+            if($_GET['error'] == 1){
+              echo "<div class='notification'>Die eingegebene Seriennummer ist leider falsch.</div>";
+            }
+
+            echo"
+            </div>
+          </div>
+
+";
+
+
+} else {
+
 	echo '<ul id="wordsList">';
 	foreach ($dircontents as $file) {
 		$extension = pathinfo($file, PATHINFO_EXTENSION);
@@ -218,6 +262,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 		}
 	}
 	echo '</ul>';
+  }
 ?>
 
 

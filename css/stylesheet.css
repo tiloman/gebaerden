@@ -16,6 +16,7 @@ a {
   text-decoration: none;
 }
 
+
 .a_white{
   color: white;
   float: center;
@@ -40,6 +41,8 @@ a {
   font-size: 1em;
   font-weight: 200;
 }
+
+
 
 .active, .collapsible-header:hover {
   background-color: #10464c;

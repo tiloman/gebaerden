@@ -22,6 +22,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
     <link rel="stylesheet" type="text/css" href="css/bootstrap_navbar_custom.css">
 
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="css/stylesheet_welcome.css">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <meta charset="UTF-8">
@@ -159,6 +161,21 @@ $metacomCase = null;
 $videoexists = null;
 
 
+$statement = $pdo->prepare("SELECT * FROM school_$userSchoolID");
+$statement->execute(array('Words'));
+$anzahl_words = $statement->rowCount();
+if ($anzahl_words < 1) {
+  echo "
+        <div class='welcome_flex_container'>
+          <div class='flexbox_user_info'>
+            <p>Es wurden noch keine Gebärden hochgeladen. Lade jetzt die erste Gebärde jetzt hoch!
+              <hr>
+            <a href='manageContent'><h4>
+            <i class='far fa-file-image'></i>Gebärde hochladen</h4></a>
+
+          </div>
+        </div>";
+}
 
 
   echo '<ul id="wordsList">';
@@ -226,13 +243,12 @@ foreach ($pdo->query($sql) as $row) {
                     </div>";
                 }};
 
-
             echo "</div></li>";
 
-}
+  }
 
 ?>
-
+</ul>
 
 <script src="js/custom_library.js"></script>
 
