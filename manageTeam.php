@@ -260,7 +260,7 @@ if ($teamAdmin === 'Ja') {
   echo "<hr>
 
   <p class='left'><b>Anfragen für die Aufnahme in Ihr Team:</b><br>";
-
+$existingRequest = 0;
 
   $sql = "SELECT * FROM user WHERE grantedAccess = $schoolID ORDER BY nachname";
   foreach ($pdo->query($sql) as $row) {
