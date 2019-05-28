@@ -16,6 +16,17 @@ if(!isset($_SESSION['userid'])) {
   $statement = $pdo->prepare("UPDATE user SET grantedAccess = ? WHERE id = $grantedUser");
   $statement->execute(array('0'));
 
+  $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
+  foreach ($pdo->query($sql) as $row) {
+    $license = $row['zeigsmirmitgebaerden'];
+  }
+
+    if (isset($license)) {
+      $statement = $pdo->prepare("UPDATE user SET serial = ? WHERE id = $grantedUser");
+      $statement->execute(array($license));
+    }
+
+
   $sql = "SELECT * FROM user WHERE id = $grantedUser";
   foreach ($pdo->query($sql) as $row) {
     $requestedUserMail = $row['email'];

@@ -12,6 +12,7 @@ if(!isset($_SESSION['userid'])) {
     header('location:../newSchool.php');
   }
 
+
   $statement = $pdo->prepare("UPDATE user SET grantedAccess = ? WHERE id = $userid");
   $statement->execute(array($userSchoolID));
 
