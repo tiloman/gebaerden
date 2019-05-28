@@ -38,7 +38,7 @@ if ($userSerial != 0) {
               <input type='submit' class='custom_button' value='Freischalten'></input>
             </form>");
 
-         if($_GET['error'] == 1){
+         if (isset($_GET['error']){
           echo "<div class='notification'>Die eingegebene Seriennummer ist leider falsch.</div>";
         }
   }
