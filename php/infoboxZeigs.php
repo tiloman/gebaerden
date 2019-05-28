@@ -1,10 +1,21 @@
 <?php
 
+$sql = "SELECT * FROM user WHERE id = $userid";
+foreach ($pdo->query($sql) as $row) {
+
+   $userSerial = $row['serial'];
+
+ }
+
+
+
+
 if ($userSerial != 0) {
    $sql = "SELECT * FROM license WHERE serial = $userSerial";
    foreach ($pdo->query($sql) as $row) {
      $licensedSerial = $row['serial'];
      $licensedTo = $row['licensedto'];
+
     }
   }
 
