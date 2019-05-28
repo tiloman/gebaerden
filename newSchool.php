@@ -73,7 +73,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
       <textarea type='text' class='custom_input_textbox' placeholder='Beschreibung Ihrer Schule' rows='4' required name='description'></textarea><br><br>
       <input type='checkbox' value='' name='license'> Hiermit fordere ich Informationsmaterial zu Schullizenzen für Zeigs mir mit Gebärden an. Wenn keine Lizenz vorhanden ist, entstehen Ihnen hierfür Kosten. Ein Angebot folgt per Mail.</input><br><br>
 
-      <input type='text' class='hidden' name='user' value='$userid'></input>
+      <input type='text' class='hidden' name='user' value=$userid></input>
 
       <input type='submit' class='custom_button' value='Anfragen'></input>
     </form>
