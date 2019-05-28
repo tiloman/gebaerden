@@ -44,7 +44,7 @@ if ($requestedSchool != 0){
       <form id='addSchool' action='php/addSchool.php' method='post'>
 
       <select name='schoolId' class='custom_input browser-default custom-select' required>;
-      <optgroup label='Eingetragene Schulen'></optgroup>
+      <optgroup label='Eingetragene Schulen'>
 
     ");
 
@@ -66,10 +66,10 @@ if ($requestedSchool != 0){
 
 
       echo "
-
-  <optgroup label='Neu'>
-  <option value='new' selected>Neue Schule anmelden</option>
-  </optgroup>
+      </optgroup>
+      <optgroup label='Neu'>
+        <option value='new' selected>Neue Schule anmelden</option>
+      </optgroup>
       </select>
         <br>
         <input type='submit' class='custom_button' value='Anfrage stellen'></input>
