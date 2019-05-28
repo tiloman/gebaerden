@@ -58,7 +58,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
   <div class='flexbox_user_info'>
     <h3>Willkommen!</h3>
     <p class='left'>Um zu beginnen, melden Sie sich bitte bei einer teilnehmenden Schule an. Wählen Sie Ihre Schule dafür aus der unten stehenden Liste aus. Falls Ihre Schule dort nicht gelistet ist, können Sie auch einen Zugang beantragen. <br>
-    Einige Schulen haben bereits eine Schullizenz für Zeigs mir mit Gebärden erworben. Das heisst bei erfolgreicher Anmeldung ist müssen Sie nichts weiter unternehmen um die Mediathek freizuschalten. Falls Ihre Schule keine Lizenz hat, können Sie die Seriennummer unten eingeben. </p>
+    Einige Schulen haben bereits eine Schullizenz für Zeigs mir mit Gebärden erworben. Das heisst bei erfolgreicher Anmeldung ist müssen Sie nichts weiter unternehmen um die Mediathek freizuschalten. Falls Ihre Schule keine Lizenz hat, können Sie Ihre selbst erworbene Seriennummer unten eingeben. </p>
   </div>
 
 
