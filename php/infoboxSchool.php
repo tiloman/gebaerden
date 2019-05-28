@@ -52,7 +52,7 @@ if ($requestedSchool != 0){
         $sql = "SELECT * FROM school ORDER BY school_name";
         foreach ($pdo->query($sql) as $row) {
           $schoolLicense = $row['zeigsmirmitgebaerden'];
-          if (isset($schoolLicense)){
+          if ($schoolLicense != 0){
             echo "<option value='".$row['school_id']."'>";
             echo $row['school_name']." (Schullizenz)";
             echo "</option>";
