@@ -2,12 +2,15 @@
 session_start();
 if(!isset($_SESSION['userid'])) {
   die(header("location: ../login.php"));
-;
+
 }
   $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
   $userid = $_SESSION['userid'];
 
   $userSchoolID = $_POST['schoolId'];
+  if ($userSchoolID == 'new'){
+    header('location:../newSchool.php');
+  }
 
   $statement = $pdo->prepare("UPDATE user SET grantedAccess = ? WHERE id = $userid");
   $statement->execute(array($userSchoolID));
@@ -27,7 +30,7 @@ Zur Teamverwaltung: tiloman.mooo.com/gebaerden/manageTeam.php";
     mail($empfaenger, $betreff, $text, $from);
   }
 
-echo "<script>window.location.assign('../manageContent.php')</script>";
+echo "<script>window.location.assign('../profile.php')</script>";
 
 
 ?>

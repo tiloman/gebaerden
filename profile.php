@@ -53,293 +53,96 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 <body style="background-image: linear-gradient(#6d918e, #10464c); text-align: center;">
 
 
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
-    <a class="navbar-brand" href="index.php">
-        <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
-      </a>
+  <?php include('php/navbar.php'); ?>
 
-      <form class="input-group-custom" action="index.php" method="get">
-            <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
-              <div class="input-group-append">
-                <button class="btn btn-success" type="submit"><i class="fas fa-search" title='Suche'></i></button>
-              </div>
-            </div>
-      </form>
-
-
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fas fa-bars navbar_sandwich"></i>
-      </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-      <ul class="navbar-nav ml-auto" >
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-american-sign-language-interpreting"></i> Mediathek
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <?php
-            if ($serial != 0) {
-              echo "<a class='dropdown-item' href='index.php'>Zeigs mir mit Gebärden</a>";
-            }
-            ?>
-
-
-            <?php
-            $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
-            foreach ($pdo->query($sql) as $row) {
-              $schoolID = $row['school_id'];
-              $schoolName = $row['school_name'];
-            }
-            if (isset($schoolName)) {
-              if ($userSchoolID == $schoolID) {
-                echo "
-
-                <a class='dropdown-item' href='/gebaerden/custom_libraryID.php'>".$schoolName."</a>";
-              }
-            }
-             ?>
-
-
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-cog"></i> Einstellungen
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class='dropdown-item' href='/gebaerden/profile.php'>Profil</a>
-            <a class='dropdown-item' href='/gebaerden/pdfSettings.php'>PDF Einstellungen</a>
-
-
-            <?php
-            $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
-            foreach ($pdo->query($sql) as $row) {
-              $schoolID = $row['school_id'];
-              $schoolName = $row['school_name'];
-            }
-            if (isset($schoolName)) {
-              if ($userSchoolID == $schoolID) {
-                echo "
-                <a class='dropdown-item' href='/gebaerden/manageContent.php'>Gebärden verwalten</a>";
-
-              }
-            }
-          
-
-            if ($_SESSION['teamAdmin'] == "Ja") {
-                echo "
-                <a class='dropdown-item' href='/gebaerden/manageTeam.php'>Team verwalten</a>";
-            };
-
-            ?>
-
-
-          </div>
-        </li>
-
-
-        <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
-        </li>
-
-
-      </ul>
-
-      <div>
-
-    </div>
-  </nav>
 
 <div class="welcome_flex_container">
+  <div class="flexbox_user_info margin">
+      <?php
 
-<div class="flexbox_user_info margin">
-<?php
+      $sql = "SELECT * FROM user WHERE id = $userid";
+      foreach ($pdo->query($sql) as $row) {
+         echo "<p><h3><i class='fas fa-user'></i> Ihre Daten</h3></p>";
+         echo "Name: <b>" . $row['vorname']." ".$row['nachname']."</b><br />";
+         echo "E-Mail: <b>".$row['email']."</b><br />";
 
-$sql = "SELECT * FROM user WHERE id = $userid";
-foreach ($pdo->query($sql) as $row) {
-   echo "<p><h3>Ihre Daten</h3></p>";
-   echo "Name: <b>" . $row['vorname']." ".$row['nachname']."</b><br />";
-   echo "E-Mail: <b>".$row['email']."</b><br /><br />";
+         $userSerial = $row['serial'];
+         $userSchoolID = $row['schoolid'];
+       }
+      ?>
 
-   $userSerial = $row['serial'];
-   $userSchoolID = $row['schoolid'];
-   $serial = null;
-
-if ($userSerial != 0) {
-   $sql = "SELECT * FROM license WHERE serial = $userSerial";
-   foreach ($pdo->query($sql) as $row) {
-     $licensedSerial = $row['serial'];
-     $licensedTo = $row['licensedto'];
-}}
-   $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
-   foreach ($pdo->query($sql) as $row) {
-     $schoolID = $row['school_id'];
-     $schoolName = $row['school_name'];
-     echo "Eingetragene Schule: <br><b>".$schoolName."</b>";
-     ?>
-     <form action='php/quitSchool.php'>
-       <button type='submit' class='custom_button red' onclick="return confirm('Sind Sie sicher?')"><i class='fas fa-sign-out-alt'></i> Schule verlassen</button>
-     </form>
-<?php
-     Echo "<br><br>";
-}
-
-?>
-
-<br><br>
- <button id="changeProfileBtn" class="custom_button">Daten aktualisieren</button>
+      <script>
+      //Change Profile Data einblenden
 
 
-<!-- Update der User Daten; Wird in "user" Tabelle gespeichert -->
+      function showChangeProfileForm(){
 
-<script>
-var changeProfileBtn = document.getElementById("changeProfileBtn");
-    changeProfileBtn.addEventListener("click", showChangeProfileForm);
-function showChangeProfileForm(){
+        var changeProfileBox = document.getElementById("changeProfile");
+        changeProfileBox.classList.toggle("hidden");
 
-  var changeProfileBox = document.getElementById("changeProfile");
-  changeProfileBox.classList.toggle("hidden");
+        if (changeProfileBox.classList.contains("hidden")) {
+          changeProfileBox.style.maxHeight = "200px;"
+        } else {
+          changeProfileBox.style.maxHeight= "500px;"
 
-  if (changeProfileBox.classList.contains("hidden")) {
-    changeProfileBox.style.maxHeight = "200px;"
-  } else {
-    changeProfileBox.style.maxHeight= "500px;"
-
-  }
-
-}
-
-
-
-</script>
-
-
-<div class="hidden" id="changeProfile">
-<br>
-
-
-<?php
-$sql = "SELECT * FROM user WHERE id = $userid";
-foreach ($pdo->query($sql) as $row) {
-   echo "<form action='php/changeUserData.php' method='post'>
-   Vorname: <br>
-   <input type='text' class='custom_input' name='vorname' id='vorname' value=". $row['vorname']."><br><br>
-   Nachname: <br>
-   <input type='text' class='custom_input' name='nachname' id='nachname' value=". $row['nachname']."><br><br>
-   E-Mail: <br>
-   <input type='mail' class='custom_input' name='email' id='email' value=". $row['email']."><br><br>
-   <input  type='submit' class='custom_button' value='Update'>
-   </form>";
-}
- ?>
-
-
-
-
-</div>
-
-
-<?php
-
-
-if (isset($licensedSerial)) {
-  if ($userSerial == $licensedSerial) {
-    echo ("Die Seriennummer ist lizensiert für: <br>");
-    echo ("<b>".$licensedTo."</b>");
-  }
-}else {
-  echo ("
-        <h3><i class='fas fa-american-sign-language-interpreting'></i> Zeigs mir mit Gebärden</h3>
-            <p class='left'>
-              Sie haben noch keine Lizenz für die Bibliothek von Zeigs mir mit Gebärden eingegeben.
-            </p>
-          <br>
-            <form id='addSchool' action='php/addSerial.php' method='post'>
-              <input type='text' name='userLicense' class='custom_input' placeholder='Seriennummer' required></input>
-              <br>
-              <input type='submit' class='custom_button' value='Freischalten'></input>
-            </form>");
-
-             if($_GET['error'] == 1){
-              echo "<div class='notification'>Die eingegebene Seriennummer ist leider falsch.</div>";
-            }
-}
-
-}
-
-
-//Falls keine Schule angemeldet ist.
-if (!isset($schoolName)) {
-  $sql = "SELECT * FROM user WHERE id = $userid";
-  foreach ($pdo->query($sql) as $row) {
-    $requestedSchool = $row['grantedAccess'];
-  }
-
-
-if ($requestedSchool != 0){
-  echo ("<h3><i class='fas fa-school'></i> Anfrage wurde gesendet.</h3>
-      <p class='left'>
-        Ihre Anfrage wird nun von einem Team Administrator bearbeitet. Sie erhalten eine Mail, sobald Sie freigegeben wurden.
-      </p>");
-} else {
-
-  echo ("<h3><i class='fas fa-school'></i> Sie sind bei keiner Schule angemeldet.</h3>
-      <p class='left'>
-        Wenn Ihre Schule bereits einen Zugang hat, wählen Sie sie bitte hier aus.
-      </p>
-    <br>
-      <form id='addSchool' action='php/addSchool.php' method='post'>
-      Teilnehmende Schulen:<br>
-      <select name='schoolId' class='custom_input browser-default custom-select' required>;
-      <option value=''>Bitte auswählen ...</option>");
-
-
-        $sql = "SELECT * FROM school ORDER BY school_name";
-        foreach ($pdo->query($sql) as $row) {
-          echo "<option value='".$row['school_id']."'>";
-          echo $row['school_name'];
-          echo "</option>";
         }
 
+      }
+      </script>
 
-      echo "
-      </select>
-        <br>
-        <input type='submit' class='custom_button' value='Anfrage stellen'></input>
-      </form>";
 
-    if(isset($_SESSION['schoolError'])) {echo ($_SESSION['schoolError']);}
+       <button id="changeProfileBtn" class="custom_button" onclick="showChangeProfileForm()">Daten aktualisieren</button>
 
-    echo ("
-    <p class='left'>
-      Mit einem Zugang für Ihre Schule können Sie individuelle Gebärden hochladen. Somit haben Sie neben der Mediathek von <i>Zeigs mir mit Gebärden</i> noch Ihre eigenen, die Sie mit Ihren Kolleg*innen teilen können.
-      Um einen Zugang für Ihre Schule zu bekommen, wenden Sie sich bitte an lohmanntimo@gmail.com. Sie erhalten im Anschluss einen Zugangscode, den Sie mit Ihren Kolleg*innen teilen können.
-    </p>
 
-</div>
-
-  ");
-}
-};
+      <div class="hidden" id="changeProfile">
+      <br>
 
 
 
 
+      <?php
+      $sql = "SELECT * FROM user WHERE id = $userid";
+      foreach ($pdo->query($sql) as $row) {
+         echo "<form action='php/changeUserData.php' method='post'>
+         Vorname: <br>
+         <input type='text' class='custom_input' name='vorname' id='vorname' value=". $row['vorname']."><br><br>
+         Nachname: <br>
+         <input type='text' class='custom_input' name='nachname' id='nachname' value=". $row['nachname']."><br><br>
+         E-Mail: <br>
+         <input type='mail' class='custom_input' name='email' id='email' value=". $row['email']."><br><br>
+         <input  type='submit' class='custom_button' value='Update'>
+         </form>";
+      }
+       ?>
+
+      </div>
+
+
+
+    </div>
 
 
 
 
- ?>
+
+<?php
+//--------------------------Alles was mit Schule zutun hat... -----------------------------
+
+echo"<div class='flexbox_user_info margin'>";
+
+include('php/infoboxSchool.php');
+
+echo"</div>";
 
 
+//-------------------Zeigs mir mit Gebärden -------------
+echo "<div class='flexbox_user_info margin'>";
 
+
+include('php/infoboxZeigs.php');
+
+
+?>
 </div>
 
 

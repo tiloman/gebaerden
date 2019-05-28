@@ -57,66 +57,34 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
 
 <div class="welcome_flex_container">
+  <div class="flexbox_user_info margin">
+    <h3>Neue Schule anmelden</h3>
+<?php if (isset($_GET['mailsent'])){
+  echo "<div class='success'>Ihre Anfrage wurde gesendet.</div>";
+} else {
+  ?>
 
+    <p class='left'>Senden Sie hier eine Anfrage zur Aufnahme Ihrer Schule</p>
+    <br>
+    <form action='php/sendSchoolRequestMail.php' method='post'>
+      <input type='text' class='custom_input' placeholder='Schulname' required name='schoolname'></input>
+      <input type='text' class='custom_input' placeholder='Ort' required name='ort'></input><br>
+      <input type='number' class='custom_input' placeholder='PLZ' required name='PLZ'></input>
+      <textarea type='text' class='custom_input_textbox' placeholder='Beschreibung Ihrer Schule' rows='4' required name='description'></textarea><br><br>
+      <input type='checkbox' value='' name='license'> Hiermit fordere ich Informationsmaterial zu Schullizenzen für Zeigs mir mit Gebärden an. Wenn keine Lizenz vorhanden ist, entstehen Ihnen hierfür Kosten. Ein Angebot folgt per Mail.</input><br><br>
 
+      <input type='text' class='hidden' name='user' value='$userid'></input>
 
-
-
-
-<div class="flexbox_user_info margin">
-<h3>PDF Einstellungen</h3>
-Speichern Sie hier Ihre individuellen Einstellungen für den PDF Export.
-<br><br>
-
-
-
-
-<!-- Update des Layouts; Wird in "user" Tabelle gespeichert -->
-<?php
-$sql = "SELECT * FROM user WHERE id = $userid";
-foreach ($pdo->query($sql) as $row) {
-   echo "<form id='changeLayout' action='php/changeLayout.php' method='post'>
-   PDF Größe:<br>
-     <select name='pdf_size' class='custom_input browser-default custom-select'>
-       <option style='font-weight: bold'>" . $row['pdf_size']."</option>
-       <option value='A4'>A4 (Standard)</option>
-       <option value='A5'>A5</option>
-     <select>
-
-   <br><br>
-
-   Schriftart:<br>
-     <select name='pdf_font' class='custom_input browser-default custom-select'>
-       <option style='font-weight: bold'>".$row['pdf_font']."</option>
-       <option value='Helvetica'>Helvetica (Standard)</option>
-       <option value='freemono'>Freemono</option>
-       <option value='dejavusans'>Deja Vu Sans</option>
-     <select>
-
-     <br><br>
-
-     Format:<br>
-       <select name='pdf_format' class='custom_input browser-default custom-select'>
-         <option style='font-weight: bold'>".$row['pdf_format']."</option>
-         <option value='L'>Landscape (Standard)</option>
-         <option value='H'>Hochformat</option>
-       <select>
-
-     <br /><br />";
-   echo "<input type='submit' class='custom_button' value='Layout aktualisieren'><hr>";
-
-}
- ?>
-
- <br><br>
- <img src="/gebaerden/img/pdf_preview.jpg" class="pdf_preview" style="width: 50%; border: 1px solid">
-
+      <input type='submit' class='custom_button' value='Anfragen'></input>
+    </form>
+  </div>
 </div>
 
+<?php } ?>
 
 
 
-</div>
+
 
   <!-- <div id="login_header">Gebärden.</div> -->
 

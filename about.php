@@ -30,47 +30,7 @@
 
 <body style="background-image: linear-gradient(#6d918e, #10464c); text-align: center;">
 
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
-
-    <a class="navbar-brand" href="#">
-        <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
-      </a>
-
-      <form class="input-group-custom" action="index.php" method="get">
-            <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
-              <div class="input-group-append">
-                <button class="btn btn-success" type="submit"><i class="fas fa-search" title='Suche'></i></button>
-              </div>
-            </div>
-      </form>
-
-
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars navbar_sandwich"></i>
-      </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-      <ul class="navbar-nav ml-auto" >
-
-
-        <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
-        </li>
-
-
-        <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
-        </li>
-
-
-      </ul>
-
-      <div>
-
-    </div>
-  </nav>
+    <?php include('php/navbar.php'); ?>
 
 <div class="welcome_flex_container">
       <div class="flexbox_user_info">
