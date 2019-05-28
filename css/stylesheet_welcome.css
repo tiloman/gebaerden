@@ -337,7 +337,7 @@ padding: 10px;
   width:100%;
   border-radius: 0;
 }
-.custom_input {
+.custom_input, .custom_input_textbox {
   width: 90%;
 }
 
