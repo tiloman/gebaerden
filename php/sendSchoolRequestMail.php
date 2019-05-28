@@ -6,7 +6,7 @@ $PLZ = $_POST['PLZ'];
 $schoolname = $_POST['schoolname'];
 $user = $_POST['user'];
 $license = $_POST['license'];
-
+$adress = $_POST['adress'];
 
 
 $empfaenger = "lohmanntimo@gmail.com";
@@ -15,7 +15,7 @@ $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
 $text = "Es gibt eine neue Anfrage für die Aufnahme einer Schule.\n
 User: $user
 Name der Schule: $schoolname
-Adresse: $PLZ $ort
+Adresse: $adress \n $PLZ $ort
 Beschreibung: $description
 Lizenzanfrage: $license
 ";

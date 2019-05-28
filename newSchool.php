@@ -68,6 +68,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
     <br>
     <form action='php/sendSchoolRequestMail.php' method='post'>
       <input type='text' class='custom_input' placeholder='Schulname' required name='schoolname'></input>
+      <input type='text' class='custom_input' placeholder='Straße und Hausnummer' required name='adress'></input><br>
       <input type='text' class='custom_input' placeholder='Ort' required name='ort'></input><br>
       <input type='number' class='custom_input' placeholder='PLZ' required name='PLZ'></input>
       <textarea type='text' class='custom_input_textbox' placeholder='Beschreibung Ihrer Schule' rows='4' required name='description'></textarea><br><br>
