@@ -109,7 +109,7 @@ foreach ($pdo->query($sql) as $row) {
  ?>
 
  <br><br>
- <img src="/gebaerden/img/pdf_preview.jpg" class="pdf_preview" style="width: 50%; border: 1px solid">
+ <img src="img/pdf_preview.jpg" class="pdf_preview" style="width: 50%; border: 1px solid">
 
 </div>
 

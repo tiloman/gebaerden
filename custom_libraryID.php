@@ -99,7 +99,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
               if ($userSchoolID == $schoolID) {
                 echo "
 
-                <a class='dropdown-item' href='/gebaerden/custom_libraryID.php'>".$schoolName."</a>";
+                <a class='dropdown-item' href='custom_libraryID.php'>".$schoolName."</a>";
               }
             }
              ?>
@@ -114,8 +114,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
           </a>
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class='dropdown-item' href='/gebaerden/profile.php'>Profil</a>
-            <a class='dropdown-item' href='/gebaerden/pdfSettings.php'>PDF Einstellungen</a>
+            <a class='dropdown-item' href='profile.php'>Profil</a>
+            <a class='dropdown-item' href='pdfSettings.php'>PDF Einstellungen</a>
 
 
             <?php
@@ -127,14 +127,14 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
             if (isset($schoolName)) {
               if ($userSchoolID == $schoolID) {
                 echo "
-                <a class='dropdown-item' href='/gebaerden/manageContent.php'>Gebärden verwalten</a>";
+                <a class='dropdown-item' href='manageContent.php'>Gebärden verwalten</a>";
 
               }
             }
 
             if ($_SESSION['teamAdmin'] == "Ja") {
                 echo "
-                <a class='dropdown-item' href='/gebaerden/manageTeam.php'>Team verwalten</a>";
+                <a class='dropdown-item' href='manageTeam.php'>Team verwalten</a>";
             };
             ?>
 
@@ -144,7 +144,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
 
         <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
+          <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
         </li>
 
 

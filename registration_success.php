@@ -56,12 +56,12 @@
 
 
         <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/profile.php"><i class="fas fa-user"></i> Home</a>
+          <a class="nav-link" href="profile.php"><i class="fas fa-user"></i> Home</a>
         </li>
 
 
         <li class="nav-item">
-          <a class="nav-link" href="/gebaerden/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
+          <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
         </li>
 
 
@@ -74,7 +74,7 @@
 
 <div class="welcome_flex_container">
       <div class="flexbox_user_info">
-    <img src="/gebaerden/img/htmljscss.png" width="80%"></img>
+    <img src="img/htmljscss.png" width="80%"></img>
     <p>Made with HTML5 | JavaScript | CSS | JQuery | PHP</p>
     </div>
 <br><br>

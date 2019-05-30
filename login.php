@@ -81,7 +81,7 @@ if(isset($_GET['login'])) {
         }
         ?>
       </div>
-      <a href="/gebaerden/register.php">Noch keinen Account? Hier registrieren!</a>
+      <a href="register.php">Noch keinen Account? Hier registrieren!</a>
     </div>
 
 
@@ -91,7 +91,7 @@ if(isset($_GET['login'])) {
 
   <div class="login_flex_container bg_white normalDirection">
       <div class="flexbox">
-        <img src="/gebaerden/img/chart.png">
+        <img src="img/chart.png">
       </div>
 
     <div class="flexbox">
@@ -137,8 +137,8 @@ if(isset($_GET['login'])) {
 
   <div class="flexbox">
     <video autoplay muted loop playsinline preload="auto">
-      <source src="/gebaerden/img/gebaerden_iphone_video.mp4" type="video/mp4">
-      <source src="/gebaerden/img/gebaerden_iphone_video.mov" type="video/mp4">
+      <source src="img/gebaerden_iphone_video.mp4" type="video/mp4">
+      <source src="img/gebaerden_iphone_video.mov" type="video/mp4">
     </video>
   </div>
 
@@ -147,7 +147,7 @@ if(isset($_GET['login'])) {
 
 <div class="login_flex_container bg_white normalDirection">
   <div class="flexbox">
-    <img src="/gebaerden/img/responsive_gebaerden.png">
+    <img src="img/responsive_gebaerden.png">
   </div>
 
   <div class="flexbox ">
@@ -168,7 +168,7 @@ if(isset($_GET['login'])) {
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
   </div>
   <div class="flexbox">
-    <img src="/gebaerden/img/pdf_preview.jpg" class="img_shadow">
+    <img src="img/pdf_preview.jpg" class="img_shadow">
   </div>
 
 </div>
