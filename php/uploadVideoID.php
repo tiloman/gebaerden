@@ -36,7 +36,7 @@ if (isset($_FILES['video']['name'])) {
 
 //Überprüfung der Dateigröße
 if(!$video_error) {
-  $max_size = 7* 1000*1000; //7MB
+  $max_size = 15* 1000*1000; //7MB
   if($_FILES['video']['size'] > $max_size) {
    $uploadNotice = "Bitte keine Dateien größer 7MB hochladen";
    $video_error = true;
@@ -58,8 +58,13 @@ if(!$video_error) {
    } while(file_exists($new_path_video));
   }
 
+  //konvertiere die Datei mit ffmpeg
+  $tmp_file = ($_FILES['video']['tmp_name'];
+  echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $tmp_file $new_path_video >/dev/null 2>/dev/null &");
+
+
   //Alles okay, verschiebe Datei an neuen Pfad
-  move_uploaded_file($_FILES['video']['tmp_name'], $new_path_video);
+  //move_uploaded_file($_FILES['video']['tmp_name'], $new_path_video);
 
   // Eintragen in die Datenbank
   $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
@@ -74,7 +79,7 @@ if(!$video_error) {
 
 
   //Video Thumbnail erstellen mit ffmpeg
-  echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path_video -ss 00:00:01.000 -vframes 1 -vf scale=500:-1 $video_upload_folder$word.thumb.jpg >/dev/null 2>/dev/null &");
+  echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path_video -ss 00:00:00.010 -vframes 1 -vf scale=500:-1 $video_upload_folder$word-thumb.jpg >/dev/null 2>/dev/null &");
 
 
   // die(header("location: ../profile.php"));
