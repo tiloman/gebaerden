@@ -31,7 +31,7 @@ for (i = 0; i < coll.length; i++) {
           imgID = c[i].innerHTML; //IMG ID auslesen
         }
         if (c[i].classList.contains("img")){
-          c[i].innerHTML = "<a href='php/imgOrig.php?img="+this.innerText+"&path="+imgPath+"&mime="+imgMime+" target='_blank'><img class='img_gebaerden' src='php/imgDb.php?imgID="+imgID+"'></a>";
+          c[i].innerHTML = "<a href='php/imgOrig.php?imgID="+imgID+" target='_blank'><img class='img_gebaerden' src='php/imgDb.php?imgID="+imgID+"'></a>";
         }
         if (c[i].classList.contains("metacomLC") && viewMetacom === true){
             c[i].innerHTML = "<img class='img_metacom' src='php/metacom.php?img="+selectedWord_lc+"&path="+metacomPath+"'>";
