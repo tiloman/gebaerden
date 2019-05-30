@@ -16,6 +16,11 @@ if(isset($_GET['login'])) {
         $_SESSION['schoolId'] = $user['schoolid'];
         $_SESSION['teamAdmin'] = $user['teamAdmin'];
         $_SESSION['serial'] = $user['serial'];
+        $logins = $user['logins'];
+
+        $statement = $pdo->prepare("UPDATE user SET logins = ? WHERE id = $userid");
+        $statement->execute(array($logins++));
+
         die(header("location: index.php"));
     } else {
         $errorMessage = "E-Mail oder Passwort war ungültig<br>";

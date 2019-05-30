@@ -21,6 +21,15 @@ if (isset($_POST['deleteImgID'])) {
      if (isset($videoFile)) {
        unlink($path.$videoFile.".".$videoMime);
      }
+
+     if (file_exists($path.$videoFile."-thumb.jpg")) {
+      unlink($path.$videoFile."-thumb.jpg");
+    }
+
+    if (file_exists($path.$videoFile."-small.jpg")) {
+      unlink($path.$videoFile."-small.jpg");
+    }
+    
   }
 
 
