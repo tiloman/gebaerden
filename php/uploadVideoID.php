@@ -59,7 +59,7 @@ if(!$video_error) {
   }
 
   //konvertiere die Datei mit ffmpeg
-  $tmp_file = ($_FILES['video']['tmp_name'];
+  $tmp_file = ($_FILES['video']['tmp_name']);
   echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $tmp_file $new_path_video >/dev/null 2>/dev/null &");
 
 
