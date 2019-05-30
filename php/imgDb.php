@@ -22,7 +22,11 @@ foreach ($pdo->query($sql) as $row) {
    $path = $row['path'];
 }
 
-    readfile("../".$path.$imgFile.".".$imgMime);
+    if(file_exists("../".$path.$imgFile"-small.jpg")){
+      readfile("../".$path.$imgFile."-small.jpg");
+    }else {
+      readfile("../".$path.$imgFile.".".$imgMime);
+    }
 } else {
     readfile("../img/forbidden.jpg");
 }
