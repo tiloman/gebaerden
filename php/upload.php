@@ -77,7 +77,7 @@ if(!$error) {
   $result = $statement->execute(array('ImgName' => $word, 'UploadedBy' => $userid, 'ImgMime' => $extension, 'ImgFile' => $word, 'path' => $upload_folder));
 
   //Kleines Vorschaubild erstellen mit ffmpeg
-  echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path -vf scale=500:-1 $upload_folder$word-small.jpg >/dev/null 2>/dev/null &");
+  echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path -qscale:v 4 -vf scale=500:-1 $upload_folder$word-small.jpg >/dev/null 2>/dev/null &");
 
 
 
