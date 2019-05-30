@@ -28,7 +28,7 @@ if (isset($_FILES['video']['name'])) {
   //Überprüfung der Dateiendung
   $video_allowed_extensions = array('mp4', 'm4v', 'mov');
   if(!in_array($video_extension, $video_allowed_extensions)) {
-   $uploadNotice = "Es dürfen nur Dateien vom Typ MP4 hochgeladen werden.";
+   $uploadNotice = "Es dürfen nur Dateien vom Typ MP4, MOV oder M4V hochgeladen werden.";
    $video_error = true;
    // die("Ungültige Dateiendung. Nur png, jpg, jpeg und gif-Dateien sind erlaubt");
 
@@ -38,7 +38,7 @@ if (isset($_FILES['video']['name'])) {
 if(!$video_error) {
   $max_size = 15* 1000*1000; //7MB
   if($_FILES['video']['size'] > $max_size) {
-   $uploadNotice = "Bitte keine Dateien größer 7MB hochladen";
+   $uploadNotice = "Bitte keine Dateien größer 15MB hochladen";
    $video_error = true;
   }
 }
@@ -61,30 +61,36 @@ if(!$video_error) {
 
 
   //Alles okay, verschiebe Datei an neuen Pfad
-  move_uploaded_file($_FILES['video']['tmp_name'], $new_path_video);
+  if (move_uploaded_file($_FILES['video']['tmp_name'], $new_path_video)) {
+    // Eintragen in die Datenbank
+    $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+    $userid = $_SESSION['userid'];
+
+
+    $statement = $pdo->prepare("UPDATE school_$userSchoolID SET VideoFile = ? WHERE ImgID = '$imgID'");
+    $result = $statement->execute(array($word));
+
+    $statement = $pdo->prepare("UPDATE school_$userSchoolID SET VideoMime = ? WHERE ImgID = '$imgID'");
+    $result = $statement->execute(array($video_extension));
+
+
+    //Video Thumbnail erstellen mit ffmpeg
+    echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path_video -qscale:v 2 -ss 00:00:00.010 -vframes 1 -vf scale=800:-1 $video_upload_folder$word-thumb.jpg >/dev/null 2>/dev/null &");
+    //konvertiere die Datei mit ffmpeg ---- ausgeschaltet wegen langsamer performance...
+    //echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path_video $video_upload_folder$word-converted.mp4 >/dev/null 2>/dev/null &");
+
+    $erfolgreich = "Video wurde erfolgreich hochgeladen!";
+
+
+  } else {
+    echo "Fehler beim hochladen";
+  }
 
 
 
-  // Eintragen in die Datenbank
-  $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
-  $userid = $_SESSION['userid'];
-
-
-  $statement = $pdo->prepare("UPDATE school_$userSchoolID SET VideoFile = ? WHERE ImgID = '$imgID'");
-  $result = $statement->execute(array($word));
-
-  $statement = $pdo->prepare("UPDATE school_$userSchoolID SET VideoMime = ? WHERE ImgID = '$imgID'");
-  $result = $statement->execute(array($video_extension));
-
-
-  //Video Thumbnail erstellen mit ffmpeg
-  echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path_video -qscale:v 2 -ss 00:00:00.010 -vframes 1 -vf scale=800:-1 $video_upload_folder$word-thumb.jpg >/dev/null 2>/dev/null &");
-  //konvertiere die Datei mit ffmpeg ---- ausgeschaltet wegen langsamer performance...
-  //echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path_video $video_upload_folder$word-converted.mp4 >/dev/null 2>/dev/null &");
 
 
   // die(header("location: ../profile.php"));
-  $erfolgreich = "Video wurde erfolgreich hochgeladen!";
 }
 };
 

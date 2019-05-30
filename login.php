@@ -174,7 +174,7 @@ if(isset($_GET['login'])) {
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
   </div>
   <div class="flexbox">
-    <img src="img/pdf_preview.jpg" class="img_shadow">
+    <img src="img/pdf_preview.png" class="img_shadow">
   </div>
 
 </div>

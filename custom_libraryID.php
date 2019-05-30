@@ -189,7 +189,7 @@ foreach ($pdo->query($sql) as $row) {
   $videoMime = $row['VideoMime'];
   $imgFile = $row['ImgFile'];
 
-  if($videoMime !== "") {
+  if($videoMime !== NULL) {
       $videoexists = "<i class='fas fa-video' title='Video'></i>";
   }else {
     $videoexists = null;

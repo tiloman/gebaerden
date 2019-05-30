@@ -66,23 +66,28 @@ if(!$error) {
   }
 
   //Alles okay, verschiebe Datei an neuen Pfad
-  move_uploaded_file($_FILES['image']['tmp_name'], $new_path);
-
-  // Eintragen in die Datenbank
-  $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
-  $userid = $_SESSION['userid'];
-
-
-  $statement = $pdo->prepare("INSERT INTO school_$userSchoolID (ImgName, UploadedBy, ImgMime, ImgFile, path) VALUES (:ImgName, :UploadedBy, :ImgMime, :ImgFile, :path)");
-  $result = $statement->execute(array('ImgName' => $word, 'UploadedBy' => $userid, 'ImgMime' => $extension, 'ImgFile' => $word, 'path' => $upload_folder));
-
-  //Kleines Vorschaubild erstellen mit ffmpeg
-  echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path -qscale:v 2 -vf scale=800:-1 $upload_folder$word-small.jpg >/dev/null 2>/dev/null &");
+  if(move_uploaded_file($_FILES['image']['tmp_name'], $new_path)) {
+    // Eintragen in die Datenbank
+    $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+    $userid = $_SESSION['userid'];
 
 
+    $statement = $pdo->prepare("INSERT INTO school_$userSchoolID (ImgName, UploadedBy, ImgMime, ImgFile, path) VALUES (:ImgName, :UploadedBy, :ImgMime, :ImgFile, :path)");
+    $result = $statement->execute(array('ImgName' => $word, 'UploadedBy' => $userid, 'ImgMime' => $extension, 'ImgFile' => $word, 'path' => $upload_folder));
 
-  // echo "Bild hochgeladen nach: ";
-  $erfolgreich = "Bild wurde erfolgreich hochgeladen!";
+    //Kleines Vorschaubild erstellen mit ffmpeg
+    echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path -qscale:v 2 -vf scale=800:-1 $upload_folder$word-small.jpg >/dev/null 2>/dev/null &");
+
+
+    // echo "Bild hochgeladen nach: ";
+    $erfolgreich = "Bild wurde erfolgreich hochgeladen!";
+  } else {
+    echo "Fehler beim Upload";
+  }
+
+
+
+
 
   // die(header("location: ../custom_library.php"));;
 }
