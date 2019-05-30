@@ -2,10 +2,15 @@
 
 session_start();
 
+if(!isset($_SESSION['userid'])) {
+  readfile("../img/forbidden.jpg");
+  die();
+}
+
+if(isset($_GET['imgID'])) {
 
 $imgID = $_GET['imgID'];
 $userSchoolID = $_SESSION['schoolId'];
-
 
 $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
 $sql = "SELECT * FROM school_$userSchoolID WHERE ImgID = $imgID";
@@ -19,13 +24,6 @@ foreach ($pdo->query($sql) as $row) {
 
 $file = "../".$path.$VideoFile.".".$videoMime;
 
-
-if(!isset($_SESSION['userid'])) {
-  readfile("../img/forbidden.jpg");
-  die();
-;
-}
-if(isset($_GET['imgID'])) {
 
 
 //Script von http://www.tuxxin.com/php-mp4-streaming/ wegen SAFARI

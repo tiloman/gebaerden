@@ -42,7 +42,7 @@ for (i = 0; i < coll.length; i++) {
         }
 
         if (c[i].classList.contains("video") && viewVideos === true){
-            c[i].innerHTML = "<video class='video_gebaerden' controls preload='metadata'><source src='"+phpVideoLoader+"?imgID="+imgID+"' type='video/mp4'>Your browser does not support the video tag.</video>";
+            c[i].innerHTML = "<video poster='php/imgThumb.php?imgID="+imgID+"' class='video_gebaerden' controls preload='metadata'><source src='"+phpVideoLoader+"?imgID="+imgID+"' type='video/mp4'>Your browser does not support the video tag.</video>";
         } else if (c[i].classList.contains("video") && viewVideos === false){
             c[i].style.opacity = 0;
         }
