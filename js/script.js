@@ -115,7 +115,7 @@ function closeAllActiveHeaders() {
     function show(wort){
     	document.getElementById("preview").style.display = 'block';
     	document.getElementById("preview_inner").style.backgroundImage = 'url("php/img.php?img=' + wort + '")';
-      console.log(wort.innerText);
+      console.log(wort);
     }
     function show_close(){
     	document.getElementById("preview").style.display = 'none';
