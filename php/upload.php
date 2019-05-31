@@ -72,17 +72,22 @@ if(!$error) {
     $userid = $_SESSION['userid'];
 
 
-    $statement = $pdo->prepare("INSERT INTO school_$userSchoolID (ImgName, UploadedBy, ImgMime, ImgFile, path) VALUES (:ImgName, :UploadedBy, :ImgMime, :ImgFile, :path)");
-    $result = $statement->execute(array('ImgName' => $word, 'UploadedBy' => $userid, 'ImgMime' => $extension, 'ImgFile' => $word, 'path' => $upload_folder));
+    $statement = $pdo->prepare("INSERT INTO school_$userSchoolID (ImgName, UploadedBy, ImgMime, ImgFile, path, VideoFile, VideoMime) VALUES (:ImgName, :UploadedBy, :ImgMime, :ImgFile, :path, :VideoFile, :VideoMime)");
+    $result = $statement->execute(array('ImgName' => $word, 'UploadedBy' => $userid, 'ImgMime' => $extension, 'ImgFile' => $word, 'path' => $upload_folder, 'VideoFile' => '', 'VideoMime' => ''));
+
+    if($result) {
+      $erfolgreich = "Bild für $word wurde erfolgreich hinzugefügt!";
+    } else {
+      echo "Upload ok, Eintrag in die Datenbank fehlerhaft.";
+    }
 
     //Kleines Vorschaubild erstellen mit ffmpeg
-    echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path -qscale:v 2 -vf scale=800:-1 $upload_folder$word-small.jpg >/dev/null 2>/dev/null &");
+      echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path -qscale:v 2 -vf scale=800:-1 $upload_folder$word-small.jpg >/dev/null 2>/dev/null &");
 
 
     // echo "Bild hochgeladen nach: ";
-    $erfolgreich = "Bild wurde erfolgreich hochgeladen!";
   } else {
-    echo "Fehler beim Upload";
+    echo "Leider gab es einen Fehler beim hochladen ...";
   }
 
 
