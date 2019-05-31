@@ -73,17 +73,20 @@ if(!$video_error) {
     $statement = $pdo->prepare("UPDATE school_$userSchoolID SET VideoMime = ? WHERE ImgID = '$imgID'");
     $result = $statement->execute(array($video_extension));
 
+    if($result) {
+      $erfolgreich = "Video für $word wurde erfolgreich hinzugefügt!";
+    } else {
+      echo "Upload ok, Eintrag in die Datenbank fehlerhaft.";
+    }
 
     //Video Thumbnail erstellen mit ffmpeg
     echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path_video -qscale:v 2 -ss 00:00:00.010 -vframes 1 -vf scale=800:-1 $video_upload_folder$word-thumb.jpg >/dev/null 2>/dev/null &");
     //konvertiere die Datei mit ffmpeg ---- ausgeschaltet wegen langsamer performance...
     //echo exec("/volume1/@appstore/ffmpeg/bin/ffmpeg -i $new_path_video $video_upload_folder$word-converted.mp4 >/dev/null 2>/dev/null &");
 
-    $erfolgreich = "Video wurde erfolgreich hochgeladen!";
-
 
   } else {
-    echo "Fehler beim hochladen";
+    echo "Leider gab es einen Fehler beim hochladen ... ";
   }
 
 

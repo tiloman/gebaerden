@@ -148,7 +148,7 @@ $erfolgreich = false;
            <select name='imgIDforVideo' class='custom_input browser-default custom-select' required>
              <option value=''>Gebärde auswählen ...</option>";
              <?php
-               $sql = "SELECT * FROM school_$userSchoolID WHERE VideoFile IS NULL ORDER BY ImgName";
+               $sql = "SELECT * FROM school_$userSchoolID WHERE VideoFile = '' ORDER BY ImgName";
                foreach ($pdo->query($sql) as $row) {
                   echo "<option value='".$row['ImgID']."'>";
                   echo $row['ImgName'];

@@ -41,11 +41,13 @@ if(!isset($_SESSION['userid'])) {
 Schauen Sie sich nun die Gebärden an und fügen Sie eigene hinzu: tiloman.mooo.com/gebaerden/custom_libraryID.php \n
 Viel Spaß!";
   $headers = "MIME-Version: 1.0\r\n";
-  mail($empfaenger, $betreff, $text, $from, $headers);
+
+  if(mail($empfaenger, $betreff, $text, $from, $headers)) {
+    header('Location: ../manageTeam.php?confirmed='.$grantedUser);
+  } else {
+    header('Location: ../manageTeam.php');
+  }
 
 
-
-
-  header('Location: ../manageTeam.php?confirmed='.$grantedUser);
 
 ?>

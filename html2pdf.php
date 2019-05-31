@@ -76,7 +76,7 @@ h1 {
 
 .gebaerde {
   max-height:80%;
-  width:40%;
+  max-width:40%;
   align: left;
   float: left;
   margin-left: 5%;
