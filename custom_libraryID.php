@@ -256,8 +256,6 @@ foreach ($pdo->query($sql) as $row) {
 <div class="row">
         <div class="col-md-12">
 
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Popup image</button>
-
           <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
               <div class="modal-content">

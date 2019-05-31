@@ -33,7 +33,7 @@ for (i = 0; i < coll.length; i++) {
         if (c[i].classList.contains("img")){
           c[i].innerHTML = "<img data-toggle='modal' data-target='#myModal' class='img_gebaerden' src='php/imgDb.php?imgID="+imgID+"'>";
           document.getElementById('modal-content').innerHTML = "<img src='php/imgOrig.php?imgID="+imgID+"' class='card-img-top'>";
-          document.getElementById('exampleModalCenterTitle').innerHTML = "Test";
+          document.getElementById('exampleModalCenterTitle').innerHTML = encodedWord;
 
         }
         if (c[i].classList.contains("metacomLC") && viewMetacom === true){
@@ -113,15 +113,6 @@ function closeAllActiveHeaders() {
         });
     });
 
-
-//Overlay Preview image
-function show(urlvar){
-	document.getElementById("preview").style.display = 'block';
-	document.getElementById("preview_inner").style.backgroundImage = 'url("php/imgOrig.php?imgID=' + urlvar + '")';
-}
-function show_close(){
-	document.getElementById("preview").style.display = 'none';
-}
 
 
 
