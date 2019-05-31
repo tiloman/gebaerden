@@ -150,6 +150,11 @@ if ($licensedSerial !== $userSerial) {
   }
 ?>
 
+<div id="preview">
+	<a class="close" onClick="show_close()">X</a>
+	<div id="preview_inner" onClick="show_close()"></div>
+</div>
+
 
 <script src="js/script.js"></script>
 

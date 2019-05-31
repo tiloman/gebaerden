@@ -28,7 +28,9 @@ for (i = 0; i < coll.length; i++) {
     var c = this.nextElementSibling.children;
       for (i=0; i< c.length; i++) {
         if (c[i].classList.contains("img")){
-          c[i].innerHTML = "<img class='img_gebaerden' src='php/img.php?img="+this.innerText+"&path="+imgPath+"&mime="+imgMime+"'>";
+          c[i].innerHTML = "<img id='test' class='img_gebaerden' src='php/img.php?img="+this.innerText+"&path="+imgPath+"&mime="+imgMime+"'>";
+          var word = this.innerText;
+          c[i].addEventListener('click', function() {show(word)});
         }
         if (c[i].classList.contains("metacomLC") && viewMetacom === true){
             c[i].innerHTML = "<img class='img_metacom' src='php/metacom.php?img="+selectedWord_lc+"&path="+metacomPath+"'>";
@@ -109,6 +111,15 @@ function closeAllActiveHeaders() {
 
 
 
+//Overlay Preview image
+    function show(wort){
+    	document.getElementById("preview").style.display = 'block';
+    	document.getElementById("preview_inner").style.backgroundImage = 'url("php/img.php?img=' + wort + '")';
+      console.log(wort.innerText);
+    }
+    function show_close(){
+    	document.getElementById("preview").style.display = 'none';
+    }
 
 
 //Metacom Symbole ausblenden und einblenden

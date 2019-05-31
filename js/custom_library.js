@@ -31,7 +31,7 @@ for (i = 0; i < coll.length; i++) {
           imgID = c[i].innerHTML; //IMG ID auslesen
         }
         if (c[i].classList.contains("img")){
-          c[i].innerHTML = "<a href='php/imgOrig.php?imgID="+imgID+"' target='_blank' class='img_gebaerden'><img class='img_gebaerden' src='php/imgDb.php?imgID="+imgID+"'></a>";
+          c[i].innerHTML = "<img class='img_gebaerden' onClick='show("+imgID+")' src='php/imgDb.php?imgID="+imgID+"'>";
         }
         if (c[i].classList.contains("metacomLC") && viewMetacom === true){
             c[i].innerHTML = "<img class='img_metacom' src='php/metacom.php?img="+selectedWord_lc+"&path="+metacomPath+"'>";
@@ -111,6 +111,14 @@ function closeAllActiveHeaders() {
     });
 
 
+//Overlay Preview image
+function show(urlvar){
+	document.getElementById("preview").style.display = 'block';
+	document.getElementById("preview_inner").style.backgroundImage = 'url("php/imgOrig.php?imgID=' + urlvar + '")';
+}
+function show_close(){
+	document.getElementById("preview").style.display = 'none';
+}
 
 
 

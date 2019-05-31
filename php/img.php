@@ -13,7 +13,7 @@ $path = $_GET['path'];
 
 if(isset($_GET['img'])) {
     $word = $_GET['img'];
-
+    $path = "files/";
 
 
     if(file_exists("../".$path.$word.'.jpg')){
