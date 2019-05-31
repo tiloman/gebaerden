@@ -31,7 +31,10 @@ for (i = 0; i < coll.length; i++) {
           imgID = c[i].innerHTML; //IMG ID auslesen
         }
         if (c[i].classList.contains("img")){
-          c[i].innerHTML = "<img class='img_gebaerden' onClick='show("+imgID+")' src='php/imgDb.php?imgID="+imgID+"'>";
+          c[i].innerHTML = "<img data-toggle='modal' data-target='#myModal' class='img_gebaerden' src='php/imgDb.php?imgID="+imgID+"'>";
+          document.getElementById('modal-content').innerHTML = "<img src='php/imgOrig.php?imgID="+imgID+"' class='card-img-top'>";
+          document.getElementById('exampleModalCenterTitle').innerHTML = "Test";
+
         }
         if (c[i].classList.contains("metacomLC") && viewMetacom === true){
             c[i].innerHTML = "<img class='img_metacom' src='php/metacom.php?img="+selectedWord_lc+"&path="+metacomPath+"'>";

@@ -150,10 +150,28 @@ if ($licensedSerial !== $userSerial) {
   }
 ?>
 
-<div id="preview">
-	<a class="close" onClick="show_close()">X</a>
-	<div id="preview_inner" onClick="show_close()"></div>
-</div>
+
+
+<div class="row">
+        <div class="col-md-12">
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Popup image</button>
+
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                </div>
+
+                <div class="modal-body" id='modal-content'>
+                  <img src="img/forbidden.jpg" class="">
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 <script src="js/script.js"></script>
