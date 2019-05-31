@@ -8,7 +8,6 @@ if(!isset($_SESSION['userid'])) {
 ;
 }
 
-$path = $_GET['path'];
 
 
 if(isset($_GET['img'])) {
