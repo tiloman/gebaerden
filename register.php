@@ -138,7 +138,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
         <input required type="password" id="register_pw" name="passwort" placeholder="Passwort"><br>
         <input required type="password" id="register_pw" name="passwort2" placeholder="Passwort wiederholen"><br><br>
 
-        <input type="submit" name="submit" value="Registrieren" id="register_btn"/>
+        <input type="submit" name="submit" value="Registrieren" class="custom_button"/>
         </form>
           <div class="notification">
             <?php

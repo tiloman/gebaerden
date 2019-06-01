@@ -78,7 +78,7 @@ if(isset($_GET['login'])) {
         <p class="login_text_head">Login.</p>
         <input required type="email" id="login_user" name="email" placeholder="E-Mail"><br>
         <input required type="password" id="login_pw" name="passwort" placeholder="Passwort"><br>
-        <input type="submit" name="submit" value="Einloggen" id="login_btn" class="custom_button"/>
+        <input type="submit" name="submit" value="Einloggen" class="custom_button"/>
       </form>
       <div class="notification">
         <?php

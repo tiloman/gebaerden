@@ -87,7 +87,7 @@ color: white;
   border: none;
 }*/
 
-#login_btn, #register_btn, .custom_button {
+#register_btn, .custom_button {
   color: white;
   background-color: #10464c;
   width: 70%;

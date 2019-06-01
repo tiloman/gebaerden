@@ -26,10 +26,10 @@ $filename = pathinfo($_FILES['image']['name'], PATHINFO_FILENAME);
 
 //Überprüfung der Dateigröße
 if(!$error) {
-  $max_size = 3*1000*1000; //3 MB
+  $max_size = 7*1000*1000; //7 MB
   if($_FILES['image']['size'] > $max_size) {
    // die("Bitte keine Dateien größer 3MB hochladen");
-   $uploadNotice = "Bitte keine Dateien größer 3MB hochladen";
+   $uploadNotice = "Bitte keine Dateien größer 7MB hochladen";
    $error = true;
   }
 }
