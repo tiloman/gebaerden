@@ -281,6 +281,16 @@ if (!isset($schoolName)) {
 
 if ($requestedSchool != 0){
   echo ("Kein Zugang");
+
+    $empfaenger = "lohmanntimo@gmail.com";
+    $betreff = "Speicherplatz für Schule $userSchoolID";
+    $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
+    $text = "Die Schule $userSchoolID hat keinen Speicher mehr.\n";
+    $headers = "MIME-Version: 1.0\r\n";
+
+    mail($empfaenger, $betreff, $text, $from, $headers);
+
+
 }
 };
 

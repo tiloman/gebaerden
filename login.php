@@ -87,6 +87,7 @@ if(isset($_GET['login'])) {
         }
         ?>
       </div>
+      <a href="forgotPassword.php">Passwort vergessen?</a><br>
       <a href="register.php">Noch keinen Account? Hier registrieren!</a>
     </div>
 
