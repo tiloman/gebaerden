@@ -124,9 +124,57 @@ $erfolgreich = false;
 
 
 };
-    ?>
 
-    </div>
+
+$path = "custom/school_$userSchoolID";
+
+function getdirsize($path)
+  {
+  	$result=explode("\t",exec("du -hs ".$path),2);
+  	return ($result[1]==$path ? $result[0] : "error");
+  }
+
+  $belegt = getdirsize($path);
+
+  $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
+  foreach ($pdo->query($sql) as $row) {
+     $diskspace = $row['space'];
+   }
+
+  $usedDiskspacePercent = round($belegt/$diskspace*100);
+
+echo "
+  <div id='diskspaceBarComplete'>
+    <div id='diskspaceBar'>".$usedDiskspacePercent."%</div>
+  </div>
+
+  <script>
+    var elem = document.getElementById('diskspaceBar');
+    var width = 0;
+    var id = setInterval(frame, 15);
+    function frame() {
+      if (width >= ".$usedDiskspacePercent.") {
+        clearInterval(id);
+      } else {
+        width++;
+        elem.style.width = width + '%';
+        elem.innerHTML = width * 1 + '%';
+      }
+    }
+  </script>";
+
+  if ($usedDiskspacePercent < 100) {
+
+echo "<p class='left'>Belegter Speicherplatz: ".$belegt."B von ".$diskspace."MB<br>
+      Um mehr Speicher zu erhalten, kontaktieren Sie uns einfach.
+      <p>  </div>";
+
+
+
+
+
+?>
+
 
 
       <div class='flexbox_user_info margin'>
@@ -165,7 +213,10 @@ $erfolgreich = false;
        </div>
 
 
+<?php } else {
+  echo "Der Upload neuer Gebärden wurde deaktiviert. Um neue Gebärden hochzuladen, löschen Sie alte oder kontaktieren Sie uns um mehr Speicher zu erhalten.</div>";
 
+} ?>
 
 
        <div class='flexbox_user_info margin'>
