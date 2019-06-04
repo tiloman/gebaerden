@@ -30,6 +30,40 @@
 
 <body style="background-image: linear-gradient(#6d918e, #10464c); text-align: center;">
 
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
+
+    <a class="navbar-brand" href="#">
+        <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
+      </a>
+
+  
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars navbar_sandwich"></i>
+      </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav ml-auto" >
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="profile.php"><i class="fas fa-user"></i> Home</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="login.php"><i class="fas fa-sign-in-alt"></i> Login</a
+        </li>
+
+
+      </ul>
+
+      <div>
+
+    </div>
+  </nav>
+
 
 
   <div class="welcome_flex_container">
@@ -88,12 +122,12 @@
       <h1>Neues Passwort vergeben</h1>
       <form action="?send=1&amp;userid=<?php echo htmlentities($userid); ?>&amp;code=<?php echo htmlentities($code); ?>" method="post">
       Bitte gib ein neues Passwort ein:<br>
-      <input type="password" name="passwort"><br><br>
+      <input type="password" class="custom_input" name="passwort" placeholder="Neues Passwort"><br><br>
 
-      Passwort erneut eingeben:<br>
-      <input type="password" name="passwort2"><br><br>
+      <br>
+      <input type="password" class="custom_input" name="passwort2" placeholder="Passwort wiederholen"><br><br>
 
-      <input type="submit" value="Passwort speichern">
+      <input type="submit" class="custom_button" value="Passwort speichern">
       </form>
 
     </div>
