@@ -141,7 +141,7 @@ function getdirsize($path)
      $diskspace = $row['space'];
    }
 
-  $usedDiskspacePercent = round($belegt/$diskspace*100);
+  $usedDiskspacePercent = round(intval($belegt)/$diskspace*100);
 
 echo "
   <div id='diskspaceBarComplete'>
@@ -165,7 +165,7 @@ echo "
 
   if ($usedDiskspacePercent < 100) {
 
-echo "<p class='left'>Belegter Speicherplatz: ".$belegt."B von ".$diskspace."MB<br>
+echo "<p class='left'>Belegter Speicherplatz: ".intval($belegt)." MB von ".$diskspace." MB<br>
       Um mehr Speicher zu erhalten, kontaktieren Sie uns einfach.
       <p>  </div>";
 
