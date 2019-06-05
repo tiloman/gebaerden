@@ -89,10 +89,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
               <div class='flexbox_head'>
                 <div class='flexbox_login'>
                   <p class='login_text_head'>Willkommen.</p>
-                  <p class='login_text'>Die Registrierung war erfolgreich.</p><br>
-                  <a href='login.php'>
-                    <input type='submit' class='custom_button' value='Zum Login'>
-                  </a>
+                  <p class='login_text'>Bitte überprüfen Sie Ihr Postfach. Eine Mail zur Bestätigung der Registrierung wurde gesendet.</p><br>
+                  
                 </div>
               </div>";
               $showFormular = false;
@@ -116,7 +114,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
 
           } else {
-              echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
+              $errorMessage = 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
           }
       }
   }
