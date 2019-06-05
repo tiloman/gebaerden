@@ -1,7 +1,7 @@
 <html>
 <head>
 
-    <title>Gebärden - About</title>
+    <title>My Sign Language - About</title>
 
     <link rel="stylesheet" type="text/css" href="css/stylesheet_welcome.css">
     <link rel="shortcut icon" href="https://img.icons8.com/ios-glyphs/100/000000/sign-language-interpretation.png">
@@ -33,7 +33,7 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
 
     <a class="navbar-brand" href="#">
-        <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
+      <img src="img/Logo_var1.png" width="80" height="35" style="border-radius: 3px;"alt="">
       </a>
 
       <form class="input-group-custom" action="index.php" method="get">

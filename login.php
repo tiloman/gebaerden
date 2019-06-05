@@ -36,7 +36,7 @@ if(isset($_GET['login'])) {
 <html>
 <head>
 
-    <title>Gebärden - Login</title>
+    <title>My Sign Language - Login</title>
 
     <link rel="stylesheet" type="text/css" href="css/stylesheet_welcome.css">
     <link rel="shortcut icon" href="https://img.icons8.com/ios-glyphs/100/000000/sign-language-interpretation.png">
@@ -66,7 +66,7 @@ if(isset($_GET['login'])) {
 
 
 
-<a href="index.php"><div id="login_header">Gebärden.</div></a>
+<a href="index.php"><img style="max-width: 600px; width: 80%" src="img/Logo_var2.png"></a>
 <!-- <i id="login_icon" class="fas fa-sign-language"></i> -->
 
 

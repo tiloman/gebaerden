@@ -1,7 +1,7 @@
 <html>
 <head>
 
-    <title>Gebärden - Passwort vergessen</title>
+    <title>My Sign Language - Passwort vergessen</title>
 
     <link rel="stylesheet" type="text/css" href="css/stylesheet_welcome.css">
     <link rel="shortcut icon" href="https://img.icons8.com/ios-glyphs/100/000000/sign-language-interpretation.png">
@@ -36,7 +36,7 @@
         <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
 
-    
+
 
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -33,10 +33,10 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
 
     <a class="navbar-brand" href="#">
-        <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
+      <img src="img/Logo_var1.png" width="80" height="35" style="border-radius: 3px;"alt="">
       </a>
 
-  
+
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars navbar_sandwich"></i>

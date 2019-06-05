@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
   <a class="navbar-brand" href="index.php">
-      <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
+      <img src="img/Logo_var1.png" width="80" height="35" style="border-radius: 3px;"alt="">
     </a>
 
     <?php if ($serial !=0 or $userSchoolID !=0) { ?>

@@ -122,7 +122,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
   if($showFormular) {
   ?>
-  <a href="index.php"><div id="login_header">Gebärden.</div></a>
+  <a href="index.php"><img style="max-width: 600px; width: 80%" src="img/Logo_var2.png"></a>
   <!-- <i id="login_icon" class="fas fa-sign-language"></i> -->
 
 

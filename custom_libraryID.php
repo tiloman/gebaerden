@@ -17,7 +17,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 <html>
 <head>
 
-    <title>Gebärden</title>
+    <title>My Sign Language - Custom Library</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/bootstrap_navbar_custom.css">
@@ -48,7 +48,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
     <a class="navbar-brand" href="#">
-        <img src="img/gebaerden_icon_g.png" width="35" height="35" style="border-radius: 3px;"alt="">
+      <img src="img/Logo_var1.png" width="80" height="35" style="border-radius: 3px;"alt="">
       </a>
       <form class="input-group-custom" action="custom_libraryID.php" method="get">
             <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
