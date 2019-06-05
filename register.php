@@ -9,7 +9,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 <html>
 <head>
 
-    <title>Gebärden - Registrierung</title>
+    <title>My Sign Language - Registrierung</title>
 
     <link rel="stylesheet" type="text/css" href="css/stylesheet_welcome.css">
     <link rel="shortcut icon" href="https://img.icons8.com/ios-glyphs/100/000000/sign-language-interpretation.png">
@@ -79,9 +79,10 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
       //Keine Fehler, wir können den Nutzer registrieren
       if(!$error) {
           $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
+          $activationCode = rand(100000,999999);
 
-          $statement = $pdo->prepare("INSERT INTO user (email, passwort, vorname, nachname) VALUES (:email, :passwort, :vorname, :nachname)");
-          $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname));
+          $statement = $pdo->prepare("INSERT INTO user (email, passwort, vorname, nachname, activationCode) VALUES (:email, :passwort, :vorname, :nachname, :activationCode)");
+          $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash, 'vorname' => $vorname, 'nachname' => $nachname, 'activationCode' => $activationCode));
 
           if($result) {
               echo "
@@ -109,7 +110,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
               $empfaenger = $email;
               $betreff = "Willkommen";
               $from = "From: Timo Lohmann <lohmanntimo@gmail.com>";
-              $text = "Willkommen $vorname $nachname, \n Sie haben sich erfolgreich bei der Gebärden-Mediathek registriert. \n\n Wir wünschen Ihnen viel Spaß! ";
+              $text = "Willkommen $vorname $nachname, \n Sie haben sich soeben bei My Sign Lanugage registriert. Um das Konto zu aktivieren müssen Sie Ihr Konto noch durch klick auf den folgenden Link bestätigen.\n https://tiloman.mooo.com/gebaerden/activate.php?code=$activationCode \n\n Wir wünschen Ihnen viel Spaß! \n";
               $headers = "MIME-Version: 1.0\r\n";
               mail($empfaenger, $betreff, $text, $from, $headers);
 
