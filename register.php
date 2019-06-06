@@ -33,6 +33,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 </head>
 
 <body>
+  <a href="index.php"><img style="max-width: 600px; width: 80%" src="img/Logo_var2.png"></a>
 
 
   <?php
@@ -121,12 +122,9 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
   if($showFormular) {
   ?>
-  <a href="index.php"><img style="max-width: 600px; width: 80%" src="img/Logo_var2.png"></a>
-  <!-- <i id="login_icon" class="fas fa-sign-language"></i> -->
 
 
     <div class="flexbox_head">
-      <!-- <p class="head_text">Willommen! <br><br>Hier finden Sie eine Sammlung von Gebärden.</p> -->
 
       <div class="flexbox_login">
         <form id="register_form" action="?register=1" method="post">
