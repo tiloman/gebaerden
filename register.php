@@ -115,7 +115,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
 
           } else {
-              echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
+              $errorMessage =  'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
           }
       }
   }
