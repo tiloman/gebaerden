@@ -65,9 +65,6 @@ foreach ($pdo->query($sql) as $row) {
         <div class='flexbox_login'>
           <p class='login_text_head'>Fehler.</p>
           <p class='login_text'>Prüfen Sie bitte ob der KOMPLETTE Link aus der Mail im Browser angezeigt wird.</p><br>
-          <a href='login.php'>
-            <input type='submit' class='custom_button' value='Zum Login'>
-          </a>
         </div>";
 
     }
@@ -76,9 +73,6 @@ foreach ($pdo->query($sql) as $row) {
     <div class='flexbox_login'>
       <p class='login_text_head'>Fehler.</p>
       <p class='login_text'>Prüfen Sie bitte ob der KOMPLETTE Link aus der Mail im Browser angezeigt wird.</p><br>
-      <a href='login.php'>
-        <input type='submit' class='custom_button' value='Zum Login'>
-      </a>
     </div>";
 }
 
