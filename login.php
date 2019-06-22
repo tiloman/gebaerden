@@ -58,10 +58,30 @@ if(isset($_GET['login'])) {
           <link rel="manifest" crossorigin="use-credentials" href="manifest.json">
           <meta name="theme-color" content="white"/>
           <meta name="apple-mobile-web-app-capable" content="yes">
-          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+          <meta name="apple-mobile-web-app-status-bar-style" content="black">
           <meta name="apple-mobile-web-app-title" content="My Sign Language>">
           <meta name="msapplication-TileImage" content="img/logo-144.png">
           <meta name="msapplication-TileColor" content="#FFFFFF">
+
+          <!-- iPhone Xs Max (1242px x 2688px) -->
+          <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" href="img/apple-launch-1242x2688.png">
+          <!-- iPhone Xr (828px x 1792px) -->
+          <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" href="img/apple-launch-828x1792.png">
+          <!-- iPhone X, Xs (1125px x 2436px) -->
+          <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" href="img/apple-launch-1125x2436.png">
+          <!-- iPhone 8 Plus, 7 Plus, 6s Plus, 6 Plus (1242px x 2208px) -->
+          <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="img/apple-launch-1242x2208.png">
+          <!-- iPhone 8, 7, 6s, 6 (750px x 1334px) -->
+          <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="img/apple-launch-750x1334.png">
+          <!-- iPad Pro 12.9" (2048px x 2732px) -->
+          <link rel="apple-touch-startup-image" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" href="img/apple-launch-2048x2732.png">
+          <!-- iPad Pro 11” (1668px x 2388px) -->
+          <link rel="apple-touch-startup-image" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" href="img/apple-launch-1668x2388.png">
+          <!-- iPad Pro 10.5" (1668px x 2224px) -->
+          <link rel="apple-touch-startup-image" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" href="img/apple-launch-1668x2224.png">
+          <!-- iPad Mini, Air (1536px x 2048px) -->
+          <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" href="img/apple-launch-1536x2048.png">
+
 
 
 
@@ -87,8 +107,8 @@ if(isset($_GET['login'])) {
 
 
 
-<a href="index.php"><img style="max-width: 500px; width: 80%" src="img/Logo_var2.png"></a>
-<!-- <i id="login_icon" class="fas fa-sign-language"></i> -->
+<div style="background-color: white;"><a href="index.php"><img style="max-width: 600px; width: 60%; margin-top: 3em;" src="img/Logo_var2.png"></a>
+</div><!-- <i id="login_icon" class="fas fa-sign-language"></i> -->
 
 
   <div class="flexbox_head">
