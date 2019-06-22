@@ -58,7 +58,7 @@ if(isset($_GET['login'])) {
           <link rel="manifest" crossorigin="use-credentials" href="manifest.json">
           <meta name="theme-color" content="white"/>
           <meta name="apple-mobile-web-app-capable" content="yes">
-          <meta name="apple-mobile-web-app-status-bar-style" content="black">
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
           <meta name="apple-mobile-web-app-title" content="My Sign Language>">
           <meta name="msapplication-TileImage" content="img/logo-144.png">
           <meta name="msapplication-TileColor" content="#FFFFFF">
