@@ -19,10 +19,15 @@ if(isset($_GET['login'])) {
         $logins = $user['logins'];
         $userid = $_SESSION['userid'];
 
+        if ($user['activationCode'] != 0) {
+          $errorMessage = "Dein Account wurde noch nicht aktiviert. Bitte überprüfe dein Postfach.";
+        } else {
+
         $statement = $pdo->prepare("UPDATE user SET logins = ? WHERE id = $userid");
         $statement->execute(array(++$logins));
 
         die(header("location: index.php"));
+        }
     } else {
         $errorMessage = "E-Mail oder Passwort war ungültig<br>";
     }

@@ -48,7 +48,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmi
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
     <a class="navbar-brand" href="#">
-      <img src="img/Logo_var1.png" width="80" height="35" style="border-radius: 3px;"alt="">
+      <img src="img/Logo_var1.png" width="35" height="35" style="border-radius: 3px;"alt="">
       </a>
       <form class="input-group-custom" action="custom_libraryID.php" method="get">
             <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
