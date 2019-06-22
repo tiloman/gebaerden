@@ -47,6 +47,22 @@ if(isset($_GET['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+          <meta name="apple-mobile-web-app-title" content="My Sign Language">
+          <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+          <link rel="manifest" crossorigin="use-credentials" href="manifest.json">
+          <meta name="theme-color" content="white"/>
+          <meta name="apple-mobile-web-app-capable" content="yes">
+          <meta name="apple-mobile-web-app-status-bar-style" content="black">
+          <meta name="apple-mobile-web-app-title" content="My Sign Language>">
+          <meta name="msapplication-TileImage" content="img/logo-144.png">
+          <meta name="msapplication-TileColor" content="#FFFFFF">
+
+
+
+
+
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21959683-2"></script>
     <script>

@@ -1,0 +1,26 @@
+{
+  "name": "My Sign Language",
+  "short_name": "My Sign Language",
+  "icons": [{
+    "src": "img/logo-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },{
+      "src": "img/logo-144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      },{
+        "src": "img/logo-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        },{
+          "src": "img/logo-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+          }],
+  "lang": "en-US",
+  "start_url": "login.php",
+  "display": "standalone",
+  "background_color": "white",
+  "theme_color": "white"
+}
