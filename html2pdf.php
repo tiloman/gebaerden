@@ -12,7 +12,8 @@ $userid = $_SESSION['userid'];
 $userSchoolID = $_SESSION['schoolId'];
 
 
-$pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+require('config.php');
+$pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 
 $sql = "SELECT * FROM user WHERE id = $userid";
 foreach ($pdo->query($sql) as $row) {

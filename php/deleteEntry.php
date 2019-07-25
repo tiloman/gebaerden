@@ -5,8 +5,8 @@ if (isset($_POST['deleteImgID'])) {
   $userSchoolID = $_SESSION['schoolId'];
 
 
-  $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
-
+  require('config.php');
+  $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 
   $sql = "SELECT * FROM school_$userSchoolID WHERE ImgID = '$imgID'";
   foreach ($pdo->query($sql) as $row) {
@@ -29,7 +29,7 @@ if (isset($_POST['deleteImgID'])) {
     if (file_exists($path.$videoFile."-small.jpg")) {
       unlink($path.$videoFile."-small.jpg");
     }
-    
+
   }
 
 

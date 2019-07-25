@@ -22,8 +22,8 @@ if ($userSchoolID == 0  and $serial == 0) {
   exit(1);
 }
 
-$pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
-
+require('config.php');
+$pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 ?>
 
 <html>

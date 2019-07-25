@@ -11,8 +11,8 @@ $userSchoolID = $_SESSION['schoolId'];
 $teamAdmin = $_SESSION['teamAdmin'];
 $serial = $_SESSION['serial'];
 
-$pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
-
+require('config.php');
+$pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 
 ?>
 

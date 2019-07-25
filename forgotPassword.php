@@ -73,8 +73,9 @@
     <div class="flexbox_user_info">
 
       <?php
-        $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
-
+      require('config.php');
+      $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
+      
         function random_string() {
          if(function_exists('random_bytes')) {
          $bytes = random_bytes(16);

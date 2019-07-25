@@ -10,7 +10,8 @@ $userid = $_SESSION['userid'];
 $userSchoolID = $_SESSION['schoolId'];
 $serial = $_SESSION['serial'];
 
-$pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+require('config.php');
+$pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 
 ?>
 

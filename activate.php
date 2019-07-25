@@ -39,7 +39,8 @@ if (isset($_GET['code'])){
 
 $submittedCode = $_GET['code'];
 
-$pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+require('config.php');
+$pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 
 $sql = "SELECT * FROM user WHERE activationCode = $submittedCode";
 foreach ($pdo->query($sql) as $row) {

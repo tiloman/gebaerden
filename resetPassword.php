@@ -70,8 +70,9 @@
     <div class="flexbox_user_info">
 
       <?php
-      $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
-
+      require('config.php');
+      $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
+      
       if(!isset($_GET['userid']) || !isset($_GET['code'])) {
        die("Leider wurde beim Aufruf dieser Website kein Code zum Zurücksetzen deines Passworts übermittelt");
       }

@@ -1,6 +1,8 @@
 <?php
 session_start();
-$pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+require('config.php');
+
+$pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 
 if(isset($_GET['login'])) {
     $email = $_POST['email'];
@@ -108,11 +110,10 @@ if(isset($_GET['login'])) {
 
 
 <div style="background-color: white;"><a href="index.php"><img style="max-width: 600px; width: 60%; margin-top: 3em;" src="img/Logo_var2.png"></a>
-</div><!-- <i id="login_icon" class="fas fa-sign-language"></i> -->
+</div>
 
 
   <div class="flexbox_head">
-    <!-- <p class="head_text">Willommen! <br><br>Hier finden Sie eine Sammlung von Gebärden.</p> -->
 
     <div class="flexbox_login">
       <form id="login_form" action="?login=1" method="post">

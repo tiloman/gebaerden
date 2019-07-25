@@ -4,7 +4,10 @@ if(!isset($_SESSION['userid'])) {
   die(header("location: ../login.php"));
 ;
 }
-  $pdo = new PDO('mysql:host=localhost;dbname=gebaerden', 'gebaerden', 'zeigsmirmitgebaerden');
+
+  require('config.php');
+  $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
+
   $userid = $_SESSION['userid'];
 
   $userLicense = $_POST['userLicense'];
