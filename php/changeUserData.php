@@ -6,7 +6,7 @@ if(!isset($_SESSION['userid'])) {
 }
 
 
-  require('config.php');
+  require('../config.php');
   $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 
   $userid = $_SESSION['userid'];

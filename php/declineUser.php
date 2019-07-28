@@ -4,7 +4,7 @@ if(!isset($_SESSION['userid'])) {
   die(header("location: ../login.php"));
 ;
 }
-require('config.php');
+require('../config.php');
 $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 
   $grantedSchool = $_POST['access'];

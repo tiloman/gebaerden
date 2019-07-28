@@ -5,7 +5,7 @@ if (isset($_POST['deleteImgID'])) {
   $userSchoolID = $_SESSION['schoolId'];
 
 
-  require('config.php');
+  require('../config.php');
   $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 
   $sql = "SELECT * FROM school_$userSchoolID WHERE ImgID = '$imgID'";

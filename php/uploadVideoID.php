@@ -63,9 +63,9 @@ if(!$video_error) {
   //Alles okay, verschiebe Datei an neuen Pfad
   if (move_uploaded_file($_FILES['video']['tmp_name'], $new_path_video)) {
     // Eintragen in die Datenbank
-    require('config.php');
+    require('../config.php');
     $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
-    
+
     $userid = $_SESSION['userid'];
 
 

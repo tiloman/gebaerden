@@ -6,7 +6,7 @@ if (isset($_POST['renameWord']) && isset($_POST['newName'])) {
   $word = $_POST['renameWord'];
   $newName = $_POST['newName'];
 
-  require('config.php');
+  require('../config.php');
   $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 
   $statement = $pdo->prepare("UPDATE school_$userSchoolID SET ImgName = ? WHERE ImgName = '$word'");

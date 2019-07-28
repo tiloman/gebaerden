@@ -12,7 +12,7 @@ if(isset($_GET['imgID'])) {
 $imgID = $_GET['imgID'];
 $userSchoolID = $_SESSION['schoolId'];
 
-require('config.php');
+require('../config.php');
 $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
 
 $sql = "SELECT * FROM school_$userSchoolID WHERE ImgID = $imgID";
