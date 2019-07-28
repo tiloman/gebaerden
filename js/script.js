@@ -96,6 +96,7 @@ function closeAllActiveHeaders() {
 //Suche mit JQuery
   $(document).ready(function(){
     $("#searchBar").on("keyup", function() {
+      hideWordsList();
       var value = $(this).val().toLowerCase();
       $("#wordsList li").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
@@ -112,6 +113,19 @@ function closeAllActiveHeaders() {
     });
 
 
+    //ausblenden der wordslist wenn nichts in der suche eingetragen ist
+function hideWordsList(){
+    let searchBar = document.getElementById('searchBar');
+    let wordsList = document.getElementById('wordsList');
+
+    if (searchBar.value){
+      wordsList.classList.remove('hidden');
+    } else {
+      wordsList.classList.add('hidden');
+    }
+  }
+
+hideWordsList();
 
 //Metacom Symbole ausblenden und einblenden
 function hideMetacom(){

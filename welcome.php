@@ -47,7 +47,7 @@ $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser",
 
 </head>
 
-<body style="background-image: linear-gradient(#6d918e, #10464c); text-align: center;">
+<body>
 
 
   <?php include('php/navbar.php'); ?>

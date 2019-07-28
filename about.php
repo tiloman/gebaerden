@@ -28,7 +28,7 @@
 
 </head>
 
-<body style="background-image: linear-gradient(#6d918e, #10464c); text-align: center;">
+<body>
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
 

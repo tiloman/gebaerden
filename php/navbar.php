@@ -5,15 +5,7 @@
       <img src="img/Logo_var1.png" width="35" height="35" style="border-radius: 3px;"alt="">
     </a>
 
-    <?php if ($serial !=0 or $userSchoolID !=0) { ?>
-          <form class="input-group-custom" action="index.php" method="get">
-                <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
-                  <div class="input-group-append">
-                    <button class="btn btn-success" type="submit"><i class="fas fa-search" title='Suche'></i></button>
-                  </div>
-                </div>
-          </form>
-    <?php  } ?>
+
 
 
 
@@ -105,3 +97,4 @@
 
   </div>
 </nav>
+<br><br><br>

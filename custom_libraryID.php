@@ -47,120 +47,31 @@ $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser",
 
 <body>
 
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
-    <a class="navbar-brand" href="#">
-      <img src="img/Logo_var1.png" width="35" height="35" style="border-radius: 3px;"alt="">
-      </a>
-      <form class="input-group-custom" action="custom_libraryID.php" method="get">
-            <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
-              <div class="input-group-append">
-                <button class="btn btn-success" type="submit"><i class="fas fa-search" title='Suche'></i></button>
-              </div>
+  <?php include('php/navbar.php'); ?>
+
+
+
+<div class='container'>
+
+  <div class='container'>
+    <div class='flexbox_user_info'>
+      <h3><i class='fas fa-school'></i> <?php echo $schoolName ?></h3>
+
+    <form class="input-group" action="" method="get">
+          <div class="input-group sm-3" ><input id="searchBar" type="text" class="form-control" placeholder="Suche ..." name="searchInput" value="<?php if(isset($_GET['searchInput'])) {$searchInput = $_GET['searchInput']; echo $searchInput;} ?>">
+            <div class="input-group-append">
+              <button class="btn btn-success" type="submit"><i class="fas fa-search" title='Suche'></i></button>
             </div>
-      </form>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars navbar_sandwich"></i>
-      </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-      <ul class="navbar-nav ml-auto" >
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-filter"></i> Filtern
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" onclick="hideMetacom()" href="javascript:void(0)" id="viewMetacom"><img src="img/metacom.png" height="20px" title="Metacom eingeblendet">Metacom</a>
-            <a class="dropdown-item" onclick="hideVideos()" href="javascript:void(0)" id="viewVideos"><i class="fas fa-video-slash" title='Videos eingeblendet'></i>Video</a>
-
-
-
           </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-american-sign-language-interpreting"></i> Mediathek
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <?php
-            if ($serial != 0) {
-              echo "<a class='dropdown-item' href='index.php'>Zeigs mir mit Gebärden</a>";
-            }
-            ?>
-            <?php
-            $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
-            foreach ($pdo->query($sql) as $row) {
-              $schoolID = $row['school_id'];
-              $schoolName = $row['school_name'];
-            }
-            if (isset($schoolName)) {
-              if ($userSchoolID == $schoolID) {
-                echo "
-
-                <a class='dropdown-item' href='custom_libraryID.php'>".$schoolName."</a>";
-              }
-            }
-             ?>
-
-
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-cog"></i> Einstellungen
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class='dropdown-item' href='profile.php'>Profil</a>
-            <a class='dropdown-item' href='pdfSettings.php'>PDF Einstellungen</a>
-
-
-            <?php
-            $sql = "SELECT * FROM school WHERE school_id = $userSchoolID";
-            foreach ($pdo->query($sql) as $row) {
-              $schoolID = $row['school_id'];
-              $schoolName = $row['school_name'];
-            }
-            if (isset($schoolName)) {
-              if ($userSchoolID == $schoolID) {
-                echo "
-                <a class='dropdown-item' href='manageContent.php'>Gebärden verwalten</a>";
-
-              }
-            }
-
-            if ($_SESSION['teamAdmin'] == "Ja") {
-                echo "
-                <a class='dropdown-item' href='manageTeam.php'>Team verwalten</a>";
-            };
-            ?>
-
-
-          </div>
-        </li>
-
-
-        <li class="nav-item">
-          <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a
-        </li>
-
-
-      </ul>
-
-      <div>
-
-    </div>
-  </nav>
+    </form>
+  </div>
 
 <?php
 
 $metacomexists = null;
 $metacomCase = null;
 $videoexists = null;
+
 
 
 $statement = $pdo->prepare("SELECT * FROM school_$userSchoolID");
@@ -180,7 +91,7 @@ if ($anzahl_words < 1) {
 }
 
 
-  echo '<ul id="wordsList">';
+echo '<ul id="wordsList" class="wordsList">';
 
 
 $sql = "SELECT * FROM school_$userSchoolID ORDER BY ImgName";
@@ -252,7 +163,7 @@ foreach ($pdo->query($sql) as $row) {
 ?>
 </ul>
 
-
+</div>
 
 <div class="row">
         <div class="col-md-12">
@@ -275,7 +186,7 @@ foreach ($pdo->query($sql) as $row) {
 
 
 
-<script src="js/custom_library.js"></script>
+<script defer src="js/custom_library.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

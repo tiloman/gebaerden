@@ -28,7 +28,7 @@
 
 </head>
 
-<body style="background-image: linear-gradient(#6d918e, #10464c); text-align: center;">
+<body>
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-light navbar-custom">
 
@@ -69,13 +69,13 @@
 
 
 
-  <div class="welcome_flex_container">
+  <div class="container">
     <div class="flexbox_user_info">
 
       <?php
       require('config.php');
       $pdo = new PDO("mysql:host=$databasePath;dbname=$databaseName", "$databaseUser", "$databasePassword");
-      
+
         function random_string() {
          if(function_exists('random_bytes')) {
          $bytes = random_bytes(16);

@@ -6,7 +6,7 @@ body {
   margin: 0;
   font-weight: 200;
   text-align: center;
-  background-color: #10464c;
+  background-color: #eee;
   /* background-image: linear-gradient(#6d918e, #10464c); */
 
 }
@@ -16,7 +16,15 @@ h3 {
   text-align: left;
   border-bottom: 1px lightgrey solid;
 }
-
+h1 {
+  text-align: left;
+  font-weight: 200;
+  border-left: 7px solid #10464c;
+  padding-left: 0.8em;
+  font-size: 1.8em;
+  margin-left: 0.5em;
+  margin-bottom: 1em;
+}
 
 a {
   color: black;
@@ -30,6 +38,12 @@ footer{
 
 footer a{
   color: white
+}
+
+
+#wordsList {
+  box-shadow: 0px 5px 10px #ccc;
+  border-radius: 5px;
 }
 
 #login_form, #register_form {
@@ -194,11 +208,9 @@ color: white;
 
 .flexbox_user_info {
   background-color: white;
-  width: 80%;
-  max-width: 600px;
   padding: 2em;
   border-radius: 5px;
-  box-shadow: 0px 2px 5px #000;
+  box-shadow: 0px 2px 5px #ccc;
   margin: auto;
 }
 
@@ -362,6 +374,7 @@ padding: 10px;
 .custom_input, .custom_input_textbox {
   width: 90%;
 }
+
 
 .flexbox video {
   width: 90%;
